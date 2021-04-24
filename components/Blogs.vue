@@ -29,9 +29,10 @@
             pagination.current === 2 ? 'page-selected' : ''
           }`"
           v-if="
-            pagination.current < 4 ||
-            (pagination.current > pagination.pagesCount - 2 &&
-              pagination.current > 3)
+            (pagination.current < 4 ||
+              (pagination.current > pagination.pagesCount - 2 &&
+                pagination.current > 3)) &&
+            pagination.pagesCount >= 2
           "
           @click="jumpToPage(2)"
         >
@@ -253,8 +254,12 @@ export default defineComponent({
   }
   .blog-pagination-left {
     display: flex;
-    justify-content: space-between;
-    width: 320px;
+    .pagination-label {
+      margin-left: 10px;
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
   }
   .blog-pagination-right {
     display: flex;
@@ -272,6 +277,7 @@ export default defineComponent({
       padding: 0 2px;
       outline: none;
       margin: 0 4px;
+      text-align: center;
       border: 1px solid var(--borderColor) !important;
     }
     .page-jump-btn {
@@ -284,6 +290,7 @@ export default defineComponent({
   .blog-list {
     .blog-pagination-left {
       width: 100%;
+      justify-content: center;
     }
     .blog-pagination-right {
       margin-top: 1rem;

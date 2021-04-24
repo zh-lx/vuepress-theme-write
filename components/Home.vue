@@ -15,10 +15,6 @@
       <div class="home-main-right"><HomeRight /></div>
     </div>
 
-    <div class="theme-default-content custom">
-      <Content />
-    </div>
-
     <template v-if="footer">
       <div v-if="footerHtml" class="footer" v-html="footer" />
       <div v-else class="footer" v-text="footer" />

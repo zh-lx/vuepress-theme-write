@@ -75,11 +75,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, toRefs, watch } from 'vue'
-import type { PropType } from 'vue'
-import { useRoute } from 'vue-router'
-import type { NavGroup, NavItem } from '../types'
-import NavLink from './NavLink.vue'
+import { computed, defineComponent, ref, toRefs, watch } from 'vue';
+import type { PropType } from 'vue';
+import { useRoute } from 'vue-router';
+import type { NavGroup, NavItem } from '../types';
+import NavLink from './NavLink.vue';
 
 export default defineComponent({
   name: 'DropdownLink',
@@ -96,19 +96,19 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { item } = toRefs(props)
+    const { item }: { item: any } = toRefs(props);
     const dropdownAriaLabel = computed(
       () => item.value.ariaLabel || item.value.text
-    )
+    );
 
-    const open = ref(false)
-    const route = useRoute()
+    const open = ref(false);
+    const route = useRoute();
     watch(
       () => route.path,
       () => {
-        open.value = false
+        open.value = false;
       }
-    )
+    );
 
     /**
      * Open the dropdown when user tab and click from keyboard.
@@ -119,23 +119,23 @@ export default defineComponent({
      * @see https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail
      */
     const handleDropdown = (e): void => {
-      const isTriggerByTab = e.detail === 0
+      const isTriggerByTab = e.detail === 0;
       if (isTriggerByTab) {
-        open.value = !open.value
+        open.value = !open.value;
       } else {
-        open.value = false
+        open.value = false;
       }
-    }
+    };
 
     const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
-      arr[arr.length - 1] === item
+      arr[arr.length - 1] === item;
 
     return {
       open,
       dropdownAriaLabel,
       handleDropdown,
       isLastItemOfArray,
-    }
+    };
   },
-})
+});
 </script>
