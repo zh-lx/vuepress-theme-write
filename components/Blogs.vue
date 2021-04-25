@@ -136,7 +136,13 @@ export default defineComponent({
   components: {
     BlogItem,
   },
-  setup() {
+  props: {
+    blogs: {
+      type: Object,
+      default: () => [],
+    },
+  },
+  setup(props) {
     const state = reactive({
       pagination: {
         current: 1,
@@ -146,18 +152,20 @@ export default defineComponent({
       inputPage: '',
       showErrTip: false,
     });
-    let blogs = ref([]);
+
+    watch(
+      () => props.blogs,
+      (blogs) => {
+        state.pagination.pagesCount = Math.ceil(blogs.length / PageSize);
+      }
+    );
+
     let timer = ref();
-    usePagesInfo().then((blogsInfo) => {
-      blogs.value = blogsInfo?.blogs?.value || [];
-      console.log(blogs.value);
-      state.pagination.pagesCount = Math.ceil(blogs.value.length / PageSize);
-    });
 
     const blogsToShow = computed(() => {
       const start = (state.pagination.current - 1) * PageSize;
       const end = start + PageSize;
-      return blogs.value.slice(start, end);
+      return props.blogs.slice(start, end);
     });
     const scrollToBlogsTop = () => {
       const navBarHeight = (document.querySelector('.navbar') as HTMLElement)
@@ -206,7 +214,7 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
-      blogs,
+      ...toRefs(props),
       blogsToShow,
       jumpToPage,
       inputJump,

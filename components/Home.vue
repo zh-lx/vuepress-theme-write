@@ -11,7 +11,7 @@
     </div>
 
     <div class="home-main">
-      <div class="home-main-left"><Blogs /></div>
+      <div class="home-main-left"><Blogs :blogs="blogs" /></div>
       <div class="home-main-right"><HomeRight /></div>
     </div>
 
@@ -23,13 +23,14 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import {
   usePageFrontmatter,
   useSiteLocaleData,
   withBase,
 } from '@vuepress/client';
-import type { DefaultThemeHomePageFrontmatter } from '../types';
+import { usePagesInfo } from '@/composables';
+import type { DefaultThemeHomePageFrontmatter } from '@/types';
 import NavLink from './NavLink.vue';
 import Blogs from './Blogs.vue';
 import HomeRight from './HomeRight.vue';
@@ -71,6 +72,12 @@ export default defineComponent({
       );
     });
 
+    const blogs = ref([]);
+
+    usePagesInfo().then((blogsInfo) => {
+      blogs.value = blogsInfo?.blogs?.value || [];
+    });
+
     const footer = computed(() => frontmatter.value.footer);
 
     const footerHtml = computed(() => frontmatter.value.footerHtml);
@@ -81,6 +88,7 @@ export default defineComponent({
       footer,
       footerHtml,
       homeBgImage,
+      blogs,
     };
   },
 });
