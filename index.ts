@@ -1,4 +1,5 @@
 const { path } = require('@vuepress/utils');
+import { createPages } from './utils/createPage';
 const themeConfig = require('./themeConfig');
 const themePlugins = {};
 const {
@@ -13,6 +14,8 @@ const {
 } = require('./node');
 
 assignDefaultLocaleOptions(themeConfig);
+
+createPages(path.resolve(__dirname, '../docs'), 'category');
 
 module.exports = {
   layouts: path.resolve(__dirname, './layouts'),
