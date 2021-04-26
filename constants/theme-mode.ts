@@ -8,5 +8,6 @@ export const themeMode = {
     '--commonHoverHighLight': '#79BBFF',
     '--pageSelectedColor': '#3ed5fe',
     '--borderColor': '#909399',
+    '--backgroundColor': '#fff',
   },
 };

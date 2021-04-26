@@ -26,9 +26,9 @@
     </Sidebar>
 
     <main class="home" :aria-labelledby="heroText ? 'main-title' : null">
-      <div class="home-main">
-        <div class="home-main-left"><Blogs :blogs="blogs" /></div>
-        <div class="home-main-right"><HomeRight /></div>
+      <div class="home-main category-page-container">
+        <div class="blog-category-card card"><Categories /></div>
+        <div class="home-main-left"><Blogs :blogs="blogsToShow" /></div>
       </div>
 
       <template v-if="footer">
@@ -57,6 +57,7 @@ import {
 import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
 import Blogs from '@/components/Blogs.vue';
+import Categories from '@/components/Categories.vue';
 import {
   useScrollPromise,
   useSidebarItems,
@@ -73,11 +74,13 @@ export default defineComponent({
     Sidebar,
     Transition,
     Blogs,
+    Categories,
   },
 
   setup() {
     const frontmatter = usePageFrontmatter();
     const themeLocale = useThemeLocaleData();
+    const router = useRouter();
     const shouldShowNavbar = computed(
       () =>
         frontmatter.value.navbar !== false && themeLocale.value.navbar !== false
@@ -115,15 +118,26 @@ export default defineComponent({
 
     // blogs
     const blogs = ref([]);
+    const categories = ref([]);
 
     usePagesInfo().then((blogsInfo) => {
       blogs.value = blogsInfo?.blogs?.value || [];
+      categories.value = blogsInfo?.categories?.value || [];
+    });
+
+    const blogsToShow = computed(() => {
+      const category = decodeURI(
+        (router.currentRoute.value.query?.category as string) || ''
+      );
+      return blogs.value.filter((blog) => {
+        const blogCategory = decodeURI(blog.filePathRelative.split('/')[0]);
+        return category === blogCategory;
+      });
     });
 
     // close sidebar after navigation
     let unregisterRouterHook;
     onMounted(() => {
-      const router = useRouter();
       unregisterRouterHook = router.afterEach(() => {
         toggleSidebar(false);
       });
@@ -147,8 +161,25 @@ export default defineComponent({
       onTouchEnd,
       onBeforeEnter,
       onBeforeLeave,
-      blogs,
+      blogsToShow,
+      categories,
     };
   },
 });
 </script>
+<style lang="scss" scoped>
+@import '~@/styles/_variables.scss';
+.blog-category-card {
+  width: 200px;
+  background-color: var(--backgroundColor);
+  position: fixed;
+  left: 0;
+  top: $navbarHeight;
+  bottom: 0;
+  padding: 1.5rem 0;
+  overflow-y: auto;
+}
+.category-page-container {
+  padding-left: calc(200px + 1.5rem);
+}
+</style>
