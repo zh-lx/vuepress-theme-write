@@ -15,7 +15,7 @@ const {
 
 assignDefaultLocaleOptions(themeConfig);
 
-createPages(path.resolve(__dirname, '../docs'), 'category');
+createPages(path.resolve(__dirname, '../docs'));
 
 module.exports = {
   layouts: path.resolve(__dirname, './layouts'),

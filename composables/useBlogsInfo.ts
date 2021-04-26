@@ -12,9 +12,11 @@ export async function usePagesInfo() {
   for (let route in pagesData) {
     const getPageInfo = pagesData[route];
     const pageObj = await getPageInfo();
+
     if (
       !(pageObj as any)?.filePathRelative ||
-      pageObj.frontmatter.blog === false
+      pageObj.frontmatter.blog === false ||
+      (pageObj as any).filePathRelative.split('/')[0] === '@pages'
     ) {
       continue;
     }
@@ -30,8 +32,9 @@ export async function usePagesInfo() {
         targetTag.count++;
       }
     });
+
     // 获取category列表
-    const category = pageObj.path.split('/')[1];
+    const category = (pageObj as any).filePathRelative.split('/')[0];
     const targetCategory = categories.value.find((item) => {
       return item.name === category;
     });
@@ -40,6 +43,7 @@ export async function usePagesInfo() {
     } else {
       targetCategory.count++;
     }
+
     // 获取blog列表
     if (!(pageObj.frontmatter.blog === false)) {
       blogs.value.push(pageObj as Blog);

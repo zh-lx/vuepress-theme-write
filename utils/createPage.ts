@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 export const createPages = (sourceDir) => {
-  const dirPath = path.join(sourceDir, '.pages'); // 生成的文件夹路径
+  const dirPath = path.join(sourceDir, '@pages'); // 生成的文件夹路径
 
   // 文件夹不存在时
   if (!fs.existsSync(dirPath)) {
