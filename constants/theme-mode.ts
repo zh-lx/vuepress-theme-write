@@ -9,5 +9,6 @@ export const themeMode = {
     '--pageSelectedColor': '#3ed5fe',
     '--borderColor': '#909399',
     '--backgroundColor': '#fff',
+    '--coverRegionColor': 'rgba(0, 0, 0, 0.5)',
   },
 };

@@ -1,7 +1,10 @@
 <template>
   <div>
     <div v-for="(category, index) in categories" :key="index">
-      <div class="category-item pointer">
+      <div
+        class="category-item pointer"
+        @click="handleClickCategory(category.name)"
+      >
         <div class="category-name">{{ decodeURI(category.name) }}</div>
         <div class="category-count">{{ category.count }}</div>
       </div>
@@ -13,6 +16,7 @@
 import { defineComponent, ref } from 'vue';
 import { usePagesInfo } from '@/composables';
 import { Category } from '@/types';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'Categories',
@@ -22,8 +26,15 @@ export default defineComponent({
       categories.value = blogsInfo?.categories?.value || [];
     });
 
+    const router = useRouter();
+
+    const handleClickCategory = (category) => {
+      router.push(`/categories/?category=${decodeURI(category)}`);
+    };
+
     return {
       categories,
+      handleClickCategory,
     };
   },
 });

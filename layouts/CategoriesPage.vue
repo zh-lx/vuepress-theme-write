@@ -1,130 +1,58 @@
 <template>
-  <div
-    class="theme-container"
-    :class="containerClass"
-    @touchstart="onTouchStart"
-    @touchend="onTouchEnd"
-  >
-    <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar">
-      <template #before>
-        <slot name="navbar-before" />
-      </template>
-      <template #after>
-        <slot name="navbar-after" />
-      </template>
-    </Navbar>
-
-    <div class="sidebar-mask" @click="toggleSidebar(false)" />
-
-    <Sidebar>
-      <template #top>
-        <slot name="sidebar-top" />
-      </template>
-      <template #bottom>
-        <slot name="sidebar-bottom" />
-      </template>
-    </Sidebar>
-
-    <main
-      class="main-container"
-      :aria-labelledby="heroText ? 'main-title' : null"
-    >
+  <LayoutContainer>
+    <main class="main-container">
       <div class="main-content category-page-container">
-        <div class="blog-category-card card"><Categories /></div>
+        <div
+          class="cover-region"
+          ref="coverRef"
+          @click="changeRefsShow(false)"
+        ></div>
+        <div class="showCategoryBtn" ref="btnRef" @click="changeRefsShow(true)">
+          <i class="el-arrow-right"></i>
+        </div>
+        <div
+          class="blog-category-card card mobile-transform"
+          ref="categoriesRef"
+        >
+          <Categories />
+        </div>
         <div class="main-content-left"><Blogs :blogs="blogsToShow" /></div>
       </div>
-
-      <div class="showCategoryBtn"><i class="el-arrow-right"></i></div>
-
-      <template v-if="footer">
-        <div v-if="footerHtml" class="footer" v-html="footer" />
-        <div v-else class="footer" v-text="footer" />
-      </template>
     </main>
-  </div>
+  </LayoutContainer>
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  onUnmounted,
-  ref,
-  Transition,
-} from 'vue';
+import { computed, defineComponent, ref, reactive, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import {
-  usePageData,
-  usePagesData,
-  usePageFrontmatter,
-} from '@vuepress/client';
-import Navbar from '@/components/Navbar.vue';
-import Sidebar from '@/components/Sidebar.vue';
 import Blogs from '@/components/Blogs.vue';
 import Categories from '@/components/Categories.vue';
-import {
-  useScrollPromise,
-  useSidebarItems,
-  useThemeLocaleData,
-  usePagesInfo,
-} from '@/composables';
-import { setMode } from '@/utils/setMode';
+import { usePagesInfo } from '@/composables';
+import LayoutContainer from '@/components/LayoutContainer.vue';
 import 'easy-icon/easy-icon-l.js';
 
 export default defineComponent({
   name: 'CategoriesPage',
 
   components: {
-    Navbar,
-    Sidebar,
-    Transition,
     Blogs,
     Categories,
+    LayoutContainer,
   },
 
   setup() {
-    const frontmatter = usePageFrontmatter();
-    const themeLocale = useThemeLocaleData();
+    const state = reactive({
+      showCategory: false,
+    });
+
     const router = useRouter();
-    const shouldShowNavbar = computed(
-      () =>
-        frontmatter.value.navbar !== false && themeLocale.value.navbar !== false
-    );
-
-    // sidebar
-    const sidebarItems = useSidebarItems();
-    const isSidebarOpen = ref(false);
-    const toggleSidebar = (to?: boolean): void => {
-      isSidebarOpen.value = typeof to === 'boolean' ? to : !isSidebarOpen.value;
-    };
-    const touchStart = { x: 0, y: 0 };
-    const onTouchStart = (e): void => {
-      touchStart.x = e.changedTouches[0].clientX;
-      touchStart.y = e.changedTouches[0].clientY;
-    };
-    const onTouchEnd = (e): void => {
-      const dx = e.changedTouches[0].clientX - touchStart.x;
-      const dy = e.changedTouches[0].clientY - touchStart.y;
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-        if (dx > 0 && touchStart.x <= 80) {
-          toggleSidebar(true);
-        } else {
-          toggleSidebar(false);
-        }
-      }
-    };
-
-    // classes
-    const containerClass = computed(() => ({
-      'no-navbar': !shouldShowNavbar.value,
-      'no-sidebar': !sidebarItems.value.length,
-      'sidebar-open': isSidebarOpen.value,
-    }));
 
     // blogs
     const blogs = ref([]);
     const categories = ref([]);
+    const categoriesRef = ref<HTMLElement | null>();
+    const coverRef = ref<HTMLElement | null>(null);
+    const btnRef = ref<HTMLElement | null>(null);
 
     usePagesInfo().then((blogsInfo) => {
       blogs.value = blogsInfo?.blogs?.value || [];
@@ -141,34 +69,33 @@ export default defineComponent({
       });
     });
 
-    // close sidebar after navigation
-    let unregisterRouterHook;
-    onMounted(() => {
-      unregisterRouterHook = router.afterEach(() => {
-        toggleSidebar(false);
-      });
-      setMode();
-    });
-    onUnmounted(() => {
-      unregisterRouterHook();
-    });
+    const changeRefsShow = (val) => {
+      state.showCategory = val;
+      if (val) {
+        categoriesRef.value.classList.remove('mobile-transform');
+        coverRef.value.style.visibility = 'visible';
+        btnRef.value.style.visibility = 'hidden';
+      } else {
+        categoriesRef.value.classList.add('mobile-transform');
+        coverRef.value.style.visibility = 'hidden';
+        btnRef.value.style.visibility = 'visible';
+      }
+    };
 
-    // handle scrollBehavior with transition
-    const scrollPromise = useScrollPromise();
-    const onBeforeEnter = scrollPromise.resolve;
-    const onBeforeLeave = scrollPromise.pending;
+    watch(
+      () => router.currentRoute.value.query?.category,
+      () => {
+        changeRefsShow(false);
+      }
+    );
 
     return {
-      frontmatter,
-      containerClass,
-      shouldShowNavbar,
-      toggleSidebar,
-      onTouchStart,
-      onTouchEnd,
-      onBeforeEnter,
-      onBeforeLeave,
       blogsToShow,
       categories,
+      categoriesRef,
+      changeRefsShow,
+      coverRef,
+      btnRef,
     };
   },
 });
@@ -184,6 +111,17 @@ export default defineComponent({
   bottom: 0;
   padding: 1.5rem 0;
   overflow-y: auto;
+  z-index: 99;
+}
+.cover-region {
+  width: 100vw;
+  background-color: var(--coverRegionColor);
+  top: $navbarHeight;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 10;
+  display: none;
 }
 .category-page-container {
   padding-left: calc(200px + 1.5rem);
@@ -209,14 +147,18 @@ export default defineComponent({
   }
 }
 @media (max-width: $MQMobileNarrow) {
-  .blog-category-card {
-    display: none;
+  .mobile-transform {
+    transform: translateX(-200px);
   }
   .category-page-container {
     padding-left: 1.5rem;
   }
   .showCategoryBtn {
     display: flex;
+  }
+  .cover-region {
+    display: block;
+    visibility: hidden;
   }
 }
 </style>
