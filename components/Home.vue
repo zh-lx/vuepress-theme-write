@@ -1,5 +1,8 @@
 <template>
-  <main class="home" :aria-labelledby="heroText ? 'main-title' : null">
+  <main
+    class="main-container"
+    :aria-labelledby="heroText ? 'main-title' : null"
+  >
     <div class="hero" :style="{ backgroundImage: `url(${homeBgImage})` }">
       <h1 v-if="heroText" id="main-title">
         {{ heroText }}
@@ -10,9 +13,9 @@
       </p>
     </div>
 
-    <div class="home-main">
-      <div class="home-main-left"><Blogs :blogs="blogs" /></div>
-      <div class="home-main-right"><HomeRight /></div>
+    <div class="main-content">
+      <div class="main-content-left"><Blogs :blogs="blogs" /></div>
+      <div class="main-content-right"><HomeRight /></div>
     </div>
 
     <template v-if="footer">

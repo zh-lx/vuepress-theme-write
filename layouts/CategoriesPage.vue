@@ -25,11 +25,16 @@
       </template>
     </Sidebar>
 
-    <main class="home" :aria-labelledby="heroText ? 'main-title' : null">
-      <div class="home-main category-page-container">
+    <main
+      class="main-container"
+      :aria-labelledby="heroText ? 'main-title' : null"
+    >
+      <div class="main-content category-page-container">
         <div class="blog-category-card card"><Categories /></div>
-        <div class="home-main-left"><Blogs :blogs="blogsToShow" /></div>
+        <div class="main-content-left"><Blogs :blogs="blogsToShow" /></div>
       </div>
+
+      <div class="showCategoryBtn"><i class="el-arrow-right"></i></div>
 
       <template v-if="footer">
         <div v-if="footerHtml" class="footer" v-html="footer" />
@@ -65,6 +70,7 @@ import {
   usePagesInfo,
 } from '@/composables';
 import { setMode } from '@/utils/setMode';
+import 'easy-icon/easy-icon-l.js';
 
 export default defineComponent({
   name: 'CategoriesPage',
@@ -181,5 +187,36 @@ export default defineComponent({
 }
 .category-page-container {
   padding-left: calc(200px + 1.5rem);
+}
+.showCategoryBtn {
+  width: 2rem;
+  height: 3rem;
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  left: 0;
+  top: 40%;
+  padding: 0;
+  border: 1px solid var(--pageSelectedColor);
+  border-left: none;
+  writing-mode: vertical-lr;
+  color: var(--pageSelectedColor);
+  :hover {
+    cursor: pointer;
+  }
+}
+@media (max-width: $MQMobileNarrow) {
+  .blog-category-card {
+    display: none;
+  }
+  .category-page-container {
+    padding-left: 1.5rem;
+  }
+  .showCategoryBtn {
+    display: flex;
+  }
 }
 </style>

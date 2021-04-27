@@ -2,7 +2,7 @@
 
 @import '_variables';
 
-.home {
+.main-container {
   padding: $navbarHeight 0;
   max-width: 100%;
   display: block;
@@ -41,15 +41,15 @@
 
   }
 
-  .home-main {
+  .main-content {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 1.5rem 1.5rem;
-    .home-main-left {
+    .main-content-left {
       flex: 2;
     }
-    .home-main-right {
+    .main-content-right {
       flex: 1;
       max-width: 300px;
       min-width: 160px;
@@ -67,7 +67,7 @@
 
 
 @media (max-width: $MQMobileNarrow) {
-  .home {
+  .main-container {
     .hero {
       h1 {
         font-size: 2rem;
@@ -81,11 +81,11 @@
         font-size: 1.2rem;
       }
     }
-    .home-main {
-      .home-main-left {
+    .main-content {
+      .main-content-left {
         width: 100%;
       }
-      .home-main-right {
+      .main-content-right {
         width: 100%;
         margin-left: 0;
         min-width: 100%;
