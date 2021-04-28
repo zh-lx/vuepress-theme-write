@@ -2,7 +2,11 @@
   <div>
     <div v-for="(category, index) in categories" :key="index">
       <div
-        class="category-item pointer"
+        :class="`category-item pointer ${
+          router.currentRoute.value.query?.category === category.name
+            ? 'selected-category'
+            : ''
+        }`"
         @click="handleClickCategory(category.name)"
       >
         <div class="category-name">{{ decodeURI(category.name) }}</div>
@@ -35,6 +39,7 @@ export default defineComponent({
     return {
       categories,
       handleClickCategory,
+      router,
     };
   },
 });
@@ -60,6 +65,18 @@ export default defineComponent({
     line-height: 18px;
     min-width: 28px;
     border-radius: 9px;
+  }
+}
+.selected-category {
+  background-color: var(--commonSelectedBgc);
+  color: var(--commonSelectedColor);
+  .category-count {
+    background-color: var(--selectedCategoryCountColor);
+  }
+  &:hover {
+    background-color: var(--commonSelectedBgc);
+    border-left: none;
+    color: var(--commonSelectedColor);
   }
 }
 </style>

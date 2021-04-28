@@ -166,7 +166,7 @@ export default defineComponent({
   }
 }
 
-@media (max-width: $MQMobile) {
+@media (max-width: $MQMobileNarrow) {
   .author-card {
     display: none;
   }

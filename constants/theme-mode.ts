@@ -6,9 +6,12 @@ export const themeMode = {
     '--reverseTextColor': '#fff',
     '--commonHoverBgc': '#F2F6FC',
     '--commonHoverHighLight': '#79BBFF',
-    '--pageSelectedColor': '#3ed5fe',
+    '--commonSelectedBgc': '#3ed5fe',
+    '--commonSelectedColor': '#ffffff',
     '--borderColor': '#909399',
     '--backgroundColor': '#fff',
     '--coverRegionColor': 'rgba(0, 0, 0, 0.5)',
+    '--selectedCategoryCountColor': '#FFA500',
+    '--defaultTagBgc': '#faecd8',
   },
 };

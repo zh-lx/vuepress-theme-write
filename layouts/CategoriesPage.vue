@@ -138,10 +138,10 @@ export default defineComponent({
   left: 0;
   top: 40%;
   padding: 0;
-  border: 1px solid var(--pageSelectedColor);
+  border: 1px solid var(--commonSelectedBgc);
   border-left: none;
   writing-mode: vertical-lr;
-  color: var(--pageSelectedColor);
+  color: var(--commonSelectedBgc);
   :hover {
     cursor: pointer;
   }

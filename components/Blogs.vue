@@ -242,12 +242,12 @@ export default defineComponent({
     min-width: 28px;
     padding: 0 8px;
     &:hover {
-      color: var(--pageSelectedColor);
+      color: var(--commonSelectedBgc);
       cursor: pointer;
     }
   }
   .page-selected {
-    background-color: var(--pageSelectedColor);
+    background-color: var(--commonSelectedBgc);
     color: var(--reverseTextColor);
     &:hover {
       color: var(--reverseTextColor);

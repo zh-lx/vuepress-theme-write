@@ -3,8 +3,16 @@
     <div
       v-for="tag in tags"
       :key="tag.name"
-      class="tag-label pointer"
-      :style="{ background: getRandomColor() }"
+      :class="`tag-label pointer transition ${
+        router.currentRoute.value.query?.tag === tag.name ? 'selected-tag' : ''
+      }`"
+      :style="{
+        background: `${isTagPage ? 'var(--defaultTagBgc)' : getRandomColor()}`,
+        color: `${
+          isTagPage ? 'var(--commonTextColor)' : 'var(--reverseTextColor)'
+        }`,
+      }"
+      @click="handleClickTag(tag.name)"
     >
       {{ decodeURI(tag.name) }}
     </div>
@@ -12,22 +20,38 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, toRefs } from 'vue';
 import { usePagesInfo } from '@/composables';
-import { Category } from '@/types';
+import { Tag } from '@/types';
 import { getRandomColor } from '@/utils';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'Tags',
-  setup() {
-    let tags = ref<Category[]>([]);
+  props: {
+    isTagPage: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
+    let tags = ref<Tag[]>([]);
     usePagesInfo().then((blogsInfo) => {
       tags.value = blogsInfo?.tags?.value || [];
     });
 
+    const router = useRouter();
+
+    const handleClickTag = (tag) => {
+      router.push(`/tags/?tag=${decodeURI(tag)}`);
+    };
+
     return {
+      ...toRefs(props),
       tags,
       getRandomColor,
+      router,
+      handleClickTag,
     };
   },
 });
@@ -51,6 +75,13 @@ export default defineComponent({
     color: var(--reverseTextColor);
     &:last-of-type {
       margin-right: 0;
+    }
+  }
+  .selected-tag {
+    background-color: var(--commonSelectedBgc) !important;
+    color: var(--commonSelectedColor) !important;
+    &:hover {
+      transform: scale(1);
     }
   }
 }
