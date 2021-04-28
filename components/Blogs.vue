@@ -112,7 +112,7 @@
         </div>
       </div>
     </div>
-    <div class="err-tip" v-show="showErrTip">页码输入错误</div>
+    <div ref="tipRef" class="warn-tip">页码输入错误</div>
   </div>
 </template>
 
@@ -150,7 +150,6 @@ export default defineComponent({
         pagesCount: 0,
       },
       inputPage: '',
-      showErrTip: false,
     });
 
     watch(
@@ -161,6 +160,7 @@ export default defineComponent({
     );
 
     let timer = ref();
+    const tipRef = ref();
 
     const blogsToShow = computed(() => {
       const start = (state.pagination.current - 1) * PageSize;
@@ -194,14 +194,14 @@ export default defineComponent({
         state.pagination.current = targetPage;
         scrollToBlogsTop();
       } else {
-        state.showErrTip = true;
+        tipRef.value.style.top = '20%';
         if (timer.value) {
           clearTimeout(timer.value);
         }
         timer.value = setTimeout(() => {
-          state.showErrTip = false;
           timer.value = null;
-        }, 1000);
+          tipRef.value.style.top = '0';
+        }, 2500);
       }
     };
 
@@ -219,6 +219,7 @@ export default defineComponent({
       jumpToPage,
       inputJump,
       goJump,
+      tipRef,
     };
   },
 });
@@ -308,17 +309,16 @@ export default defineComponent({
   }
 }
 
-.err-tip {
+.warn-tip {
   position: fixed;
   text-align: center;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fef0f0;
-  color: #f56c6c;
-  padding: 4px 12px;
-  border-radius: 10px;
-  border: 1px solid rgb(253, 226, 226);
-  transition: 2s;
+  transform: translate(-50%, -100%);
+  background-color: #fdf6ec;
+  color: #e6a23c;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 1s linear;
 }
 </style>

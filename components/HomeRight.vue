@@ -18,31 +18,57 @@
         <i
           v-if="pageData.frontmatter?.contact?.github"
           class="et-logo-github author-icon pointer"
+          @click="openGithub(pageData.frontmatter?.contact?.github)"
         ></i>
         <i
           v-if="pageData.frontmatter?.contact?.qq"
           class="et-logo-qq author-icon pointer"
           style="color: #4cafe9"
+          @click="
+            () => {
+              window.open(pageData.frontmatter?.contact?.qq);
+            }
+          "
         ></i>
         <i
           v-if="pageData.frontmatter?.contact?.csdn"
           class="et-logo-csdn author-icon pointer"
           style="color: #fc5531"
+          @click="
+            () => {
+              window.open(pageData.frontmatter?.contact?.csdn);
+            }
+          "
         ></i>
         <i
           v-if="pageData.frontmatter?.contact?.wechat"
           class="et-logo-wechat author-icon pointer"
           style="color: #11d31d"
+          @click="
+            () => {
+              window.open(pageData.frontmatter?.contact?.wechat);
+            }
+          "
         ></i>
         <i
           v-if="pageData.frontmatter?.contact?.zhihu"
           class="et-zhihu author-icon pointer"
           style="color: #1089e9"
+          @click="
+            () => {
+              window.open(pageData.frontmatter?.contact?.zhihu);
+            }
+          "
         ></i>
         <i
           v-if="pageData.frontmatter?.contact?.email"
           class="et-ic-mail author-icon pointer"
           style="background: #fdb100"
+          @click="
+            () => {
+              window.open(pageData.frontmatter?.contact?.email);
+            }
+          "
         ></i>
       </div>
     </div>
@@ -83,11 +109,16 @@ export default defineComponent({
       tags.value = blogsInfo?.tags?.value || [];
     });
 
+    const openGithub = (url) => {
+      window.open(url);
+    };
+
     return {
       pageData,
       DefaultAvatar,
       categories,
       tags,
+      openGithub,
     };
   },
 });
