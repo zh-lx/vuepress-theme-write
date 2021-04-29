@@ -13,5 +13,6 @@ export const themeMode = {
     '--coverRegionColor': 'rgba(0, 0, 0, 0.5)',
     '--selectedCategoryCountColor': '#FFA500',
     '--defaultTagBgc': '#faecd8',
+    '--textTipBgc': 'rgba(0, 0, 0, 0.4)',
   },
 };

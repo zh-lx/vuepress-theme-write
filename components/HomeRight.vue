@@ -18,58 +18,46 @@
         <i
           v-if="pageData.frontmatter?.contact?.github"
           class="et-logo-github author-icon pointer"
-          @click="openGithub(pageData.frontmatter?.contact?.github)"
+          @click="openUrlWindow(pageData.frontmatter?.contact?.github)"
         ></i>
-        <i
+        <TextTip
+          :tip="pageData.frontmatter?.contact?.qq"
           v-if="pageData.frontmatter?.contact?.qq"
-          class="et-logo-qq author-icon pointer"
-          style="color: #4cafe9"
-          @click="
-            () => {
-              window.open(pageData.frontmatter?.contact?.qq);
-            }
-          "
-        ></i>
+        >
+          <i class="et-logo-qq author-icon pointer" style="color: #4cafe9"></i>
+        </TextTip>
         <i
           v-if="pageData.frontmatter?.contact?.csdn"
           class="et-logo-csdn author-icon pointer"
           style="color: #fc5531"
-          @click="
-            () => {
-              window.open(pageData.frontmatter?.contact?.csdn);
-            }
-          "
+          @click="openUrlWindow(pageData.frontmatter?.contact?.csdn)"
         ></i>
-        <i
+        <TextTip
+          :tip="pageData.frontmatter?.contact?.wechat"
           v-if="pageData.frontmatter?.contact?.wechat"
-          class="et-logo-wechat author-icon pointer"
-          style="color: #11d31d"
-          @click="
-            () => {
-              window.open(pageData.frontmatter?.contact?.wechat);
-            }
-          "
-        ></i>
+        >
+          <i
+            v-if="pageData.frontmatter?.contact?.wechat"
+            class="et-logo-wechat author-icon pointer"
+            style="color: #11d31d"
+          ></i>
+        </TextTip>
         <i
           v-if="pageData.frontmatter?.contact?.zhihu"
           class="et-zhihu author-icon pointer"
           style="color: #1089e9"
-          @click="
-            () => {
-              window.open(pageData.frontmatter?.contact?.zhihu);
-            }
-          "
+          @click="openUrlWindow(pageData.frontmatter?.contact?.zhihu)"
         ></i>
-        <i
+        <TextTip
+          :tip="pageData.frontmatter?.contact?.email"
           v-if="pageData.frontmatter?.contact?.email"
-          class="et-ic-mail author-icon pointer"
-          style="background: #fdb100"
-          @click="
-            () => {
-              window.open(pageData.frontmatter?.contact?.email);
-            }
-          "
-        ></i>
+        >
+          <i
+            v-if="pageData.frontmatter?.contact?.email"
+            class="et-ic-mail author-icon pointer"
+            style="background: #fdb100"
+          ></i>
+        </TextTip>
       </div>
     </div>
     <div class="card category-card">
@@ -94,12 +82,13 @@ import 'easy-icon/easy-icon-t.js';
 import 'easy-icon';
 import Categories from '@/components/Categories.vue';
 import Tags from '@/components/Tags.vue';
+import TextTip from '@/components/TextTip.vue';
 
 const DefaultAvatar = 'https://i.postimg.cc/tJghhbZY/default-avatar.jpg';
 
 export default defineComponent({
   name: 'HomeRight',
-  components: { Categories, Tags },
+  components: { Categories, Tags, TextTip },
   setup() {
     const pageData = usePageData();
     let categories = ref<Category[]>([]);
@@ -109,7 +98,7 @@ export default defineComponent({
       tags.value = blogsInfo?.tags?.value || [];
     });
 
-    const openGithub = (url) => {
+    const openUrlWindow = (url) => {
       window.open(url);
     };
 
@@ -118,7 +107,7 @@ export default defineComponent({
       DefaultAvatar,
       categories,
       tags,
-      openGithub,
+      openUrlWindow,
     };
   },
 });
