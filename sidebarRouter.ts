@@ -28,19 +28,21 @@ const getCatalog = (dir) => {
   return children;
 };
 
-const CatalogPath = path.resolve(__dirname, '../docs');
-
-const getPath = (dirName) => path.resolve(CatalogPath, dirName);
-const CI_CD = getCatalog(getPath('CI.CD'));
-const 工程化 = getCatalog(getPath('工程化'));
-const react = getCatalog(getPath('react'));
-const team = getCatalog(getPath('team'));
-const vue2 = getCatalog(getPath('vue2'));
-
-module.exports = {
-  '/CI.CD': CI_CD,
-  '/工程化': 工程化,
-  '/react': react,
-  '/team': team,
-  '/vue2': vue2,
+const generateCategories = () => {
+  const docsDir = path.resolve(__dirname, '../docs');
+  let sidebars = {};
+  const isNotBlogs = ['.vuepress', '@pages'];
+  const res = fs.readdirSync(docsDir);
+  res.forEach((dirname) => {
+    const categoryPath = `${docsDir}/${dirname}`;
+    const stat = fs.statSync(categoryPath);
+    if (stat && stat.isDirectory() && !isNotBlogs.includes[dirname]) {
+      sidebars[`/${encodeURI(dirname)}`] = getCatalog(categoryPath);
+    }
+  });
+  return sidebars;
 };
+
+console.log(generateCategories());
+
+module.exports = generateCategories();
