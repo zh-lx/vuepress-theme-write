@@ -1,9 +1,6 @@
 <template>
   <LayoutContainer>
-    <Home v-if="frontmatter.home" />
-
     <Transition
-      v-else
       name="fade-slide-y"
       mode="out-in"
       @before-enter="onBeforeEnter"
@@ -42,7 +39,6 @@ export default defineComponent({
 
   setup() {
     const page = usePageData();
-    const frontmatter = usePageFrontmatter();
     const themeLocale = useThemeLocaleData();
 
     // handle scrollBehavior with transition
@@ -51,7 +47,6 @@ export default defineComponent({
     const onBeforeLeave = scrollPromise.pending;
 
     return {
-      frontmatter,
       page,
       onBeforeEnter,
       onBeforeLeave,
