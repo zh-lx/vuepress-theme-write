@@ -9,7 +9,6 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue';
-import Loading from '@/components/Loading.vue';
 import Home from '@/components/Home.vue';
 import LayoutContainer from '@/components/LayoutContainer.vue';
 
@@ -17,7 +16,6 @@ export default defineComponent({
   name: 'HomePage',
 
   components: {
-    Loading,
     Home,
     LayoutContainer,
   },

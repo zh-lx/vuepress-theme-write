@@ -3,6 +3,7 @@ import Badge from './components/global/Badge.vue';
 import CodeGroup from './components/global/CodeGroup';
 import CodeGroupItem from './components/global/CodeGroupItem.vue';
 import OutboundLink from './components/global/OutboundLink.vue';
+import Loading from '@/components/Loading.vue';
 import { useScrollPromise } from './composables';
 
 import './styles/index.scss';
@@ -11,6 +12,7 @@ declare const __DOCSEARCH_PROPS__: unknown;
 
 export default defineClientAppEnhance(({ app, router }) => {
   /* eslint-disable vue/match-component-file-name */
+  app.component('Loading', Loading);
   app.component('Badge', Badge);
   app.component('CodeGroup', CodeGroup);
   app.component('CodeGroupItem', CodeGroupItem);
