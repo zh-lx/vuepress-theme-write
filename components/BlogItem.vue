@@ -30,9 +30,6 @@
 import { defineComponent, toRefs } from 'vue';
 import { formatTime } from '@/utils/index';
 import { useRouter } from 'vue-router';
-import 'easy-icon';
-import 'easy-icon/easy-icon-l.js';
-import 'easy-icon/easy-icon-t.js';
 
 export default defineComponent({
   name: 'BlogItem',

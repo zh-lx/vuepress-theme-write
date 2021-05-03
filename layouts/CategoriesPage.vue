@@ -29,7 +29,6 @@ import Blogs from '@/components/Blogs.vue';
 import Categories from '@/components/Categories.vue';
 import { usePagesInfo } from '@/composables';
 import LayoutContainer from '@/components/LayoutContainer.vue';
-import 'easy-icon/easy-icon-l.js';
 
 export default defineComponent({
   name: 'CategoriesPage',

@@ -78,8 +78,6 @@ import { defineComponent, ref } from 'vue';
 import { usePageData } from '@vuepress/client';
 import { usePagesInfo } from '@/composables';
 import { Tag, Category } from '@/types';
-import 'easy-icon/easy-icon-t.js';
-import 'easy-icon';
 import Categories from '@/components/Categories.vue';
 import Tags from '@/components/Tags.vue';
 import TextTip from '@/components/TextTip.vue';
