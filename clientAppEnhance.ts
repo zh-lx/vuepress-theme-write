@@ -4,7 +4,7 @@ import CodeGroup from './components/global/CodeGroup';
 import CodeGroupItem from './components/global/CodeGroupItem.vue';
 import OutboundLink from './components/global/OutboundLink.vue';
 import Loading from '@/components/Loading.vue';
-import { useScrollPromise } from './composables';
+// import { useScrollPromise } from './composables';
 
 import './styles/index.scss';
 
@@ -31,9 +31,9 @@ export default defineClientAppEnhance(({ app, router }) => {
   /* eslint-enable vue/match-component-file-name */
 
   // handle scrollBehavior with transition
-  const scrollBehavior = router.options.scrollBehavior!;
-  router.options.scrollBehavior = async (...args) => {
-    await useScrollPromise().wait();
-    return scrollBehavior(...args);
-  };
+  // const scrollBehavior = router.options.scrollBehavior!;
+  // router.options.scrollBehavior = async (...args) => {
+  //   await useScrollPromise().wait();
+  //   return scrollBehavior(...args);
+  // };
 });
