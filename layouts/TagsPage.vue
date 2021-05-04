@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, reactive, watch } from 'vue';
+import { computed, defineComponent, ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import Blogs from '@/components/Blogs.vue';
 import Tags from '@/components/Tags.vue';
@@ -44,17 +44,10 @@ export default defineComponent({
         (router.currentRoute.value.query.tag as string) || ''
       );
       return blogs.value.filter((blog) => {
-        const blogTags = blog.frontmatter.tag;
+        const blogTags = blog.frontmatter.tag || [];
         return blogTags.includes(tag);
       });
     });
-
-    watch(
-      () => router.currentRoute.value.query?.category,
-      () => {
-        // changeRefsShow(false);
-      }
-    );
 
     return {
       blogsToShow,
