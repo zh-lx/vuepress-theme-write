@@ -2,58 +2,45 @@
   <div class="home-right">
     <div class="card author-card">
       <div class="author">
-        <img
-          class="author-avatar"
-          :src="pageData.frontmatter?.author?.avatar || DefaultAvatar"
-          alt=""
-        />
+        <img class="author-avatar" :src="author.avatar" alt="" />
         <div class="author-name">
-          {{ pageData.frontmatter?.author?.name || '神秘人' }}
+          {{ author.name || '神秘人' }}
         </div>
         <div class="author-introduction">
-          {{ pageData.frontmatter?.author?.introduction }}
+          {{ author.introduction }}
         </div>
       </div>
       <div class="contact">
         <i
-          v-if="pageData.frontmatter?.contact?.github"
+          v-if="contact.github"
           class="et-logo-github author-icon pointer"
-          @click="openUrlWindow(pageData.frontmatter?.contact?.github)"
+          @click="openUrlWindow(contact.github)"
         ></i>
-        <TextTip
-          :tip="pageData.frontmatter?.contact?.qq"
-          v-if="pageData.frontmatter?.contact?.qq"
-        >
+        <TextTip :tip="contact.qq" v-if="contact.qq">
           <i class="et-logo-qq author-icon pointer" style="color: #4cafe9"></i>
         </TextTip>
         <i
-          v-if="pageData.frontmatter?.contact?.csdn"
+          v-if="contact.csdn"
           class="et-logo-csdn author-icon pointer"
           style="color: #fc5531"
-          @click="openUrlWindow(pageData.frontmatter?.contact?.csdn)"
+          @click="openUrlWindow(contact.csdn)"
         ></i>
-        <TextTip
-          :tip="pageData.frontmatter?.contact?.wechat"
-          v-if="pageData.frontmatter?.contact?.wechat"
-        >
+        <TextTip :tip="contact.wechat" v-if="contact.wechat">
           <i
-            v-if="pageData.frontmatter?.contact?.wechat"
+            v-if="contact.wechat"
             class="et-logo-wechat author-icon pointer"
             style="color: #11d31d"
           ></i>
         </TextTip>
         <i
-          v-if="pageData.frontmatter?.contact?.zhihu"
+          v-if="contact.zhihu"
           class="et-zhihu author-icon pointer"
           style="color: #1089e9"
-          @click="openUrlWindow(pageData.frontmatter?.contact?.zhihu)"
+          @click="openUrlWindow(contact.zhihu)"
         ></i>
-        <TextTip
-          :tip="pageData.frontmatter?.contact?.email"
-          v-if="pageData.frontmatter?.contact?.email"
-        >
+        <TextTip :tip="contact.email" v-if="contact.email">
           <i
-            v-if="pageData.frontmatter?.contact?.email"
+            v-if="contact.email"
             class="et-ic-mail author-icon pointer"
             style="background: #fdb100"
           ></i>
@@ -74,7 +61,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import { usePageData } from '@vuepress/client';
 import { usePagesInfo } from '@/composables';
 import { Tag, Category } from '@/types';
@@ -88,7 +75,7 @@ export default defineComponent({
   name: 'HomeRight',
   components: { Categories, Tags, TextTip },
   setup() {
-    const pageData = usePageData();
+    const pageData: any = usePageData();
     let categories = ref<Category[]>([]);
     let tags = ref<Tag[]>([]);
     usePagesInfo().then((blogsInfo) => {
@@ -100,12 +87,22 @@ export default defineComponent({
       window.open(url);
     };
 
+    const author = computed(() => {
+      return pageData.value.frontmatter?.author || {};
+    });
+
+    const contact = computed(() => {
+      return pageData.value.frontmatter?.contact || {};
+    });
+
     return {
       pageData,
       DefaultAvatar,
       categories,
       tags,
       openUrlWindow,
+      author,
+      contact,
     };
   },
 });

@@ -8,6 +8,7 @@ import Loading from '@/components/global/Loading.vue';
 import Home from '@/components/Home.vue';
 import { useScrollPromise } from './composables';
 
+import 'easy-icon/easy-icon-all.js';
 import './styles/index.scss';
 
 declare const __DOCSEARCH_PROPS__: unknown;

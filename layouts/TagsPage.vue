@@ -41,7 +41,7 @@ export default defineComponent({
 
     const blogsToShow = computed(() => {
       const tag = decodeURI(
-        (router.currentRoute.value.query?.tag as string) || ''
+        (router.currentRoute.value.query.tag as string) || ''
       );
       return blogs.value.filter((blog) => {
         const blogTags = blog.frontmatter.tag;

@@ -3,7 +3,7 @@
     <div v-for="(category, index) in categories" :key="index">
       <div
         :class="`category-item pointer ${
-          router.currentRoute.value.query?.category === category.name
+          router.currentRoute.value.query.category === category.name
             ? 'selected-category'
             : ''
         }`"

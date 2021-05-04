@@ -4,7 +4,7 @@
       v-for="tag in tags"
       :key="tag.name"
       :class="`tag-label pointer transition ${
-        router.currentRoute.value.query?.tag === tag.name ? 'selected-tag' : ''
+        router.currentRoute.value.query.tag === tag.name ? 'selected-tag' : ''
       }`"
       :style="{
         background: `${isTagPage ? 'var(--defaultTagBgc)' : getRandomColor()}`,
