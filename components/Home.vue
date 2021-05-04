@@ -45,9 +45,9 @@ import {
 } from '@vuepress/client';
 import { usePagesInfo } from '@/composables';
 import type { DefaultThemeHomePageFrontmatter } from '@/types';
-import NavLink from './NavLink.vue';
-import Blogs from './Blogs.vue';
-import HomeRight from './HomeRight.vue';
+import NavLink from '@/components/NavLink.vue';
+import Blogs from '@/components/Blogs.vue';
+import HomeRight from '@/components/HomeRight.vue';
 
 export default defineComponent({
   name: 'Home',
