@@ -24,7 +24,6 @@ import { useRouter } from 'vue-router';
 import { usePageData, usePageFrontmatter } from '@vuepress/client';
 import Home from '@/components/Home.vue';
 import Page from '@/components/Page.vue';
-import LayoutContainer from '@/components/LayoutContainer.vue';
 import { useScrollPromise, useThemeLocaleData } from '@/composables';
 
 export default defineComponent({
@@ -33,7 +32,6 @@ export default defineComponent({
   components: {
     Home,
     Transition,
-    LayoutContainer,
     Page,
   },
 

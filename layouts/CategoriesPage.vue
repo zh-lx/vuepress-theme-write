@@ -28,7 +28,6 @@ import { useRouter } from 'vue-router';
 import Blogs from '@/components/Blogs.vue';
 import Categories from '@/components/Categories.vue';
 import { usePagesInfo } from '@/composables';
-import LayoutContainer from '@/components/LayoutContainer.vue';
 
 export default defineComponent({
   name: 'CategoriesPage',
@@ -36,7 +35,6 @@ export default defineComponent({
   components: {
     Blogs,
     Categories,
-    LayoutContainer,
   },
 
   setup() {
