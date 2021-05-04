@@ -43,7 +43,6 @@ import {
   toRefs,
   onMounted,
 } from 'vue';
-import Home from '@/components/Home.vue';
 import LayoutContainer from '@/components/LayoutContainer.vue';
 import {
   usePageFrontmatter,
@@ -60,7 +59,6 @@ export default defineComponent({
   name: 'HomePage',
 
   components: {
-    Home,
     LayoutContainer,
     NavLink,
     Blogs,
@@ -126,6 +124,11 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
+      heroText,
+      tagline,
+      footer,
+      footerHtml,
+      homeBgImage,
     };
   },
 });
