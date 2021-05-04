@@ -36,13 +36,11 @@ const generateCategories = () => {
   res.forEach((dirname) => {
     const categoryPath = `${docsDir}/${dirname}`;
     const stat = fs.statSync(categoryPath);
-    if (stat && stat.isDirectory() && !isNotBlogs.includes[dirname]) {
+    if (stat && stat.isDirectory() && !isNotBlogs.includes(dirname)) {
       sidebars[`/${encodeURI(dirname)}`] = getCatalog(categoryPath);
     }
   });
   return sidebars;
 };
-
-console.log(generateCategories());
 
 module.exports = generateCategories();
