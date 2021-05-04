@@ -6,6 +6,7 @@ import OutboundLink from './components/global/OutboundLink.vue';
 import LayoutContainer from '@/components/global/LayoutContainer.vue';
 import Loading from '@/components/global/Loading.vue';
 import Home from '@/components/Home.vue';
+import '@/layouts/HomePage.vue';
 import { useScrollPromise } from './composables';
 
 import 'easy-icon/easy-icon-all.js';
