@@ -1,6 +1,6 @@
 <template>
   <div class="loading-container" v-if="visible">
-    <span class="loader">Load&nbsp;ng</span>
+    <span class="loader"><span class="L">L</span>oad&nbsp;ng</span>
   </div>
 </template>
 
@@ -44,12 +44,12 @@ export default defineComponent({
   font-size: 48px;
   letter-spacing: 4px;
   box-sizing: border-box;
-  display: block;
+  text-align: left;
 }
 .loader::before {
   content: '';
   position: absolute;
-  right: 70.4px;
+  right: 70px;
   bottom: 10px;
   height: 28px;
   width: 4.9px;
@@ -99,16 +99,37 @@ export default defineComponent({
 
 @keyframes animloader1 {
   0% {
-    box-shadow: 0 -6px, -122.9px -8px;
+    box-shadow: 0 -6px;
   }
   25% {
-    box-shadow: 0 0px, -122.9px -8px;
+    box-shadow: 0 0px;
   }
   75% {
-    box-shadow: 0 0px, -122.9px -8px;
+    box-shadow: 0 0px;
   }
   100% {
-    box-shadow: 0 0px, -122.9px -16px;
+    box-shadow: 0 0px;
+  }
+}
+.L {
+  display: inline-block;
+  animation: Lani 2s linear infinite;
+}
+@keyframes Lani {
+  0% {
+    transform: scaleY(1) translateY(0);
+  }
+  40% {
+    transform: scaleY(1) translateY(0);
+  }
+  50% {
+    transform: scaleY(1.1) translateY(-5%);
+  }
+  60% {
+    transform: scaleY(1) translateY(0);
+  }
+  100% {
+    transform: scaleY(1) translateY(0);
   }
 }
 </style>
