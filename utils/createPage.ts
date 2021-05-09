@@ -13,6 +13,7 @@ export const createPages = (sourceDir) => {
   const CategoryContent = `---
 layout: 'CategoriesPage'
 permalink: '/categories/'
+hideSidebar: true
 ---`;
   fs.writeFileSync(CategoryPagePath, CategoryContent);
 
@@ -20,6 +21,7 @@ permalink: '/categories/'
   const TagContent = `---
 layout: 'TagsPage'
 permalink: '/tags/'
+hideSidebar: true
 ---`;
   fs.writeFileSync(TagPagePath, TagContent);
 };

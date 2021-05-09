@@ -16,7 +16,7 @@
 
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
-    <Sidebar>
+    <Sidebar v-if="!frontmatter.hideSidebar">
       <template #top>
         <slot name="sidebar-top" />
       </template>
@@ -24,6 +24,7 @@
         <slot name="sidebar-bottom" />
       </template>
     </Sidebar>
+
     <slot></slot>
   </div>
 </template>
@@ -78,6 +79,7 @@ export default defineComponent({
 
     // sidebar
     const sidebarItems = useSidebarItems();
+    console.log(sidebarItems);
     const isSidebarOpen = ref(false);
     const toggleSidebar = (to?: boolean): void => {
       isSidebarOpen.value = typeof to === 'boolean' ? to : !isSidebarOpen.value;

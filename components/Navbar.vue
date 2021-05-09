@@ -25,7 +25,7 @@
       <slot name="before" />
       <NavbarLinks class="can-hide" />
       <slot name="after" />
-      <Docsearch />
+      <NavbarSearch />
     </div>
   </header>
 </template>
@@ -115,5 +115,8 @@ function getCssValue(el: HTMLElement | null, property: string): number {
 <style lang="less" scoped>
 .navbar {
   box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+}
+.search-box {
+  margin-left: 20px;
 }
 </style>

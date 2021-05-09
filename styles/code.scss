@@ -270,8 +270,18 @@ div[class*='language-'] {
 @media (max-width: $MQMobileNarrow) {
   #{$contentClass} {
     div[class*='language-'] {
-      margin: 0.85rem -1.5rem;
-      border-radius: 0;
+      margin: 0.85rem 0;
+      border-radius: 6px;
     }
+  }
+  .line-numbers {
+    display: none;
+  }
+  div[class*='language-'].line-numbers-mode::after {
+    width: 0;
+    border-right: none;
+  }
+  div[class*='language-'].line-numbers-mode pre {
+    margin-left: 0;
   }
 }

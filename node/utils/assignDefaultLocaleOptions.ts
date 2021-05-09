@@ -18,9 +18,9 @@ const defaultLocaleOptions: DefaultThemeLocaleOptions = {
   editLink: true,
   editLinkText: 'Edit this page',
   lastUpdated: true,
-  lastUpdatedText: 'Last Updated',
+  lastUpdatedText: '更新时间',
   contributors: true,
-  contributorsText: 'Contributors',
+  contributorsText: '作者',
 
   // 404 page messages
   notFound: [

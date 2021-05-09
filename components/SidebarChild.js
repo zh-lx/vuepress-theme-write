@@ -1,6 +1,8 @@
 import { h } from 'vue';
 import { useRoute } from 'vue-router';
+// @ts-ignore
 import NavLink from '@/components/NavLink.vue';
+
 const normalizePath = (path) =>
   decodeURI(path)
     .replace(/#.*$/, '')

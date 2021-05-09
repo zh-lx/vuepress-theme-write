@@ -139,6 +139,10 @@
 a.sidebar-heading,
 a.sidebar-link {
   cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &.active {
     font-weight: 600;

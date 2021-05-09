@@ -66,5 +66,15 @@ module.exports = {
         themeData: themeConfig,
       },
     ],
+    [
+      '@vuepress/plugin-search',
+      {
+        locales: {
+          '/': {
+            placeholder: 'Search',
+          },
+        },
+      },
+    ],
   ],
 };
