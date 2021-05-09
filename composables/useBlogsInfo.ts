@@ -48,6 +48,10 @@ export async function usePagesInfo() {
     if (!(pageObj.frontmatter.blog === false)) {
       blogs.value.push(pageObj as Blog);
     }
+
+    blogs.value.sort((a, b) => {
+      return b.git.updatedTime - a.git.updatedTime;
+    });
   }
   return { blogs, tags, categories };
 }
