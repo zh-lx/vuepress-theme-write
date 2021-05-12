@@ -141,7 +141,7 @@ $navbar-horizontal-padding: 1.5rem;
   .navbar-links-wrapper {
     padding-left: 1.5rem;
     box-sizing: border-box;
-    background-color: white;
+    background-color: var(--navbarBgc);
     white-space: nowrap;
     font-size: 0.9rem;
     position: absolute;
@@ -178,7 +178,7 @@ $navbar-horizontal-padding: 1.5rem;
 }
 
 .navbar {
-  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px 0 var(--navbarBoxShadow);
 }
 .search-box {
   margin-left: 20px;

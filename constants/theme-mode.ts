@@ -14,5 +14,8 @@ export const themeMode = {
     '--selectedCategoryCountColor': '#FFA500',
     '--defaultTagBgc': '#faecd8',
     '--textTipBgc': 'rgba(0, 0, 0, 0.4)',
+    '--textTipColor': '#fff',
+    '--navbarBgc': '#fff',
+    '--navbarBoxShadow': 'rgba(0, 0, 0, 0.1)',
   },
 };

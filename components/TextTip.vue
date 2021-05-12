@@ -34,7 +34,7 @@ export default defineComponent({
     top: 100%;
     transform: translate(-50%, 10px);
     font-size: 12px;
-    color: #fff;
+    color: var(--textTipColor);
     padding: 2px 8px;
     background-color: var(--textTipBgc);
     border-radius: 4px;

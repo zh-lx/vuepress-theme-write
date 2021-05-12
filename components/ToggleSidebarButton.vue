@@ -27,9 +27,6 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 @import '~@/styles/_variables.scss';
-/**
- * toggle sidebar button
- */
 .toggle-sidebar-button {
   position: absolute;
   top: 0.6rem;
