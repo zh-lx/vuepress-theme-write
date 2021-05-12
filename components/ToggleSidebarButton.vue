@@ -17,11 +17,37 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ToggleSidebarButton',
 
   emits: ['toggle'],
-})
+});
 </script>
+<style lang="scss" scoped>
+@import '~@/styles/_variables.scss';
+/**
+ * toggle sidebar button
+ */
+.toggle-sidebar-button {
+  position: absolute;
+  top: 0.6rem;
+  left: 1rem;
+  display: none;
+  padding: 0.6rem;
+  cursor: pointer;
+}
+
+.toggle-sidebar-button .icon {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media screen and (max-width: $MQMobile) {
+  .toggle-sidebar-button {
+    display: block;
+  }
+}
+</style>

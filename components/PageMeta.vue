@@ -137,3 +137,52 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss" scoped>
+@use 'sass:color';
+
+@import '~@/styles/_variables';
+@import '~@/styles/_wrapper';
+.page-meta {
+  @extend %wrapper;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  overflow: auto;
+
+  .meta-item {
+    cursor: default;
+    margin-top: 0.8rem;
+
+    .meta-item-label {
+      font-weight: 500;
+      color: color.scale($textColor, $lightness: 25%);
+    }
+
+    .meta-item-info {
+      font-weight: 400;
+      color: #767676;
+    }
+  }
+
+  .edit-link {
+    display: inline-block;
+    margin-right: 0.25rem;
+  }
+
+  .last-updated {
+    float: right;
+  }
+}
+
+@media (max-width: $MQMobile) {
+  .page-meta {
+    .last-updated {
+      font-size: 0.8em;
+      float: none;
+    }
+
+    .contributors {
+      font-size: 0.8em;
+    }
+  }
+}
+</style>

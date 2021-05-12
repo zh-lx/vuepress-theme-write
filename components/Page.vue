@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-import PageMeta from './PageMeta.vue'
-import PageNav from './PageNav.vue'
+import { defineComponent } from 'vue';
+import PageMeta from './PageMeta.vue';
+import PageNav from './PageNav.vue';
 
 export default defineComponent({
   name: 'Page',
@@ -26,5 +26,11 @@ export default defineComponent({
     PageMeta,
     PageNav,
   },
-})
+});
 </script>
+<style lang="scss" scoped>
+.page {
+  padding-bottom: 2rem;
+  display: block;
+}
+</style>

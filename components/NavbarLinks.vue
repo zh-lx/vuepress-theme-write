@@ -174,3 +174,61 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss" scoped>
+@use 'sass:color';
+
+@import '~@/styles/_variables.scss';
+/**
+ * navbar-links
+ */
+.navbar-links {
+  display: inline-block;
+
+  a {
+    display: inline-block;
+    line-height: 1.4rem;
+    color: inherit;
+
+    &:hover,
+    &.router-link-active {
+      color: $accentColor;
+    }
+  }
+
+  .navbar-links-item {
+    position: relative;
+    display: inline-block;
+    margin-left: 1.5rem;
+    line-height: 2rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: $MQMobile) {
+  .navbar-links {
+    .navbar-links-item {
+      margin-left: 0;
+    }
+  }
+}
+
+@media (min-width: $MQMobile) {
+  .navbar-links a {
+    &:hover,
+    &.router-link-active {
+      color: $textColor;
+    }
+  }
+
+  .navbar-links-item > a:not(.external) {
+    &:hover,
+    &.router-link-active {
+      margin-bottom: -2px;
+      border-bottom: 2px solid color.scale($accentColor, $lightness: 8%);
+    }
+  }
+}
+</style>
