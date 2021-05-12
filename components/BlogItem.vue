@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, computed } from 'vue';
+import { defineComponent, toRefs, computed, Ref } from 'vue';
 import { formatTime } from '@/utils/index';
 import { useRouter } from 'vue-router';
 
@@ -36,15 +36,16 @@ export default defineComponent({
     const go2BlogDetail = () => {
       router.push(props.blog.path);
     };
-    const authorName = computed(() => {
+
+    const authorName: Ref<string> = computed(() => {
       return props.blog.git.contributors?.[0]?.name || 'zh-lx';
     });
 
-    const blogPath = computed(() => {
+    const blogPath: Ref<string> = computed(() => {
       return props.blog.filePathRelative?.split('/')[0];
     });
 
-    const tag = computed(() => {
+    const tag: Ref<string> = computed(() => {
       return typeof props.blog.frontmatter?.tag === 'string'
         ? props.blog.frontmatter?.tag
         : props.blog.frontmatter?.tag[0];

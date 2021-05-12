@@ -100,7 +100,7 @@
         <div class="page-jump-box">
           <span>第</span>
           <input
-            type="text"
+            type="number"
             class="page-jump-input"
             v-model="inputPage"
             @keyup="inputJump"
@@ -128,7 +128,7 @@ import {
   onUnmounted,
 } from 'vue';
 import { usePagesInfo } from '@/composables';
-import BlogItem from './BlogItem.vue';
+import BlogItem from '@/components/BlogItem.vue';
 const PageSize = 10;
 
 export default defineComponent({
@@ -235,62 +235,70 @@ export default defineComponent({
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-  .pagination-label {
-    height: 28px;
-    line-height: 28px;
-    text-align: center;
-    min-width: 28px;
-    padding: 0 8px;
-    &:hover {
-      color: var(--commonSelectedBgc);
-      cursor: pointer;
+    .pagination-label {
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      min-width: 28px;
+      padding: 0 8px;
+      &:hover {
+        color: var(--commonSelectedBgc);
+        cursor: pointer;
+      }
     }
-  }
-  .page-selected {
-    background-color: var(--commonSelectedBgc);
-    color: var(--reverseTextColor);
-    &:hover {
+
+    .blog-pagination-right {
+      display: flex;
+      align-items: center;
+      .page-jump-box {
+        display: flex;
+        align-items: center;
+        height: 24px;
+        line-height: 24px;
+      }
+      .page-jump-input {
+        width: 28px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 2px;
+        outline: none;
+        margin: 0 4px;
+        text-align: center;
+        border: 1px solid var(--borderColor) !important;
+        // 去掉number输入框上下按钮
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+        }
+      }
+      .page-jump-btn {
+        margin-left: 12px;
+      }
+    }
+    .page-selected {
+      background-color: var(--commonSelectedBgc);
       color: var(--reverseTextColor);
+      &:hover {
+        color: var(--reverseTextColor);
+      }
+    }
+
+    .blog-pagination-left {
+      display: flex;
+      .pagination-label {
+        margin-left: 10px;
+        &:first-of-type {
+          margin-left: 0;
+        }
+      }
     }
   }
+
   .pre-ellipsisi,
   .next-ellipsisi {
     &:hover {
       color: var(--commonTextColor);
       cursor: default;
-    }
-  }
-  .blog-pagination-left {
-    display: flex;
-    .pagination-label {
-      margin-left: 10px;
-      &:first-of-type {
-        margin-left: 0;
-      }
-    }
-  }
-  .blog-pagination-right {
-    display: flex;
-    align-items: center;
-    .page-jump-box {
-      display: flex;
-      align-items: center;
-      height: 24px;
-      line-height: 24px;
-    }
-    .page-jump-input {
-      width: 28px;
-      height: 24px;
-      line-height: 24px;
-      padding: 0 2px;
-      outline: none;
-      margin: 0 4px;
-      text-align: center;
-      border: 1px solid var(--borderColor) !important;
-    }
-    .page-jump-btn {
-      margin-left: 12px;
     }
   }
 }

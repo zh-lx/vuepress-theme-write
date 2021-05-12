@@ -13,35 +13,35 @@
       <div class="contact">
         <i
           v-if="contact.github"
-          class="et-logo-github author-icon pointer"
+          class="et-logo-github contact-icon pointer"
           @click="openUrlWindow(contact.github)"
         ></i>
         <TextTip :tip="contact.qq" v-if="contact.qq">
-          <i class="et-logo-qq author-icon pointer" style="color: #4cafe9"></i>
+          <i class="et-logo-qq contact-icon pointer" style="color: #4cafe9"></i>
         </TextTip>
         <i
           v-if="contact.csdn"
-          class="et-logo-csdn author-icon pointer"
+          class="et-logo-csdn contact-icon pointer"
           style="color: #fc5531"
           @click="openUrlWindow(contact.csdn)"
         ></i>
         <TextTip :tip="contact.wechat" v-if="contact.wechat">
           <i
             v-if="contact.wechat"
-            class="et-logo-wechat author-icon pointer"
+            class="et-logo-wechat contact-icon pointer"
             style="color: #11d31d"
           ></i>
         </TextTip>
         <i
           v-if="contact.zhihu"
-          class="et-zhihu author-icon pointer"
+          class="et-zhihu contact-icon pointer"
           style="color: #1089e9"
           @click="openUrlWindow(contact.zhihu)"
         ></i>
         <TextTip :tip="contact.email" v-if="contact.email">
           <i
             v-if="contact.email"
-            class="et-ic-mail author-icon pointer"
+            class="et-ic-mail contact-icon pointer"
             style="background: #fdb100"
           ></i>
         </TextTip>
@@ -110,29 +110,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 @import '~@/styles/_variables.scss';
-.et-logo-github {
-  transform: translateY(-1px);
-}
-.author-icon {
-  transform: scale(1.25);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    transform: scale(1.375);
-  }
-}
-.et-ic-mail {
-  background-color: #2c3e50;
-  border-radius: 50%;
-  height: 25px;
-  width: 25px;
-  color: #fff;
-  transform: scale(0.8);
-  &:hover {
-    transform: scale(0.88);
-  }
-}
+
 .author {
   width: 100%;
   display: flex;
@@ -158,6 +136,29 @@ export default defineComponent({
   justify-content: space-around;
   align-items: center;
   margin-top: 1rem;
+  .et-logo-github {
+    transform: translateY(-1px);
+  }
+  .contact-icon {
+    transform: scale(1.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      transform: scale(1.375);
+    }
+  }
+  .et-ic-mail {
+    background-color: #2c3e50;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    color: #fff;
+    transform: scale(0.8);
+    &:hover {
+      transform: scale(0.88);
+    }
+  }
 }
 .category-card {
   padding-left: 0;
