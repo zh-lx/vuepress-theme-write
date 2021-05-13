@@ -61,7 +61,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, ref, computed, Ref } from 'vue';
 import { usePageData } from '@vuepress/client';
 import { usePagesInfo } from '@/composables';
 import { Tag, Category } from '@/types';
@@ -76,22 +76,24 @@ export default defineComponent({
   components: { Categories, Tags, TextTip },
   setup() {
     const pageData: any = usePageData();
+
     let categories = ref<Category[]>([]);
     let tags = ref<Tag[]>([]);
+
     usePagesInfo().then((blogsInfo) => {
       categories.value = blogsInfo?.categories?.value || [];
       tags.value = blogsInfo?.tags?.value || [];
     });
 
-    const openUrlWindow = (url) => {
+    const openUrlWindow: (url: string) => void = (url) => {
       window.open(url);
     };
 
-    const author = computed(() => {
+    const author: Ref<{ [key: string]: string }> = computed(() => {
       return pageData.value.frontmatter?.author || {};
     });
 
-    const contact = computed(() => {
+    const contact: Ref<{ [key: string]: string }> = computed(() => {
       return pageData.value.frontmatter?.contact || {};
     });
 

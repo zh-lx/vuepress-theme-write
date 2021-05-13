@@ -33,6 +33,7 @@ export default defineComponent({
   },
   setup(props) {
     const router = useRouter();
+
     const go2BlogDetail = () => {
       router.push(props.blog.path);
     };

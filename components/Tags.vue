@@ -36,13 +36,14 @@ export default defineComponent({
   },
   setup(props) {
     let tags = ref<Tag[]>([]);
+
     usePagesInfo().then((blogsInfo) => {
       tags.value = blogsInfo?.tags?.value || [];
     });
 
     const router = useRouter();
 
-    const handleClickTag = (tag) => {
+    const handleClickTag: (tag: string) => void = (tag) => {
       router.push(`/tags/?tag=${decodeURI(tag)}`);
     };
 

@@ -79,7 +79,6 @@ export default defineComponent({
 
     // sidebar
     const sidebarItems = useSidebarItems();
-    console.log(sidebarItems);
     const isSidebarOpen = ref(false);
     const toggleSidebar = (to?: boolean): void => {
       isSidebarOpen.value = typeof to === 'boolean' ? to : !isSidebarOpen.value;
