@@ -1,6 +1,6 @@
 <template>
   <div class="text-tip-container">
-    <div class="tip">
+    <div class="tip" v-if="tip">
       <div class="tip-traingle"></div>
       {{ tip }}
     </div>
@@ -14,7 +14,7 @@ import { defineComponent, toRefs } from 'vue';
 export default defineComponent({
   name: 'TextTip',
   props: {
-    tip: { type: String, default: '　' },
+    tip: { type: String, default: '' },
   },
   setup(props) {
     return {
