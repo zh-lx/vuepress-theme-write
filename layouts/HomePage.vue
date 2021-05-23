@@ -13,7 +13,7 @@ import { defineComponent, onMounted, reactive, toRefs } from 'vue';
 export default defineComponent({
   name: 'HomePage',
 
-  setup(props) {
+  setup() {
     const state = reactive({
       showLoading: true,
     });
