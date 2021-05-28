@@ -5,7 +5,7 @@ import {
   sidebarItemsSymbol,
   useThemeLocaleData,
 } from './composables';
-import type { DefaultThemePageFrontmatter } from './types';
+import { DefaultThemePageFrontmatter } from './types';
 
 export default defineClientAppSetup(() => {
   // we need to access sidebar items in multiple components
