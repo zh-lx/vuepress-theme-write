@@ -30,22 +30,9 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  ref,
-  reactive,
-  toRefs,
-  onMounted,
-} from 'vue';
-import {
-  usePageFrontmatter,
-  useSiteLocaleData,
-  withBase,
-} from '@vuepress/client';
+import { computed, defineComponent, reactive, toRefs } from 'vue';
+import { usePageFrontmatter, useSiteLocaleData } from '@vuepress/client';
 import { usePagesInfo } from '@/composables';
-import type { DefaultThemeHomePageFrontmatter } from '@/types';
-import NavLink from '@/components/NavLink.vue';
 import Blogs from '@/components/Blogs.vue';
 import HomeRight from '@/components/HomeRight.vue';
 
@@ -53,7 +40,6 @@ export default defineComponent({
   name: 'Home',
 
   components: {
-    NavLink,
     Blogs,
     HomeRight,
   },
@@ -108,3 +94,99 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+@use 'sass:color';
+
+@import '~@/styles/_variables.scss';
+
+.main-container {
+  padding: $navbarHeight 0;
+  max-width: 100%;
+  display: block;
+  width: 100%;
+
+  .hero {
+    text-align: center;
+    height: calc(100vh - 3.6rem);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    #main-title {
+      color: var(--heroTextColor);
+      font-weight: 600;
+      font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+        Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+      font-size: 3rem;
+    }
+
+    h1,
+    .description {
+      margin: 1.8rem auto;
+    }
+
+    .description {
+      max-width: 35rem;
+      font-size: 1.6rem;
+      color: var(--heroTextColor);
+    }
+  }
+
+  .main-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1.5rem 1.5rem;
+    .main-content-left {
+      flex: 2;
+    }
+    .main-content-right {
+      flex: 1;
+      max-width: 300px;
+      min-width: 160px;
+      margin-left: 1.6rem;
+    }
+  }
+
+  .footer {
+    padding: 2.5rem;
+    border-top: 1px solid $borderColor;
+    text-align: center;
+    color: color.scale($textColor, $lightness: 25%);
+  }
+}
+
+@media (max-width: $MQMobileNarrow) {
+  .main-container {
+    .hero {
+      h1 {
+        font-size: 2rem;
+      }
+      h1,
+      .description,
+      .actions {
+        margin: 1.2rem auto;
+      }
+      .description {
+        font-size: 1.2rem;
+      }
+    }
+    .main-content {
+      .main-content-left {
+        width: 100%;
+      }
+      .main-content-right {
+        width: 100%;
+        margin-left: 0;
+        min-width: 100%;
+      }
+    }
+  }
+}
+</style>

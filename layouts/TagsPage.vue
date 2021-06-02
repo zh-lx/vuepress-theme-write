@@ -6,7 +6,7 @@
           <div class="tag-card-title"><i class="ei-tags"></i>热门标签</div>
           <Tags :isTagPage="true" :tags="tags" />
         </div>
-        <div class="main-content-left"><Blogs :blogs="blogsToShow" /></div>
+        <div class="blogs-list"><Blogs :blogs="blogsToShow" /></div>
       </div>
     </main>
   </LayoutContainer>
@@ -57,34 +57,54 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+@use 'sass:color';
 @import '~@/styles/_variables.scss';
-.tags-card {
-  width: 200px;
-  position: fixed;
-  top: $navbarHeight;
-  transform: translateY(1.5rem);
-  left: 1.5rem;
-  .tag-card-title {
-    margin-bottom: 0.5rem;
-    i {
-      margin-right: 4px;
+
+.main-container {
+  padding: $navbarHeight 0;
+  max-width: 100%;
+  display: block;
+  width: 100%;
+
+  .main-content {
+    .tags-card {
+      width: 200px;
+      position: fixed;
+      top: $navbarHeight;
+      transform: translateY(1.5rem);
+      left: 1.5rem;
+      .tag-card-title {
+        margin-bottom: 0.5rem;
+        i {
+          margin-right: 4px;
+        }
+      }
+    }
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1.5rem 1.5rem;
+    .blogs-list {
+      flex: 2;
+      margin-left: calc(200px + 1.5rem);
     }
   }
 }
-.main-content-left {
-  margin-left: calc(200px + 1.5rem);
-}
 
 @media (max-width: $MQMobileNarrow) {
-  .main-content-left {
-    margin-left: 0;
-    width: 100%;
-  }
-  .tags-card {
-    position: inherit;
-    width: 100%;
-    transform: translateY(0);
-    margin-bottom: 1.5rem;
+  .main-container {
+    .main-content {
+      .tags-card {
+        position: inherit;
+        width: 100%;
+        transform: translateY(0);
+        margin-bottom: 1.5rem;
+      }
+      .blogs-list {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
   }
 }
 </style>

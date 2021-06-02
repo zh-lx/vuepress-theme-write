@@ -1,7 +1,7 @@
 <template>
   <LayoutContainer>
     <main class="main-container">
-      <div class="main-content category-page-container">
+      <div class="main-content">
         <div
           class="cover-region"
           ref="coverRef"
@@ -16,7 +16,7 @@
         >
           <Categories />
         </div>
-        <div class="main-content-left"><Blogs :blogs="blogsToShow" /></div>
+        <div class="blogs-list"><Blogs :blogs="blogsToShow" /></div>
       </div>
     </main>
   </LayoutContainer>
@@ -98,64 +98,86 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+@use 'sass:color';
 @import '~@/styles/_variables.scss';
-.blog-category-card {
-  width: 200px;
-  background-color: var(--backgroundColor);
-  position: fixed;
-  left: 0;
-  top: $navbarHeight;
-  bottom: 0;
-  padding: 1.5rem 0;
-  overflow-y: auto;
-  z-index: 99;
-}
-.cover-region {
-  width: 100vw;
-  background-color: var(--coverRegionColor);
-  top: $navbarHeight;
-  left: 0;
-  bottom: 0;
-  position: fixed;
-  z-index: 10;
-  display: none;
-}
-.category-page-container {
-  padding-left: calc(200px + 1.5rem);
-}
-.showCategoryBtn {
-  width: 2rem;
-  height: 3rem;
-  position: fixed;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  border-top-right-radius: 1.5rem;
-  border-bottom-right-radius: 1.5rem;
-  left: 0;
-  top: 40%;
-  padding: 0;
-  border: 1px solid var(--commonSelectedBgc);
-  border-left: none;
-  writing-mode: vertical-lr;
-  color: var(--commonSelectedBgc);
-  :hover {
-    cursor: pointer;
-  }
-}
-@media (max-width: $MQMobileNarrow) {
-  .mobile-transform {
-    transform: translateX(-200px);
-  }
-  .category-page-container {
-    padding-left: 1.5rem;
-  }
-  .showCategoryBtn {
+
+.main-container {
+  padding: $navbarHeight 0;
+  max-width: 100%;
+  display: block;
+  width: 100%;
+
+  .main-content {
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1.5rem 1.5rem;
+    padding-left: calc(200px + 1.5rem);
+    .blogs-list {
+      flex: 2;
+    }
+    .blog-category-card {
+      width: 200px;
+      background-color: var(--backgroundColor);
+      position: fixed;
+      left: 0;
+      top: $navbarHeight;
+      bottom: 0;
+      padding: 1.5rem 0;
+      overflow-y: auto;
+      z-index: 99;
+    }
+    .cover-region {
+      width: 100vw;
+      background-color: var(--coverRegionColor);
+      top: $navbarHeight;
+      left: 0;
+      bottom: 0;
+      position: fixed;
+      z-index: 10;
+      display: none;
+    }
+    .showCategoryBtn {
+      width: 2rem;
+      height: 3rem;
+      position: fixed;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      border-top-right-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+      left: 0;
+      top: 40%;
+      padding: 0;
+      border: 1px solid var(--commonSelectedBgc);
+      border-left: none;
+      writing-mode: vertical-lr;
+      color: var(--commonSelectedBgc);
+      :hover {
+        cursor: pointer;
+      }
+    }
   }
-  .cover-region {
-    display: block;
-    visibility: hidden;
+}
+
+@media (max-width: $MQMobileNarrow) {
+  .main-container {
+    .main-content {
+      padding-left: 1.5rem;
+      .blogs-list {
+        width: 100%;
+      }
+      .mobile-transform {
+        transform: translateX(-200px);
+      }
+      .showCategoryBtn {
+        display: flex;
+      }
+      .cover-region {
+        display: block;
+        visibility: hidden;
+      }
+    }
   }
 }
 </style>

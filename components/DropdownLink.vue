@@ -76,9 +76,9 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, toRefs, watch } from 'vue';
-import type { PropType } from 'vue';
+import { PropType } from 'vue';
 import { useRoute } from 'vue-router';
-import type { NavGroup, NavItem } from '../types';
+import { NavGroup, NavItem } from '../types';
 import NavLink from './NavLink.vue';
 
 export default defineComponent({
@@ -336,5 +336,43 @@ export default defineComponent({
 .dropdown-enter-from,
 .dropdown-leave-to {
   height: 0 !important;
+}
+
+.arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+
+  &.up {
+    border: {
+      left: 4px solid transparent;
+      right: 4px solid transparent;
+      bottom: 6px solid $arrowBgColor;
+    }
+  }
+
+  &.down {
+    border: {
+      left: 4px solid transparent;
+      right: 4px solid transparent;
+      top: 6px solid $arrowBgColor;
+    }
+  }
+
+  &.right {
+    border: {
+      top: 4px solid transparent;
+      bottom: 4px solid transparent;
+      left: 6px solid $arrowBgColor;
+    }
+  }
+
+  &.left {
+    border: {
+      top: 4px solid transparent;
+      bottom: 4px solid transparent;
+      right: 6px solid $arrowBgColor;
+    }
+  }
 }
 </style>

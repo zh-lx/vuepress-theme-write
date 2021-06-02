@@ -69,4 +69,10 @@ export default defineComponent({
     margin-left: 5px;
   }
 }
+
+.table-of-contents {
+  .badge {
+    vertical-align: middle;
+  }
+}
 </style>

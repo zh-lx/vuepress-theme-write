@@ -1,15 +1,11 @@
 @use '_normalize';
 
-@use 'arrow';
 @use 'code';
 @use 'code-group';
 @use 'custom-container';
-@use 'home';
 @use 'layout';
 @use 'plugins';
 @use 'sidebar';
-@use 'sr-only';
-@use 'toc';
 @use 'transitions';
 
 @use '@vuepress/plugin-palette/style';
