@@ -1,8 +1,6 @@
 @import '_variables';
 @import '_wrapper';
 
-$mobileSidebarWidth: $sidebarWidth * 0.82;
-
 .page {
   padding-left: $sidebarWidth;
 }
@@ -139,18 +137,6 @@ h6 {
 
   img {
     max-width: 100%;
-  }
-}
-
-// narrow desktop / iPad
-@media (max-width: $MQNarrow) {
-  .sidebar {
-    font-size: 15px;
-    width: $mobileSidebarWidth;
-  }
-
-  .page {
-    padding-left: $mobileSidebarWidth;
   }
 }
 

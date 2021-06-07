@@ -17,6 +17,15 @@
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
     <Sidebar v-if="!frontmatter.hideSidebar">
+      <template #category>
+        <Categories v-if="isCategoryPage" />
+      </template>
+      <template #tag>
+        <div class="left-card" v-if="isTagPage">
+          <div class="left-card-title"><i class="ei-tags"></i>热门标签</div>
+          <Tags />
+        </div>
+      </template>
       <template #top>
         <slot name="sidebar-top" />
       </template>
@@ -48,6 +57,8 @@ import Home from '@/components/Home.vue';
 import Page from '@/components/Page.vue';
 import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
+import Categories from '@/components/Categories.vue';
+import Tags from '@/components/Tags.vue';
 import {
   useScrollPromise,
   useSidebarItems,
@@ -64,12 +75,22 @@ export default defineComponent({
     Navbar,
     Sidebar,
     Transition,
+    Categories,
+    Tags,
   },
 
   setup() {
     const page = usePageData();
     const frontmatter = usePageFrontmatter();
     const themeLocale = useThemeLocaleData();
+    const router = useRouter();
+    // 页面信息
+    const isCategoryPage = computed(() => {
+      return router.currentRoute.value.path.startsWith('/categories/');
+    });
+    const isTagPage = computed(() => {
+      return router.currentRoute.value.path.startsWith('/tags/');
+    });
 
     // navbar
     const shouldShowNavbar = computed(
@@ -110,7 +131,6 @@ export default defineComponent({
     // close sidebar after navigation
     let unregisterRouterHook;
     onMounted(() => {
-      const router = useRouter();
       unregisterRouterHook = router.afterEach(() => {
         toggleSidebar(false);
       });
@@ -135,7 +155,21 @@ export default defineComponent({
       onTouchEnd,
       onBeforeEnter,
       onBeforeLeave,
+      isCategoryPage,
+      isTagPage,
     };
   },
 });
 </script>
+<style lang="scss" scoped>
+@import '~@/styles/_variables.scss';
+.left-card {
+  padding: 1rem;
+  .left-card-title {
+    margin-bottom: 0.5rem;
+    i {
+      margin-right: 4px;
+    }
+  }
+}
+</style>

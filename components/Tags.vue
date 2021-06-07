@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, toRefs } from 'vue';
+import { defineComponent, ref, toRefs, computed } from 'vue';
 import { usePagesInfo } from '@/composables';
 import { Tag } from '@/types';
 import { getRandomColor } from '@/utils';
@@ -28,31 +28,27 @@ import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'Tags',
-  props: {
-    isTagPage: {
-      type: Boolean,
-      default: false,
-    },
-  },
   setup(props) {
-    let tags = ref<Tag[]>([]);
+    const router = useRouter();
 
+    let tags = ref<Tag[]>([]);
+    const isTagPage = computed(() => {
+      return router.currentRoute.value.path.startsWith('/tags/');
+    });
     usePagesInfo().then((blogsInfo) => {
       tags.value = blogsInfo?.tags?.value || [];
     });
-
-    const router = useRouter();
 
     const handleClickTag: (tag: string) => void = (tag) => {
       router.push(`/tags/?tag=${decodeURI(tag)}`);
     };
 
     return {
-      ...toRefs(props),
       tags,
       getRandomColor,
       router,
       handleClickTag,
+      isTagPage,
     };
   },
 });

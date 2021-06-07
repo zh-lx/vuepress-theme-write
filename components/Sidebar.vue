@@ -4,6 +4,9 @@
 
     <slot name="top" />
 
+    <slot name="category" />
+    <slot name="tag" />
+
     <ul class="sidebar-links">
       <template v-for="item in sidebarItems" :key="item.link || item.text">
         <SidebarChild :item="item" />

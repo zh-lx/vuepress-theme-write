@@ -2,10 +2,6 @@
   <LayoutContainer>
     <main class="main-container">
       <div class="main-content">
-        <div class="tags-card card">
-          <div class="tag-card-title"><i class="ei-tags"></i>热门标签</div>
-          <Tags :isTagPage="true" :tags="tags" />
-        </div>
         <div class="blogs-list"><Blogs :blogs="blogsToShow" /></div>
       </div>
     </main>
@@ -31,12 +27,10 @@ export default defineComponent({
     const router = useRouter();
 
     // blogs
-    const tags = ref([]);
     const blogs = ref([]);
 
     usePagesInfo().then((blogsInfo) => {
       blogs.value = blogsInfo?.blogs?.value || [];
-      tags.value = blogsInfo?.tags?.value || [];
     });
 
     const blogsToShow = computed(() => {
@@ -51,7 +45,6 @@ export default defineComponent({
 
     return {
       blogsToShow,
-      tags,
     };
   },
 });
@@ -67,44 +60,43 @@ export default defineComponent({
   width: 100%;
 
   .main-content {
-    .tags-card {
-      width: 200px;
-      position: fixed;
-      top: $navbarHeight;
-      transform: translateY(1.5rem);
-      left: 1.5rem;
-      .tag-card-title {
-        margin-bottom: 0.5rem;
-        i {
-          margin-right: 4px;
-        }
-      }
-    }
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 1.5rem 1.5rem;
-    .blogs-list {
-      flex: 2;
-      margin-left: calc(200px + 1.5rem);
-    }
+    padding: 1.5rem 1.5rem 1.5rem 18rem;
+  }
+}
+
+@media (max-width: $MQMobile) {
+  :deep(.sidebar) {
+    transform: translateX(0);
+  }
+  :deep(.toggle-sidebar-button) {
+    display: none;
+  }
+  :deep(.navbar) {
+    padding-left: 1.5rem;
   }
 }
 
 @media (max-width: $MQMobileNarrow) {
   .main-container {
     .main-content {
-      .tags-card {
-        position: inherit;
-        width: 100%;
-        transform: translateY(0);
-        margin-bottom: 1.5rem;
-      }
-      .blogs-list {
-        width: 100%;
-        margin-left: 0;
+      padding-left: 1.5rem;
+    }
+  }
+  :deep(.sidebar) {
+    transform: translateX(-100%);
+  }
+  :deep(.theme-container) {
+    .sidebar-open {
+      .sidebar {
+        transform: translateX(0);
       }
     }
+  }
+  :deep(.toggle-sidebar-button) {
+    display: block;
+  }
+  :deep(.navbar) {
+    padding-left: 4rem;
   }
 }
 </style>
