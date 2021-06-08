@@ -52,3 +52,8 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss" scoped>
+body {
+  padding-top: 3.6rem;
+}
+</style>

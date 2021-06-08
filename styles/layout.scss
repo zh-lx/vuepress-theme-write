@@ -77,6 +77,18 @@
   }
 }
 
+.theme-default-content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: calc(0.5rem - var(--navbarHeight));
+    padding-top: calc(1rem + var(--navbarHeight));
+  }
+}
+
 @media (min-width: ($MQMobile + 1px)) {
   .theme-container.no-sidebar {
     .sidebar {
@@ -111,10 +123,6 @@ h6 {
 
 #{$contentClass}:not(.custom) {
   @extend %wrapper;
-
-  > *:first-child {
-    margin-top: $navbarHeight;
-  }
 
   a:hover {
     text-decoration: underline;
