@@ -18,5 +18,6 @@ export const themeMode = {
     '--textTipColor': '#fff',
     '--navbarBgc': '#fff',
     '--navbarBoxShadow': 'rgba(0, 0, 0, 0.1)',
+    '--navbarHeight': '3.6rem',
   },
 };
