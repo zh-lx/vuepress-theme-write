@@ -84,7 +84,7 @@
   h4,
   h5,
   h6 {
-    margin-top: calc(0.5rem - var(--navbarHeight));
+    margin-top: calc(0.1rem - var(--navbarHeight));
     padding-top: calc(1rem + var(--navbarHeight));
   }
 }

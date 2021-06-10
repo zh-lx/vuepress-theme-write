@@ -40,3 +40,43 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss" scoped>
+@import '~@/styles/_variables.scss';
+:deep(.sidebar) {
+  transform: translateX(-100%);
+}
+@media (max-width: $MQMobile) {
+  :deep(.sidebar) {
+    transform: translateX(-100%);
+  }
+  :deep(.toggle-sidebar-button) {
+    display: none;
+  }
+  :deep(.navbar) {
+    padding-left: 1.5rem;
+  }
+}
+@media (max-width: $MQMobileNarrow) {
+  .main-container {
+    .main-content {
+      padding-left: 1.5rem;
+    }
+  }
+  :deep(.sidebar) {
+    transform: translateX(-100%);
+  }
+  :deep(.theme-container) {
+    .sidebar-open {
+      .sidebar {
+        transform: translateX(0);
+      }
+    }
+  }
+  :deep(.toggle-sidebar-button) {
+    display: block;
+  }
+  :deep(.navbar) {
+    padding-left: 4rem;
+  }
+}
+</style>

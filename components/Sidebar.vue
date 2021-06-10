@@ -4,6 +4,7 @@
 
     <slot name="top" />
 
+    <slot name="author" />
     <slot name="category" />
     <slot name="tag" />
 

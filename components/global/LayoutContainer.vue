@@ -17,8 +17,18 @@
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
     <Sidebar v-if="!frontmatter.hideSidebar">
+      <template #author>
+        <div class="authorInfo" v-if="isHomePage">
+          <AuthorInfo />
+        </div>
+      </template>
       <template #category>
-        <Categories v-if="isCategoryPage" />
+        <div class="category-list" v-if="isCategoryPage">
+          <div class="category-card-title">
+            <i class="ei-folder-open"></i>文章分类
+          </div>
+          <Categories />
+        </div>
       </template>
       <template #tag>
         <div class="left-card" v-if="isTagPage">
@@ -57,6 +67,7 @@ import Home from '@/components/Home.vue';
 import Page from '@/components/Page.vue';
 import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
+import AuthorInfo from '@/components/AuthorInfo.vue';
 import Categories from '@/components/Categories.vue';
 import Tags from '@/components/Tags.vue';
 import {
@@ -75,6 +86,7 @@ export default defineComponent({
     Navbar,
     Sidebar,
     Transition,
+    AuthorInfo,
     Categories,
     Tags,
   },
@@ -90,6 +102,9 @@ export default defineComponent({
     });
     const isTagPage = computed(() => {
       return router.currentRoute.value.path.startsWith('/tags/');
+    });
+    const isHomePage = computed(() => {
+      return router.currentRoute.value.path === '/';
     });
 
     // navbar
@@ -155,6 +170,7 @@ export default defineComponent({
       onTouchEnd,
       onBeforeEnter,
       onBeforeLeave,
+      isHomePage,
       isCategoryPage,
       isTagPage,
     };
@@ -163,6 +179,19 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 @import '~@/styles/_variables.scss';
+.authorInfo {
+  margin-top: 1.5rem;
+}
+.category-list {
+  margin-top: 1rem;
+  .category-card-title {
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+    i {
+      margin-right: 4px;
+    }
+  }
+}
 .left-card {
   padding: 1rem;
   .left-card-title {

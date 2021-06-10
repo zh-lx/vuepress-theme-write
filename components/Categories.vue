@@ -57,8 +57,8 @@ export default defineComponent({
     color: var(--commonHoverHighLight);
   }
   .category-count {
-    background-color: var(--defaultTagBgc);
-    color: slategray;
+    background-color: var(--commonSelectedBgc);
+    color: #fff;
     font-size: 12px;
     text-align: center;
     height: 18px;
