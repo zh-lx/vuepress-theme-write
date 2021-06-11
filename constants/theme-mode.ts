@@ -8,6 +8,7 @@ export const themeMode = {
     '--commonHoverHighLight': '#3ed5fe',
     '--commonSelectedBgc': '#3ed5fe',
     '--search-accent-color': '#3ed5fe',
+    '--search-input-width': '140px',
     '--commonSelectedColor': '#ffffff',
     '--borderColor': '#909399',
     '--backgroundColor': '#fff',
