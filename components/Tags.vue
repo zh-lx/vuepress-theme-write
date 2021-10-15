@@ -76,7 +76,7 @@ export default defineComponent({
   }
   .selected-tag {
     background-color: var(--commonSelectedBgc) !important;
-    color: var(--commonSelectedColor) !important;
+    color: var(--reverseTextColor) !important;
     &:hover {
       transform: scale(1);
     }

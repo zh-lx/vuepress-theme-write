@@ -119,7 +119,7 @@ export default defineComponent({
     background-repeat: no-repeat;
 
     #main-title {
-      color: var(--heroTextColor);
+      color: var(--homeTextColor);
       font-weight: 600;
       font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
         Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -134,7 +134,7 @@ export default defineComponent({
     .description {
       max-width: 35rem;
       font-size: 1.6rem;
-      color: var(--heroTextColor);
+      color: var(--homeTextColor);
     }
   }
 

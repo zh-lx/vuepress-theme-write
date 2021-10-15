@@ -34,9 +34,9 @@ export default defineComponent({
     top: 100%;
     transform: translate(-50%, 10px);
     font-size: 12px;
-    color: var(--textTipColor);
+    color: var(--tooltipColor);
     padding: 2px 8px;
-    background-color: var(--textTipBgc);
+    background-color: var(--tooltipBgc);
     border-radius: 4px;
     max-width: 100px;
     text-align: justify;
@@ -47,7 +47,7 @@ export default defineComponent({
       top: 0;
       transform: translate(-50%, -100%);
       border: 6px solid transparent;
-      border-bottom: 6px solid var(--textTipBgc);
+      border-bottom: 6px solid var(--tooltipBgc);
     }
   }
   &:hover {

@@ -53,8 +53,8 @@ export default defineComponent({
   padding: 0.2rem 1rem;
   &:hover {
     background-color: var(--commonHoverBgc);
-    border-left: 2px solid var(--commonHoverHighLight);
-    color: var(--commonHoverHighLight);
+    border-left: 2px solid var(--commonHoverTextColor);
+    color: var(--commonHoverTextColor);
   }
   .category-count {
     background-color: var(--commonSelectedBgc);
@@ -71,13 +71,13 @@ export default defineComponent({
   background-color: var(--commonSelectedBgc);
   color: var(--reverseTextColor);
   .category-count {
-    background-color: var(--selectedCategoryCountColor);
+    background-color: var(--selectedCategoryCountBgc);
     color: var(--reverseTextColor);
   }
   &:hover {
     background-color: var(--commonSelectedBgc);
     border-left: none;
-    color: var(--commonSelectedColor);
+    color: var(--reverseTextColor);
   }
 }
 </style>

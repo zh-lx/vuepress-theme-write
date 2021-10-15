@@ -264,7 +264,7 @@ export default defineComponent({
         outline: none;
         margin: 0 4px;
         text-align: center;
-        border: 1px solid var(--borderColor) !important;
+        border: 1px solid var(--inputBorderColor) !important;
         // 去掉number输入框上下按钮
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
