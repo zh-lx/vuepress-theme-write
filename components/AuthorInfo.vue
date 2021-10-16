@@ -53,7 +53,8 @@ import { defineComponent, toRefs, Ref, computed } from 'vue';
 import TextTip from '@/components/TextTip.vue';
 import { usePageData } from '@vuepress/client';
 
-const DefaultAvatar = 'https://i.postimg.cc/tJghhbZY/default-avatar.jpg';
+const DefaultAvatar =
+  'https://image-1300099782.cos.ap-beijing.myqcloud.com/default-avatar.jfif';
 
 type Author = {
   avator: string;
@@ -96,6 +97,7 @@ export default defineComponent({
     const openUrlWindow: (url: string) => void = (url) => {
       window.open(url);
     };
+
     return {
       author,
       contact,

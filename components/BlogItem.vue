@@ -1,6 +1,6 @@
 <template>
   <div class="card pointer" @click="go2BlogDetail">
-    <div class="blog-title">{{ blog.title }}</div>
+    <div class="blog-title">{{ title }}</div>
     <div class="blog-git-info">
       <div class="git-author git-item">
         <i class="el-user blog-icon"></i><span>{{ authorName }}</span>
@@ -34,22 +34,39 @@ export default defineComponent({
   setup(props) {
     const router = useRouter();
 
+    // 跳转至文章详情页面
     const go2BlogDetail = () => {
       router.push(props.blog.path);
     };
 
+    // 作者名称
     const authorName: Ref<string> = computed(() => {
       return props.blog.git.contributors?.[0]?.name || 'zh-lx';
     });
 
+    // 文章最上级目录
     const blogPath: Ref<string> = computed(() => {
       return props.blog.filePathRelative?.split('/')[0];
     });
 
+    // 标签
     const tag: Ref<string> = computed(() => {
       return typeof props.blog.frontmatter?.tag === 'string'
         ? props.blog.frontmatter?.tag
         : props.blog.frontmatter?.tag[0];
+    });
+
+    // 文章标题
+    const title: Ref<string> = computed(() => {
+      if (props.blog.title) {
+        // 若文章以 # xx 一级标题开头，则将该一级标题作为标题
+        return props.blog.title;
+      } else {
+        // 否则取文件名作文标题
+        const path: string = props.blog.filePathRelative.split('.md')?.[0];
+        const pathList = path.split('\/');
+        return pathList?.[pathList.length - 1];
+      }
     });
     return {
       ...toRefs(props),
@@ -58,6 +75,7 @@ export default defineComponent({
       authorName,
       blogPath,
       tag,
+      title,
     };
   },
 });

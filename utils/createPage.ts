@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+// 生成分类页面和标签页面
 export const createPages = (sourceDir) => {
   const dirPath = path.join(sourceDir, '@pages'); // 生成的文件夹路径
 

@@ -167,6 +167,7 @@ export default defineComponent({
       const end = start + PageSize;
       return props.blogs.slice(start, end);
     });
+
     const scrollToBlogsTop = () => {
       const navBarHeight = (document.querySelector('.navbar') as HTMLElement)
         .offsetHeight;

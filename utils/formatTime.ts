@@ -1,3 +1,4 @@
+// 格式化时间戳
 export function formatTime(time: number, fmt: string) {
   const date = new Date(time);
   if (/(y+)/.test(fmt)) {
