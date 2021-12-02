@@ -26,6 +26,8 @@
       <div v-if="footerHtml" class="footer" v-html="footer" />
       <div v-else class="footer" v-text="footer" />
     </template>
+
+    <SiteInfo />
   </main>
 </template>
 
@@ -101,7 +103,7 @@ export default defineComponent({
 @import '~@/styles/_variables.scss';
 
 .main-container {
-  padding: $navbarHeight 0;
+  padding: $navbarHeight 0 0;
   max-width: 100%;
   display: block;
   width: 100%;

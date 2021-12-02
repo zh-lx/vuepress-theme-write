@@ -5,6 +5,7 @@ import CodeGroup from './components/global/CodeGroup';
 import CodeGroupItem from './components/global/CodeGroupItem.vue';
 import OutboundLink from './components/global/OutboundLink.vue';
 import LayoutContainer from '@/components/global/LayoutContainer.vue';
+import SiteInfo from '@/components/global/SiteInfo.vue';
 import Loading from '@/components/global/Loading.vue';
 import Home from '@/components/Home.vue';
 import '@/layouts/HomePage.vue';
@@ -14,6 +15,7 @@ import 'easy-icon/easy-icon-all.js';
 
 import './styles/index.scss';
 export default defineClientAppEnhance(({ app, router }) => {
+  app.component('SiteInfo', SiteInfo);
   app.component('Loading', Loading);
   app.component('Home', Home);
   app.component('LayoutContainer', LayoutContainer);
