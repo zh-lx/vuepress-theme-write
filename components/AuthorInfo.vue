@@ -3,7 +3,7 @@
     <div class="author">
       <img class="author-avatar" :src="author.avatar" alt="" />
       <div class="author-name">
-        {{ author.name || '神秘人' }}
+        {{ author.name || '无名' }}
       </div>
       <div class="author-introduction">
         {{ author.introduction }}
@@ -70,6 +70,7 @@ type Contact = {
   email?: string;
 };
 export default defineComponent({
+  // 作者信息卡片
   name: 'AuthorInfo',
   props: {
     author: {

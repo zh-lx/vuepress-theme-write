@@ -10,14 +10,16 @@ export const createPages = (sourceDir) => {
     fs.mkdirSync(dirPath); // 创建文件夹
   }
 
-  const CategoryPagePath = path.join(dirPath, `CategoriesPage.md`); // 生成的文件路径
+  // 生成目录页面
+  const CategoryPagePath = path.join(dirPath, `CategoriesPage.md`);
   const CategoryContent = `---
 layout: 'CategoriesPage'
 permalink: '/categories/'
 ---`;
   fs.writeFileSync(CategoryPagePath, CategoryContent);
 
-  const TagPagePath = path.join(dirPath, `TagsPage.md`); // 生成的文件路径
+  // 生成标签页面
+  const TagPagePath = path.join(dirPath, `TagsPage.md`);
   const TagContent = `---
 layout: 'TagsPage'
 permalink: '/tags/'
