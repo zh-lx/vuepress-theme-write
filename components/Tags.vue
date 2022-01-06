@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, toRefs, computed } from 'vue';
-import { usePagesInfo } from '@/composables';
+import { usePageList } from '@/composables';
 import { Tag } from '@/types';
 import { getRandomColor } from '@/utils';
 import { useRouter } from 'vue-router';
@@ -35,8 +35,8 @@ export default defineComponent({
     const isTagPage = computed(() => {
       return router.currentRoute.value.path.startsWith('/tags/');
     });
-    usePagesInfo().then((blogsInfo) => {
-      tags.value = blogsInfo?.tags?.value || [];
+    usePageList().then((pageList) => {
+      tags.value = pageList?.tagList?.value || [];
     });
 
     const handleClickTag: (tag: string) => void = (tag) => {

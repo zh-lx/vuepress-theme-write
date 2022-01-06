@@ -19,7 +19,7 @@
     <Sidebar v-if="!frontmatter.hideSidebar">
       <template #author>
         <div class="authorInfo" v-if="isHomePage">
-          <AuthorInfo />
+          <AuthorCard />
         </div>
       </template>
       <template #category>
@@ -67,7 +67,7 @@ import Home from '@/components/Home.vue';
 import Page from '@/components/Page.vue';
 import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
-import AuthorInfo from '@/components/AuthorInfo.vue';
+import AuthorCard from '@/components/author-card/index.vue';
 import Categories from '@/components/Categories.vue';
 import Tags from '@/components/Tags.vue';
 import {
@@ -86,7 +86,7 @@ export default defineComponent({
     Navbar,
     Sidebar,
     Transition,
-    AuthorInfo,
+    AuthorCard,
     Categories,
     Tags,
   },

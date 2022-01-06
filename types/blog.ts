@@ -11,10 +11,16 @@ export type Header = {
   title: string;
 };
 
+export type BlogFrontmatter = {
+  tag?: string | string[];
+  blog?: boolean;
+  [key: string]: any;
+};
+
 export type Blog = {
   excerpt: string;
   filePathRelative: string;
-  frontmatter: { [key: string]: any };
+  frontmatter: BlogFrontmatter;
   git: { updatedTime: number; contributors: Contributor[] };
   headers: Header[];
   key: string;

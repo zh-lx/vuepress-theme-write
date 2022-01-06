@@ -34,7 +34,7 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs } from 'vue';
 import { usePageFrontmatter, useSiteLocaleData } from '@vuepress/client';
-import { usePagesInfo } from '@/composables';
+import { usePageList } from '@/composables';
 import Blogs from '@/components/Blogs.vue';
 import HomeRight from '@/components/HomeRight.vue';
 
@@ -77,8 +77,8 @@ export default defineComponent({
       );
     });
 
-    usePagesInfo().then((blogsInfo) => {
-      state.blogs = blogsInfo?.blogs?.value || [];
+    usePageList().then((pageList) => {
+      state.blogs = pageList?.blogList?.value || [];
     });
 
     const footer = computed(() => frontmatter.value.footer);

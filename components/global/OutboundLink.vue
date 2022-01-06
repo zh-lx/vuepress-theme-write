@@ -1,12 +1,11 @@
 <template>
-  <RawOutboundLink>
+  <OutboundLink>
     <span class="sr-only">{{ themeLocale.openInNewWindow }}</span>
-  </RawOutboundLink>
+  </OutboundLink>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { OutboundLink } from '@vuepress/client';
 import { useThemeLocaleData } from '../../composables';
 
 /**
@@ -14,10 +13,6 @@ import { useThemeLocaleData } from '../../composables';
  */
 export default defineComponent({
   name: 'OutboundLink',
-
-  components: {
-    RawOutboundLink: OutboundLink,
-  },
 
   setup() {
     const themeLocale = useThemeLocaleData();

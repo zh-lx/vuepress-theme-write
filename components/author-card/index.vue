@@ -1,46 +1,46 @@
 <template>
-  <div class="author-container">
+  <div class="author-card">
     <div class="author">
-      <img class="author-avatar" :src="author.avatar" alt="" />
+      <img class="author-avatar" :src="author.avatar" alt="头像" />
       <div class="author-name">
-        {{ author.name || '无名' }}
+        {{ author.name }}
       </div>
       <div class="author-introduction">
         {{ author.introduction }}
       </div>
     </div>
-    <div class="contact">
+    <div class="contact" v-if="contact">
       <i
         v-if="contact.github"
-        class="et-logo-github contact-icon pointer"
+        class="et-icon-github contact-icon pointer"
         @click="openUrlWindow(contact.github)"
       ></i>
       <TextTip :tip="contact.qq" v-if="contact.qq">
-        <i class="et-logo-qq contact-icon pointer" style="color: #4cafe9"></i>
+        <i class="et-icon-qq contact-icon pointer" style="color: #4cafe9"></i>
       </TextTip>
       <i
         v-if="contact.csdn"
-        class="et-logo-csdn contact-icon pointer"
+        class="et-icon-csdn contact-icon pointer"
         style="color: #fc5531"
         @click="openUrlWindow(contact.csdn)"
       ></i>
       <TextTip :tip="contact.wechat" v-if="contact.wechat">
         <i
           v-if="contact.wechat"
-          class="et-logo-wechat contact-icon pointer"
+          class="et-icon-wechat contact-icon pointer"
           style="color: #11d31d"
         ></i>
       </TextTip>
       <i
         v-if="contact.zhihu"
-        class="et-zhihu contact-icon pointer"
+        class="et-icon-zhihu contact-icon pointer"
         style="color: #1089e9"
         @click="openUrlWindow(contact.zhihu)"
       ></i>
       <TextTip :tip="contact.email" v-if="contact.email">
         <i
           v-if="contact.email"
-          class="et-ic-mail contact-icon pointer"
+          class="et-icon-mail contact-icon pointer"
           style="background: #fdb100"
         ></i>
       </TextTip>
@@ -49,52 +49,38 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, Ref, computed } from 'vue';
+import { defineComponent, toRefs, Ref, computed, ComputedRef } from 'vue';
 import TextTip from '@/components/TextTip.vue';
-import { usePageData } from '@vuepress/client';
+import { Author, Contact, DefaultThemeHomePageFrontmatter } from '@/types/page';
+import { usePageFrontmatter } from '@vuepress/client';
 
-const DefaultAvatar =
-  'https://image-1300099782.cos.ap-beijing.myqcloud.com/default-avatar.jfif';
+const DEFAULT_AUTHOR = {
+  avatar:
+    'https://image-1300099782.cos.ap-beijing.myqcloud.com/default-avatar.jfif',
+  name: '潇洒哥',
+  introduction: '这个人很懒，没有个人介绍',
+};
 
-type Author = {
-  avator: string;
-  name: string;
-  introduction: string;
-};
-type Contact = {
-  github?: string;
-  qq?: string;
-  csdn?: string;
-  wechat?: string;
-  zhihu?: string;
-  email?: string;
-};
 export default defineComponent({
   // 作者信息卡片
-  name: 'AuthorInfo',
-  props: {
-    author: {
-      type: Object,
-      default: {},
-    },
-    contact: {
-      type: Object,
-      default: {},
-    },
-  },
+  name: 'AuthorCard',
   components: {
     TextTip,
   },
   setup() {
-    const pageData: any = usePageData();
-    const author: Ref<Author> = computed(() => {
-      return pageData.value.frontmatter?.author || {};
+    const frontmatter = usePageFrontmatter<DefaultThemeHomePageFrontmatter>();
+
+    // 作者信息
+    const author = computed(() => {
+      return frontmatter.value.author || DEFAULT_AUTHOR;
     });
 
-    const contact: Ref<Contact> = computed(() => {
-      return pageData.value.frontmatter?.contact || {};
+    // 联系方式
+    const contact = computed(() => {
+      return frontmatter.value.contact;
     });
 
+    // 点击博客时打开博客地址
     const openUrlWindow: (url: string) => void = (url) => {
       window.open(url);
     };
@@ -103,7 +89,7 @@ export default defineComponent({
       author,
       contact,
       openUrlWindow,
-      DefaultAvatar,
+      DEFAULT_AUTHOR,
     };
   },
 });
@@ -135,9 +121,6 @@ export default defineComponent({
   justify-content: space-around;
   align-items: center;
   margin-top: 1rem;
-  .et-logo-github {
-    transform: translateY(-1px);
-  }
   .contact-icon {
     transform: scale(1.25);
     display: flex;
@@ -147,7 +130,10 @@ export default defineComponent({
       transform: scale(1.375);
     }
   }
-  .et-ic-mail {
+  .et-icon-github {
+    transform: translateY(-1px);
+  }
+  .et-icon-mail {
     background-color: #2c3e50;
     border-radius: 50%;
     height: 25px;

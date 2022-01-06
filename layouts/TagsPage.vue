@@ -13,7 +13,7 @@ import { computed, defineComponent, ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import Blogs from '@/components/Blogs.vue';
 import Tags from '@/components/Tags.vue';
-import { usePagesInfo } from '@/composables';
+import { usePageList } from '@/composables';
 
 export default defineComponent({
   name: 'CategoriesPage',
@@ -29,8 +29,8 @@ export default defineComponent({
     // blogs
     const blogs = ref([]);
 
-    usePagesInfo().then((blogsInfo) => {
-      blogs.value = blogsInfo?.blogs?.value || [];
+    usePageList().then((pageList) => {
+      blogs.value = pageList?.blogList?.value || [];
     });
 
     const blogsToShow = computed(() => {

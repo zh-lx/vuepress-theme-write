@@ -1,7 +1,7 @@
 <template>
   <div class="home-right">
     <div class="card author-card">
-      <AuthorInfo />
+      <AuthorCard />
     </div>
     <div class="card category-card">
       <div class="category-card-title">
@@ -18,15 +18,14 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, Ref } from 'vue';
-import { usePagesInfo } from '@/composables';
 import { Tag, Category } from '@/types';
 import Categories from '@/components/Categories.vue';
 import Tags from '@/components/Tags.vue';
-import AuthorInfo from '@/components/AuthorInfo.vue';
+import AuthorCard from '@/components/author-card/index.vue';
 
 export default defineComponent({
   name: 'HomeRight',
-  components: { Categories, Tags, AuthorInfo },
+  components: { Categories, Tags, AuthorCard },
   setup() {
     return {};
   },

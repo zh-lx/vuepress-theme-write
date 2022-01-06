@@ -116,114 +116,221 @@
   </div>
 </template>
 
-<script lang="ts">
-import {
-  defineComponent,
-  watch,
-  ref,
-  onMounted,
-  reactive,
-  toRefs,
-  computed,
-  onUnmounted,
-} from 'vue';
-import { usePagesInfo } from '@/composables';
+<script setup lang="ts">
+// 博客列表
+import { defineProps, watch, ref, computed, onUnmounted } from 'vue';
 import BlogItem from '@/components/BlogItem.vue';
-const PageSize = 10;
+import { Blog } from '@/types/blog';
 
-export default defineComponent({
-  name: 'Blogs',
-  components: {
-    BlogItem,
-  },
-  props: {
-    blogs: {
-      type: Object,
-      default: () => [],
-    },
-  },
-  setup(props) {
-    const state = reactive({
-      pagination: {
-        current: 1,
-        total: 0,
-        pagesCount: 0,
-      },
-      inputPage: '',
-    });
+interface Props {
+  blogs: Blog[];
+}
 
-    watch(
-      () => props.blogs,
-      (blogs) => {
-        state.pagination.pagesCount = Math.ceil(blogs.length / PageSize);
-      }
-    );
-
-    let timer = ref();
-    const tipRef = ref();
-
-    const blogsToShow = computed(() => {
-      const start = (state.pagination.current - 1) * PageSize;
-      const end = start + PageSize;
-      return props.blogs.slice(start, end);
-    });
-
-    const scrollToBlogsTop = () => {
-      const navBarHeight = (document.querySelector('.navbar') as HTMLElement)
-        .offsetHeight;
-      window.scrollTo(0, document.documentElement.clientHeight - navBarHeight);
-    };
-
-    const jumpToPage = (pageNum) => {
-      state.pagination.current = pageNum;
-      scrollToBlogsTop();
-    };
-
-    const inputJump = (e) => {
-      if (e.keyCode === 13) {
-        goJump();
-      }
-    };
-
-    const goJump = () => {
-      const targetPage = Number(state.inputPage);
-      if (
-        targetPage % 1 === 0 &&
-        targetPage >= 1 &&
-        targetPage <= state.pagination.pagesCount
-      ) {
-        state.pagination.current = targetPage;
-        scrollToBlogsTop();
-      } else {
-        tipRef.value.style.top = '20%';
-        if (timer.value) {
-          clearTimeout(timer.value);
-        }
-        timer.value = setTimeout(() => {
-          timer.value = null;
-          tipRef.value.style.top = '0';
-        }, 2500);
-      }
-    };
-
-    onUnmounted(() => {
-      if (timer.value) {
-        clearTimeout(timer.value);
-        timer.value = null;
-      }
-    });
-
-    return {
-      ...toRefs(state),
-      ...toRefs(props),
-      blogsToShow,
-      jumpToPage,
-      inputJump,
-      goJump,
-      tipRef,
-    };
-  },
+const props = withDefaults(defineProps<Props>(), {
+  blogs: () => [],
 });
+
+const PageSize = 10;
+// 当前页码
+const pagination = {
+  current: 1,
+  total: 0,
+  pagesCount: 0,
+};
+const inputPage = '';
+
+let timer = ref();
+const tipRef = ref();
+
+// 当前页要展示的 blog 列表
+const blogsToShow = computed(() => {
+  const start = (pagination.current - 1) * PageSize;
+  const end = start + PageSize;
+  return props.blogs.slice(start, end);
+});
+
+// 滚动到顶部
+const scrollToBlogsTop = () => {
+  const navBarHeight = (document.querySelector('.navbar') as HTMLElement)
+    .offsetHeight;
+  window.scrollTo(0, document.documentElement.clientHeight - navBarHeight);
+};
+
+const jumpToPage = (pageNum) => {
+  pagination.current = pageNum;
+  scrollToBlogsTop();
+};
+
+const inputJump = (e) => {
+  if (e.keyCode === 13) {
+    goJump();
+  }
+};
+
+const goJump = () => {
+  const targetPage = Number(inputPage);
+  if (
+    targetPage % 1 === 0 &&
+    targetPage >= 1 &&
+    targetPage <= pagination.pagesCount
+  ) {
+    pagination.current = targetPage;
+    scrollToBlogsTop();
+  } else {
+    tipRef.value.style.top = '20%';
+    if (timer.value) {
+      clearTimeout(timer.value);
+    }
+    timer.value = setTimeout(() => {
+      timer.value = null;
+      tipRef.value.style.top = '0';
+    }, 2500);
+  }
+};
+
+onUnmounted(() => {
+  if (timer.value) {
+    clearTimeout(timer.value);
+    timer.value = null;
+  }
+});
+
+watch(
+  () => props.blogs,
+  (blogs) => {
+    pagination.pagesCount = Math.ceil(blogs.length / PageSize);
+  }
+);
+
+// import {
+//   defineComponent,
+//   defineProps,
+//   watch,
+//   ref,
+//   onMounted,
+//   reactive,
+//   toRefs,
+//   computed,
+//   onUnmounted,
+// } from 'vue';
+// import { usePageList } from '@/composables';
+// import { Blog } from '@/types/blog';
+// import BlogItem from '@/components/BlogItem.vue';
+
+// const PageSize = 10;
+
+// const Props = defineComponent;
+
+// interface Props {
+//   blogs: Blog[];
+// }
+
+// export default defineComponent({
+//   // 博客列表
+//   name: 'BlogList',
+//   components: {
+//     BlogItem,
+//   },
+//   // props: {
+//   //   blogs: {
+//   //     type: Object,
+//   //     default: () => [],
+//   //   },
+//   // },
+
+//   props: defineProps({
+//     blogs: {
+//       type: Array as () => string[],
+//       default: () => [],
+//     },
+//   }),
+//   setup() {
+//     const props = withDefaults(defineProps<Props>(), {
+//       msg: 'hello',
+//       labels: () => ['one', 'two'],
+//     });
+//     const state = reactive({
+//       pagination: {
+//         current: 1,
+//         total: 0,
+//         pagesCount: 0,
+//       },
+//       inputPage: '',
+//     });
+
+//     watch(
+//       () => props.blogs,
+//       (blogs) => {
+//         state.pagination.pagesCount = Math.ceil(blogs.length / PageSize);
+//       }
+//     );
+
+//     let timer = ref();
+//     const tipRef = ref();
+
+//     const blogsToShow = computed(() => {
+//       const start = (state.pagination.current - 1) * PageSize;
+//       const end = start + PageSize;
+//       return props.blogs.slice(start, end);
+//     });
+
+//     const scrollToBlogsTop = () => {
+//       const navBarHeight = (document.querySelector('.navbar') as HTMLElement)
+//         .offsetHeight;
+//       window.scrollTo(0, document.documentElement.clientHeight - navBarHeight);
+//     };
+
+//     const jumpToPage = (pageNum) => {
+//       state.pagination.current = pageNum;
+//       scrollToBlogsTop();
+//     };
+
+//     const inputJump = (e) => {
+//       if (e.keyCode === 13) {
+//         goJump();
+//       }
+//     };
+
+//     const goJump = () => {
+//       const targetPage = Number(state.inputPage);
+//       if (
+//         targetPage % 1 === 0 &&
+//         targetPage >= 1 &&
+//         targetPage <= state.pagination.pagesCount
+//       ) {
+//         state.pagination.current = targetPage;
+//         scrollToBlogsTop();
+//       } else {
+//         tipRef.value.style.top = '20%';
+//         if (timer.value) {
+//           clearTimeout(timer.value);
+//         }
+//         timer.value = setTimeout(() => {
+//           timer.value = null;
+//           tipRef.value.style.top = '0';
+//         }, 2500);
+//       }
+//     };
+
+//     onUnmounted(() => {
+//       if (timer.value) {
+//         clearTimeout(timer.value);
+//         timer.value = null;
+//       }
+//     });
+
+//     return {
+//       ...toRefs(state),
+//       ...toRefs(props),
+//       blogsToShow,
+//       jumpToPage,
+//       inputJump,
+//       goJump,
+//       tipRef,
+//     };
+//   },
+// });
+//
 </script>
 
 <style scoped lang="scss">

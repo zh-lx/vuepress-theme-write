@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { usePagesInfo } from '@/composables';
+import { usePageList } from '@/composables';
 import { Category } from '@/types';
 import { useRouter } from 'vue-router';
 
@@ -26,8 +26,8 @@ export default defineComponent({
   name: 'Categories',
   setup() {
     let categories = ref<Category[]>([]);
-    usePagesInfo().then((blogsInfo) => {
-      categories.value = blogsInfo?.categories?.value || [];
+    usePageList().then((pageList) => {
+      categories.value = pageList?.categoryList?.value || [];
     });
 
     const router = useRouter();
