@@ -3,21 +3,21 @@
     <div
       v-for="(blog, index) in blogsToShow"
       :key="index"
-      class="blog-item-div"
+      class="blog-item-container"
     >
       <BlogItem :blog="blog" />
     </div>
     <div class="blog-pagination">
       <div class="blog-pagination-left">
         <div
-          class="pre-page pagination-label card"
+          class="pre-page pagination-item card"
           v-if="pagination.current > 1"
           @click="jumpToPage(pagination.current - 1)"
         >
           上一页
         </div>
         <div
-          :class="`first-page pagination-label card ${
+          :class="`first-page pagination-item card ${
             pagination.current === 1 ? 'page-selected' : ''
           }`"
           @click="jumpToPage(1)"
@@ -25,7 +25,7 @@
           1
         </div>
         <div
-          :class="`second-page pagination-label card ${
+          :class="`second-page pagination-item card ${
             pagination.current === 2 ? 'page-selected' : ''
           }`"
           v-if="
@@ -39,13 +39,13 @@
           2
         </div>
         <div
-          class="pre-ellipsis pagination-label"
+          class="pre-ellipsis pagination-item"
           v-if="pagination.current > 3 && pagination.pagesCount > 5"
         >
           ...
         </div>
         <div
-          class="current pagination-label card page-selected"
+          class="current pagination-item card page-selected"
           v-if="
             ![1, 2, pagination.pagesCount - 1, pagination.pagesCount].includes(
               pagination.current
@@ -55,7 +55,7 @@
           {{ pagination.current }}
         </div>
         <div
-          class="next-ellipsisi pagination-label"
+          class="next-ellipsisi pagination-item"
           v-if="
             pagination.current < pagination.pagesCount - 2 &&
             pagination.pagesCount > 5
@@ -64,7 +64,7 @@
           ...
         </div>
         <div
-          :class="`last-second-page pagination-label card ${
+          :class="`last-second-page pagination-item card ${
             pagination.current === pagination.pagesCount - 1
               ? 'page-selected'
               : ''
@@ -80,7 +80,7 @@
           {{ pagination.pagesCount - 1 }}
         </div>
         <div
-          :class="`last-page pagination-label card ${
+          :class="`last-page pagination-item card ${
             pagination.current === pagination.pagesCount ? 'page-selected' : ''
           }`"
           v-if="pagination.pagesCount > 3"
@@ -89,7 +89,7 @@
           {{ pagination.pagesCount }}
         </div>
         <div
-          class="next-page pagination-label card"
+          class="next-page pagination-item card"
           v-if="pagination.current < pagination.pagesCount"
           @click="jumpToPage(pagination.current + 1)"
         >
@@ -103,48 +103,46 @@
             type="number"
             class="page-jump-input"
             v-model="inputPage"
-            @keyup="inputJump"
+            @keyup="inputTarget"
           />
           <span>页</span>
         </div>
-        <div class="page-jump-btn pagination-label card" @click="goJump">
+        <div class="page-jump-btn pagination-item card" @click="go2TargetPage">
           Go
         </div>
       </div>
     </div>
-    <div ref="tipRef" class="warn-tip">页码输入错误</div>
   </div>
 </template>
 
 <script setup lang="ts">
 // 博客列表
-import { defineProps, watch, ref, computed, onUnmounted } from 'vue';
+import { defineProps, watch, computed, reactive, toRefs } from 'vue';
 import BlogItem from '@/components/BlogItem.vue';
 import { Blog } from '@/types/blog';
+import Message from '@/components/message';
 
 interface Props {
   blogs: Blog[];
 }
+const PageSize = 10;
 
 const props = withDefaults(defineProps<Props>(), {
   blogs: () => [],
 });
 
-const PageSize = 10;
-// 当前页码
-const pagination = {
-  current: 1,
-  total: 0,
-  pagesCount: 0,
-};
-const inputPage = '';
-
-let timer = ref();
-const tipRef = ref();
+const state = reactive({
+  pagination: {
+    current: 1,
+    total: 0,
+    pagesCount: 0,
+  },
+  inputPage: '',
+});
 
 // 当前页要展示的 blog 列表
 const blogsToShow = computed(() => {
-  const start = (pagination.current - 1) * PageSize;
+  const start = (state.pagination.current - 1) * PageSize;
   const end = start + PageSize;
   return props.blogs.slice(start, end);
 });
@@ -157,193 +155,53 @@ const scrollToBlogsTop = () => {
 };
 
 const jumpToPage = (pageNum) => {
-  pagination.current = pageNum;
+  state.pagination.current = pageNum;
   scrollToBlogsTop();
 };
 
-const inputJump = (e) => {
+const inputTarget = (e: KeyboardEvent) => {
   if (e.keyCode === 13) {
-    goJump();
+    go2TargetPage();
   }
 };
 
-const goJump = () => {
-  const targetPage = Number(inputPage);
+// 跳转到目标页面
+const go2TargetPage = () => {
+  const targetPage = Number(state.inputPage);
   if (
     targetPage % 1 === 0 &&
     targetPage >= 1 &&
-    targetPage <= pagination.pagesCount
+    targetPage <= state.pagination.pagesCount
   ) {
-    pagination.current = targetPage;
+    state.pagination.current = targetPage;
     scrollToBlogsTop();
   } else {
-    tipRef.value.style.top = '20%';
-    if (timer.value) {
-      clearTimeout(timer.value);
-    }
-    timer.value = setTimeout(() => {
-      timer.value = null;
-      tipRef.value.style.top = '0';
-    }, 2500);
+    Message('页码输入错误');
   }
 };
-
-onUnmounted(() => {
-  if (timer.value) {
-    clearTimeout(timer.value);
-    timer.value = null;
-  }
-});
 
 watch(
   () => props.blogs,
   (blogs) => {
-    pagination.pagesCount = Math.ceil(blogs.length / PageSize);
+    state.pagination.pagesCount = Math.ceil(blogs.length / PageSize);
   }
 );
 
-// import {
-//   defineComponent,
-//   defineProps,
-//   watch,
-//   ref,
-//   onMounted,
-//   reactive,
-//   toRefs,
-//   computed,
-//   onUnmounted,
-// } from 'vue';
-// import { usePageList } from '@/composables';
-// import { Blog } from '@/types/blog';
-// import BlogItem from '@/components/BlogItem.vue';
-
-// const PageSize = 10;
-
-// const Props = defineComponent;
-
-// interface Props {
-//   blogs: Blog[];
-// }
-
-// export default defineComponent({
-//   // 博客列表
-//   name: 'BlogList',
-//   components: {
-//     BlogItem,
-//   },
-//   // props: {
-//   //   blogs: {
-//   //     type: Object,
-//   //     default: () => [],
-//   //   },
-//   // },
-
-//   props: defineProps({
-//     blogs: {
-//       type: Array as () => string[],
-//       default: () => [],
-//     },
-//   }),
-//   setup() {
-//     const props = withDefaults(defineProps<Props>(), {
-//       msg: 'hello',
-//       labels: () => ['one', 'two'],
-//     });
-//     const state = reactive({
-//       pagination: {
-//         current: 1,
-//         total: 0,
-//         pagesCount: 0,
-//       },
-//       inputPage: '',
-//     });
-
-//     watch(
-//       () => props.blogs,
-//       (blogs) => {
-//         state.pagination.pagesCount = Math.ceil(blogs.length / PageSize);
-//       }
-//     );
-
-//     let timer = ref();
-//     const tipRef = ref();
-
-//     const blogsToShow = computed(() => {
-//       const start = (state.pagination.current - 1) * PageSize;
-//       const end = start + PageSize;
-//       return props.blogs.slice(start, end);
-//     });
-
-//     const scrollToBlogsTop = () => {
-//       const navBarHeight = (document.querySelector('.navbar') as HTMLElement)
-//         .offsetHeight;
-//       window.scrollTo(0, document.documentElement.clientHeight - navBarHeight);
-//     };
-
-//     const jumpToPage = (pageNum) => {
-//       state.pagination.current = pageNum;
-//       scrollToBlogsTop();
-//     };
-
-//     const inputJump = (e) => {
-//       if (e.keyCode === 13) {
-//         goJump();
-//       }
-//     };
-
-//     const goJump = () => {
-//       const targetPage = Number(state.inputPage);
-//       if (
-//         targetPage % 1 === 0 &&
-//         targetPage >= 1 &&
-//         targetPage <= state.pagination.pagesCount
-//       ) {
-//         state.pagination.current = targetPage;
-//         scrollToBlogsTop();
-//       } else {
-//         tipRef.value.style.top = '20%';
-//         if (timer.value) {
-//           clearTimeout(timer.value);
-//         }
-//         timer.value = setTimeout(() => {
-//           timer.value = null;
-//           tipRef.value.style.top = '0';
-//         }, 2500);
-//       }
-//     };
-
-//     onUnmounted(() => {
-//       if (timer.value) {
-//         clearTimeout(timer.value);
-//         timer.value = null;
-//       }
-//     });
-
-//     return {
-//       ...toRefs(state),
-//       ...toRefs(props),
-//       blogsToShow,
-//       jumpToPage,
-//       inputJump,
-//       goJump,
-//       tipRef,
-//     };
-//   },
-// });
-//
+const { pagination, inputPage } = toRefs(state);
 </script>
 
 <style scoped lang="scss">
 @import '~@/styles/_variables.scss';
 .blog-list {
-  .blog-item-div {
+  .blog-item-container {
     margin-bottom: 1.5rem;
   }
   .blog-pagination {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    .pagination-label {
+
+    .pagination-item {
       height: 28px;
       line-height: 28px;
       text-align: center;
@@ -352,6 +210,15 @@ watch(
       &:hover {
         color: var(--commonSelectedBgc);
         cursor: pointer;
+      }
+    }
+    .blog-pagination-left {
+      display: flex;
+      .pagination-item {
+        margin-left: 10px;
+        &:first-of-type {
+          margin-left: 0;
+        }
       }
     }
 
@@ -390,16 +257,6 @@ watch(
         color: var(--reverseTextColor);
       }
     }
-
-    .blog-pagination-left {
-      display: flex;
-      .pagination-label {
-        margin-left: 10px;
-        &:first-of-type {
-          margin-left: 0;
-        }
-      }
-    }
   }
 
   .pre-ellipsisi,
@@ -423,18 +280,5 @@ watch(
       justify-content: center;
     }
   }
-}
-
-.warn-tip {
-  position: fixed;
-  text-align: center;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  background-color: #fdf6ec;
-  color: #e6a23c;
-  padding: 8px 16px;
-  border-radius: 4px;
-  transition: all 1s linear;
 }
 </style>

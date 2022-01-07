@@ -19,3 +19,16 @@ html {
   margin: 0;
   box-sizing: border-box;
 }
+.global-message {
+  position: fixed;
+  z-index: 9999;
+  padding: 0 16px;
+  line-height: 24px;
+  text-align: center;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background-color: #fdf6ec;
+  color: #e6a23c;
+  border-radius: 4px;
+}
