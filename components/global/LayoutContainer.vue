@@ -27,13 +27,13 @@
           <div class="category-card-title">
             <i class="ei-folder-open"></i>文章分类
           </div>
-          <Categories />
+          <CategoryList />
         </div>
       </template>
       <template #tag>
         <div class="left-card" v-if="isTagPage">
           <div class="left-card-title"><i class="ei-tags"></i>热门标签</div>
-          <Tags />
+          <TagList />
         </div>
       </template>
       <template #top>
@@ -68,8 +68,8 @@ import Page from '@/components/Page.vue';
 import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
 import AuthorCard from '@/components/author-card/index.vue';
-import Categories from '@/components/Categories.vue';
-import Tags from '@/components/Tags.vue';
+import CategoryList from '@/components/category-list/index.vue';
+import TagList from '@/components/tag-list/index.vue';
 import {
   useScrollPromise,
   useSidebarItems,
@@ -87,8 +87,8 @@ export default defineComponent({
     Sidebar,
     Transition,
     AuthorCard,
-    Categories,
-    Tags,
+    CategoryList,
+    TagList,
   },
 
   setup() {

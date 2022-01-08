@@ -11,8 +11,6 @@ import Home from '@/components/Home.vue';
 import '@/layouts/HomePage.vue';
 import { useScrollPromise } from './composables';
 
-import 'easy-icon/easy-icon-all.js';
-
 import './styles/index.scss';
 export default defineClientAppEnhance(({ app, router }) => {
   app.component('SiteInfo', SiteInfo);

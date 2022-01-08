@@ -118,9 +118,9 @@
 <script setup lang="ts">
 // 博客列表
 import { defineProps, watch, computed, reactive, toRefs } from 'vue';
-import BlogItem from '@/components/BlogItem.vue';
 import { Blog } from '@/types/blog';
 import Message from '@/components/message';
+import BlogItem from './blog-item.vue';
 
 interface Props {
   blogs: Blog[];

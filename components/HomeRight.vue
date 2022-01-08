@@ -7,11 +7,11 @@
       <div class="category-card-title">
         <i class="ei-folder-open"></i>文章分类
       </div>
-      <Categories />
+      <CategoryList />
     </div>
     <div class="card tag-card">
       <div class="tag-card-title"><i class="ei-tags"></i>热门标签</div>
-      <Tags />
+      <TagList />
     </div>
   </div>
 </template>
@@ -19,13 +19,13 @@
 <script lang="ts">
 import { defineComponent, ref, computed, Ref } from 'vue';
 import { Tag, Category } from '@/types';
-import Categories from '@/components/Categories.vue';
-import Tags from '@/components/Tags.vue';
+import CategoryList from '@/components/category-list/index.vue';
+import TagList from '@/components/tag-list/index.vue';
 import AuthorCard from '@/components/author-card/index.vue';
 
 export default defineComponent({
   name: 'HomeRight',
-  components: { Categories, Tags, AuthorCard },
+  components: { CategoryList, TagList, AuthorCard },
   setup() {
     return {};
   },

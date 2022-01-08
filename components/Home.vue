@@ -18,7 +18,7 @@
     </div>
 
     <div class="main-content">
-      <div class="main-content-left"><Blogs :blogs="blogs" /></div>
+      <div class="main-content-left"><BlogList :blogs="blogs" /></div>
       <div class="main-content-right"><HomeRight /></div>
     </div>
 
@@ -35,14 +35,14 @@
 import { computed, defineComponent, reactive, toRefs } from 'vue';
 import { usePageFrontmatter, useSiteLocaleData } from '@vuepress/client';
 import { usePageList } from '@/composables';
-import Blogs from '@/components/Blogs.vue';
+import BlogList from '@/components/blog-list/index.vue';
 import HomeRight from '@/components/HomeRight.vue';
 
 export default defineComponent({
   name: 'Home',
 
   components: {
-    Blogs,
+    BlogList,
     HomeRight,
   },
 

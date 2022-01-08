@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(category, index) in categories" :key="index">
+    <div v-for="category in categoryList" :key="category.name">
       <div
         :class="`category-item pointer ${
           router.currentRoute.value.query.category === category.name
@@ -16,33 +16,25 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+// 目录列表
+import { ref } from 'vue';
 import { usePageList } from '@/composables';
 import { Category } from '@/types';
 import { useRouter } from 'vue-router';
 
-export default defineComponent({
-  name: 'Categories',
-  setup() {
-    let categories = ref<Category[]>([]);
-    usePageList().then((pageList) => {
-      categories.value = pageList?.categoryList?.value || [];
-    });
+const categoryList = ref<Category[]>([]);
 
-    const router = useRouter();
-
-    const handleClickCategory = (category) => {
-      router.push(`/categories/?category=${decodeURI(category)}`);
-    };
-
-    return {
-      categories,
-      handleClickCategory,
-      router,
-    };
-  },
+usePageList().then((pageList) => {
+  categoryList.value = pageList?.categoryList?.value || [];
 });
+
+const router = useRouter();
+
+// 点击跳转对应的目录页
+const handleClickCategory = (category) => {
+  router.push(`/categories/?category=${decodeURI(category)}`);
+};
 </script>
 
 <style scoped lang="scss">

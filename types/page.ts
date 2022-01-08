@@ -17,6 +17,10 @@ export interface Contact {
   wechat?: string;
   zhihu?: string;
   email?: string;
+  juejin?: string;
+  gitee?: string;
+  weibo?: string;
+  jianshu?: string;
 }
 
 export interface DefaultThemeHomePageFrontmatter {

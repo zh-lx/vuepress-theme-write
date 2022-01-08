@@ -1,3 +1,23 @@
+<script setup lang="ts">
+defineProps({
+  type: {
+    type: String,
+    required: false,
+    default: 'tip',
+  },
+  text: {
+    type: String,
+    required: false,
+    default: '',
+  },
+  vertical: {
+    type: String,
+    required: false,
+    default: undefined,
+  },
+});
+</script>
+
 <template>
   <span
     class="badge"
@@ -10,31 +30,6 @@
   </span>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'Badge',
-
-  props: {
-    type: {
-      type: String,
-      required: false,
-      default: 'tip',
-    },
-    text: {
-      type: String,
-      required: false,
-      default: '',
-    },
-    vertical: {
-      type: String,
-      required: false,
-      default: undefined,
-    },
-  },
-});
-</script>
 <style lang="scss" scoped>
 @import '~@/styles/_variables.scss';
 

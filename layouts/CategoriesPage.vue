@@ -2,7 +2,7 @@
   <LayoutContainer>
     <main class="main-container">
       <div class="main-content">
-        <div class="blogs-list"><Blogs :blogs="blogsToShow" /></div>
+        <div class="blogs-list"><BlogList :blogs="blogsToShow" /></div>
       </div>
     </main>
   </LayoutContainer>
@@ -11,16 +11,16 @@
 <script lang="ts">
 import { computed, defineComponent, ref, reactive, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import Blogs from '@/components/Blogs.vue';
-import Categories from '@/components/Categories.vue';
+import BlogList from '@/components/blog-list/index.vue';
+import CategoryList from '@/components/category-list/index.vue';
 import { usePageList } from '@/composables';
 
 export default defineComponent({
-  name: 'CategoriesPage',
+  name: 'CategoryListPage',
 
   components: {
-    Blogs,
-    Categories,
+    BlogList,
+    CategoryList,
   },
 
   setup() {
