@@ -1,5 +1,12 @@
+const MainColor = '#3ed5fe';
+
 export const themeMode = {
   lightMode: {
+    '--common-bgc': '#fff',
+    '--common-border': '1px solid #eaecef',
+    '--common-text-color': '#606266', // 常规文字颜色
+    '--common-hover-color': MainColor,
+    '--common-arrow-bgc': '#cccccc',
     '--mainTextColor': '#303133', // 主文字颜色
     '--homeTextColor': '#ffffff', // 主页大屏文字颜色
     '--commonTextColor': '#606266', // 常规文字颜色

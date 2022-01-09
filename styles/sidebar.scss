@@ -1,4 +1,5 @@
-@import '_variables';
+@import '~@/styles/_wrapper.scss';
+@import '~@/styles/_variables.scss';
 
 .sidebar {
   ul {
@@ -11,16 +12,17 @@
     display: inline-block;
   }
 
-  .navbar-links {
+  .navbar-items {
     display: none;
-    border-bottom: 1px solid $borderColor;
+    border-bottom: 1px solid var(--common-border);
+    transition: border-color var(--common-text-color);
     padding: 0.5rem 0 0.75rem 0;
 
     a {
       font-weight: 600;
     }
 
-    .navbar-links-item {
+    .navbar-item {
       display: block;
       line-height: 1.25rem;
       font-size: 1.1em;
@@ -28,129 +30,100 @@
     }
   }
 
-  & > .sidebar-links {
+  .sidebar-items {
     padding: 1.5rem 0;
-
-    & > li > a.sidebar-link {
-      font-size: 1.1em;
-      line-height: 1.7;
-      font-weight: bold;
-    }
-
-    & > li:not(:first-child) {
-      margin-top: 0.75rem;
-    }
   }
 }
 
 @media (max-width: $MQMobile) {
   .sidebar {
-    .navbar-links {
+    .navbar-items {
       display: block;
 
-      .dropdown-wrapper
-        .nav-dropdown
-        .dropdown-item
+      .navbar-dropdown-wrapper
+        .navbar-dropdown
+        .navbar-dropdown-item
         a.router-link-active::after {
         top: calc(1rem - 2px);
       }
     }
 
-    & > .sidebar-links {
+    .sidebar-items {
       padding: 1rem 0;
     }
   }
 }
 
-/**
- * sidebar child
- */
-.sidebar-group {
-  .sidebar-links > &:not(:first-child) {
-    margin-top: 0.75rem;
-  }
-  .sidebar-group {
-    & > .sidebar-heading {
-      opacity: 0.5;
-      font-size: 0.95em;
-      line-height: 1.4;
-      font-weight: normal;
-      padding-left: 2rem;
+.sidebar-item {
+  cursor: default;
+
+  &.sidebar-heading {
+    color: var(--common-text-color);
+    transition: color 0.15s ease;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0.35rem 1rem 0.35rem 0.65rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    border-left: 0.25rem solid transparent;
+
+    &.collapsible {
+      cursor: pointer;
+
+      & + .sidebar-item-children {
+        @include dropdown_wrapper;
+        margin-bottom: 0.75rem;
+      }
+    }
+
+    .arrow {
+      position: relative;
+      top: -0.12em;
+      left: 0.5em;
     }
   }
-}
 
-.sidebar-heading {
-  color: $textColor;
-  transition: color 0.15s ease;
-  cursor: default;
-  font-size: 1.1em;
-  font-weight: bold;
-  padding: 0.35rem 1.5rem 0.35rem 1.25rem;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  border-left: 0.25rem solid transparent;
-
-  &.open,
-  &:hover {
-    color: inherit;
-  }
-
-  .arrow {
-    position: relative;
-    top: -0.12em;
-    left: 0.5em;
-  }
-}
-
-.sidebar .sidebar-sub-headers {
-  padding-left: 1rem;
-  font-size: 0.95em;
-}
-
-.sidebar-link {
-  font-size: 1em;
-  font-weight: 400;
-  display: inline-block;
-  color: $textColor;
-  border-left: 0.25rem solid transparent;
-  margin: 0;
-  padding: 0.35rem 1rem 0.35rem 1.25rem;
-  line-height: 1.4;
-  width: 100%;
-  box-sizing: border-box;
-
-  .sidebar-group & {
-    padding-left: 2rem;
-  }
-
-  .sidebar-sub-headers & {
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    border-left: none;
+  &:not(.sidebar-heading) {
+    font-size: 12px;
+    font-weight: 400;
+    display: inline-block;
+    color: var(--c-text);
+    border-left: 0.25rem solid transparent;
+    margin: 0;
+    padding: 0.35rem 1rem 0.35rem 0.65rem;
+    line-height: 1.4;
+    width: 100%;
+    box-sizing: border-box;
 
     &.active {
-      font-weight: 500;
+      font-weight: 600;
+      color: var(--common-hover-color);
+      border-left-color: var(--common-hover-color);
+    }
+
+    & + .sidebar-item-children {
+      padding-left: 1rem;
+      font-size: 12px;
+    }
+
+    .sidebar-item-children .sidebar-item-children & {
+      padding: 0.25rem 1rem 0.25rem 1.75rem;
+
+      &.active {
+        font-weight: 500;
+        border-left-color: transparent;
+      }
     }
   }
 }
 
-a.sidebar-heading,
-a.sidebar-link {
+a.sidebar-item {
   cursor: pointer;
-  font-size: 12px;
-  white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
-
-  &.active {
-    font-weight: 600;
-    color: $accentColor;
-    border-left-color: $accentColor;
-  }
+  overflow: hidden;
 
   &:hover {
-    color: $accentColor;
+    color: var(--common-hover-color);
   }
 }

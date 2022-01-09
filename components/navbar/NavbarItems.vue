@@ -1,28 +1,19 @@
-<template>
-  <nav v-if="navbarLinks.length" class="navbar-links">
-    <div v-for="item in navbarLinks" :key="item.link" class="navbar-links-item">
-      <template v-if="item.children">
-        <DropdownLink :item="item" />
-      </template>
-
-      <template v-else>
-        <NavLink :item="item" />
-      </template>
-    </div>
-  </nav>
-</template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue';
+<script setup lang="ts">
+import { useRouteLocale, useSiteLocaleData } from '@vuepress/client';
+import { isLinkHttp, isString } from '@vuepress/shared';
+import { computed } from 'vue';
 import type { ComputedRef } from 'vue';
 import { useRouter } from 'vue-router';
-import { useRouteLocale, useSiteLocaleData } from '@vuepress/client';
-import { isString } from '@vuepress/shared';
-import { useNavLink, useThemeLocaleData } from '../composables';
-import type { NavbarItem, NavbarGroup, ResolvedNavbarItem } from '../types';
-import { resolveRepoType } from '../utils';
-import DropdownLink from './DropdownLink.vue';
-import NavLink from './NavLink.vue';
+import type {
+  NavbarGroup,
+  NavbarItem,
+  ResolvedNavbarItem,
+  NavGroup,
+} from '@/types';
+import { useNavLink, useThemeLocaleData } from '@/composables';
+import { resolveRepoType } from '@/utils';
+import AutoLink from '@/components/AutoLink.vue';
+import NavbarDropdown from './NavbarDropdown.vue';
 
 /**
  * Get navbar config of select language dropdown
@@ -43,7 +34,7 @@ const useNavbarSelectLanguage = (): ComputedRef<ResolvedNavbarItem[]> => {
     const currentFullPath = router.currentRoute.value.fullPath;
 
     const languageDropdown: ResolvedNavbarItem = {
-      text: themeLocale.value.selectLanguageText ?? 'unkown language',
+      text: themeLocale.value.selectLanguageText ?? 'unknown language',
       ariaLabel: themeLocale.value.selectLanguageAriaLabel ?? 'unkown language',
       children: localePaths.map((targetLocalePath) => {
         // target locale config of this langauge link
@@ -100,9 +91,10 @@ const useNavbarRepo = (): ComputedRef<ResolvedNavbarItem[]> => {
   );
 
   const repoLink = computed(() => {
-    if (repoType.value === 'GitHub') {
+    if (repo.value && !isLinkHttp(repo.value)) {
       return `https://github.com/${repo.value}`;
     }
+
     return repo.value;
   });
 
@@ -149,39 +141,31 @@ const useNavbarConfig = (): ComputedRef<ResolvedNavbarItem[]> => {
   );
 };
 
-export default defineComponent({
-  name: 'NavbarLinks',
-
-  components: {
-    NavLink,
-    DropdownLink,
-  },
-
-  setup() {
-    const navbarConfig = useNavbarConfig();
-    const navbarSelectLanguage = useNavbarSelectLanguage();
-    const navbarRepo = useNavbarRepo();
-
-    const navbarLinks = computed(() => [
-      ...navbarConfig.value,
-      ...navbarSelectLanguage.value,
-      ...navbarRepo.value,
-    ]);
-
-    return {
-      navbarLinks,
-    };
-  },
-});
+const navbarConfig = useNavbarConfig();
+const navbarSelectLanguage = useNavbarSelectLanguage();
+const navbarRepo = useNavbarRepo();
+const navbarLinks = computed(() => [
+  ...navbarConfig.value,
+  ...navbarSelectLanguage.value,
+  ...navbarRepo.value,
+]);
 </script>
-<style lang="scss" scoped>
-@use 'sass:color';
 
+<template>
+  <nav v-if="navbarLinks.length" class="navbar-items">
+    <div v-for="item in navbarLinks" :key="item.text" class="navbar-item">
+      <NavbarDropdown
+        v-if="(item as NavGroup<ResolvedNavbarItem>).children"
+        :item="(item as NavGroup<ResolvedNavbarItem>)"
+      />
+      <AutoLink v-else :item="(item as NavbarItem)" />
+    </div>
+  </nav>
+</template>
+
+<style scoped lang="scss">
 @import '~@/styles/_variables.scss';
-/**
- * navbar-links
- */
-.navbar-links {
+.navbar-items {
   display: inline-block;
 
   a {
@@ -191,15 +175,15 @@ export default defineComponent({
 
     &:hover,
     &.router-link-active {
-      color: $accentColor;
+      color: var(--c-text-accent);
     }
   }
 
-  .navbar-links-item {
+  .navbar-item {
     position: relative;
     display: inline-block;
     margin-left: 1.5rem;
-    line-height: 2rem;
+    line-height: var(--navbar-line-height);
 
     &:first-child {
       margin-left: 0;
@@ -208,26 +192,26 @@ export default defineComponent({
 }
 
 @media (max-width: $MQMobile) {
-  .navbar-links {
-    .navbar-links-item {
+  .navbar-items {
+    .navbar-item {
       margin-left: 0;
     }
   }
 }
 
 @media (min-width: $MQMobile) {
-  .navbar-links a {
+  .navbar-items a {
     &:hover,
     &.router-link-active {
-      color: $textColor;
+      color: var(--c-text);
     }
   }
 
-  .navbar-links-item > a:not(.external) {
+  .navbar-item > a {
     &:hover,
     &.router-link-active {
       margin-bottom: -2px;
-      border-bottom: 2px solid color.scale($accentColor, $lightness: 8%);
+      border-bottom: 2px solid var(--c-text-accent);
     }
   }
 }

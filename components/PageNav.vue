@@ -1,34 +1,22 @@
-<template>
-  <nav v-if="prevNavLink || nextNavLink" class="page-nav">
-    <p class="inner">
-      <span v-if="prevNavLink" class="prev">
-        ←
-        <NavLink :item="prevNavLink" />
-      </span>
-
-      <span v-if="nextNavLink" class="next">
-        <NavLink :item="nextNavLink" />
-        →
-      </span>
-    </p>
-  </nav>
-</template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue';
-import { useRoute } from 'vue-router';
+<script setup lang="ts">
 import { usePageFrontmatter } from '@vuepress/client';
 import { isPlainObject, isString } from '@vuepress/shared';
-import { useNavLink, useSidebarItems } from '../composables';
-import type { NavLink as NavLinkType, ResolvedSidebarItem } from '../types';
-import NavLink from './NavLink.vue';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import type {
+  DefaultThemeNormalPageFrontmatter,
+  NavLink,
+  ResolvedSidebarItem,
+} from '@/types';
+import { useNavLink, useSidebarItems } from '@/composables';
+import AutoLink from './AutoLink.vue';
 
 /**
  * Resolve `prev` or `next` config from frontmatter
  */
 const resolveFromFrontmatterConfig = (
   conf: unknown
-): null | false | NavLinkType => {
+): null | false | NavLink => {
   if (conf === false) {
     return null;
   }
@@ -37,7 +25,7 @@ const resolveFromFrontmatterConfig = (
     return useNavLink(conf);
   }
 
-  if (isPlainObject<NavLinkType>(conf)) {
+  if (isPlainObject<NavLink>(conf)) {
     return conf;
   }
 
@@ -51,14 +39,14 @@ const resolveFromSidebarItems = (
   sidebarItems: ResolvedSidebarItem[],
   currentPath: string,
   offset: number
-): null | NavLinkType => {
+): null | NavLink => {
   const index = sidebarItems.findIndex((item) => item.link === currentPath);
   if (index !== -1) {
     const targetItem = sidebarItems[index + offset];
     if (!targetItem?.link) {
       return null;
     }
-    return targetItem as NavLinkType;
+    return targetItem as NavLink;
   }
 
   for (const item of sidebarItems) {
@@ -77,67 +65,71 @@ const resolveFromSidebarItems = (
   return null;
 };
 
-export default defineComponent({
-  name: 'PageNav',
+const frontmatter = usePageFrontmatter<DefaultThemeNormalPageFrontmatter>();
+const sidebarItems = useSidebarItems();
+const route = useRoute();
 
-  components: {
-    NavLink,
-  },
+const prevNavLink = computed(() => {
+  const prevConfig = resolveFromFrontmatterConfig(frontmatter.value.prev);
+  if (prevConfig !== false) {
+    return prevConfig;
+  }
 
-  setup() {
-    const frontmatter = usePageFrontmatter();
-    const sidebarItems = useSidebarItems();
-    const route = useRoute();
+  return resolveFromSidebarItems(sidebarItems.value, route.path, -1);
+});
 
-    const prevNavLink = computed(() => {
-      const prevConfig = resolveFromFrontmatterConfig(frontmatter.value.prev);
-      if (prevConfig !== false) {
-        return prevConfig;
-      }
+const nextNavLink = computed(() => {
+  const nextConfig = resolveFromFrontmatterConfig(frontmatter.value.next);
+  if (nextConfig !== false) {
+    return nextConfig;
+  }
 
-      return resolveFromSidebarItems(sidebarItems.value, route.path, -1);
-    });
-
-    const nextNavLink = computed(() => {
-      const nextConfig = resolveFromFrontmatterConfig(frontmatter.value.next);
-      if (nextConfig !== false) {
-        return nextConfig;
-      }
-
-      return resolveFromSidebarItems(sidebarItems.value, route.path, 1);
-    });
-
-    return {
-      prevNavLink,
-      nextNavLink,
-    };
-  },
+  return resolveFromSidebarItems(sidebarItems.value, route.path, 1);
 });
 </script>
-<style lang="scss" scoped>
-@import '~@/styles/_variables';
-@import '~@/styles/_wrapper';
 
-.page {
-  padding-bottom: 2rem;
-  display: block;
-}
+<template>
+  <nav v-if="prevNavLink || nextNavLink" class="page-nav">
+    <p class="inner">
+      <span v-if="prevNavLink" class="prev">
+        <AutoLink :item="prevNavLink" />
+      </span>
+
+      <span v-if="nextNavLink" class="next">
+        <AutoLink :item="nextNavLink" />
+      </span>
+    </p>
+  </nav>
+</template>
+
+<style scoped lang="scss">
+@import '~@/styles/_wrapper.scss';
+@import '~@/styles/_variables.scss';
 
 .page-nav {
-  @extend %wrapper;
+  @include content_wrapper;
   padding-top: 1rem;
   padding-bottom: 0;
 
   .inner {
     min-height: 2rem;
     margin-top: 0;
-    border-top: 1px solid $borderColor;
+    border-top: 1px solid var(--c-border);
+    transition: border-color var(--t-color);
     padding-top: 1rem;
     overflow: auto;
   }
 
+  .prev {
+    a:before {
+      content: '←';
+    }
+  }
   .next {
     float: right;
+    a:after {
+      content: '→';
+    }
   }
 }
 </style>

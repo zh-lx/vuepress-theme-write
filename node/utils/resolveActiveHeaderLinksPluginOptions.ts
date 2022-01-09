@@ -1,5 +1,5 @@
 import type { ActiveHeaderLinksPluginOptions } from '@vuepress/plugin-active-header-links';
-import type { DefaultThemePluginsOptions } from '../../types';
+import type { DefaultThemePluginsOptions } from '@/types';
 
 /**
  * Resolve options for @vuepress/plugin-active-header-links
@@ -12,7 +12,7 @@ export const resolveActiveHeaderLinksPluginOptions = (
   }
 
   return {
-    headerLinkSelector: '.sidebar-link',
+    headerLinkSelector: 'a.sidebar-item',
     headerAnchorSelector: '.header-anchor',
   };
 };

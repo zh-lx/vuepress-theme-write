@@ -6,7 +6,7 @@ import type {
   ThemeDataRef,
   ThemeLocaleDataRef,
 } from '@vuepress/plugin-theme-data/lib/client';
-import type { DefaultThemeData } from '../types';
+import type { DefaultThemeData } from '@/types';
 
 export const useThemeData = (): ThemeDataRef<DefaultThemeData> =>
   _useThemeData<DefaultThemeData>();

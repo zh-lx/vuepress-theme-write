@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import PageMeta from './PageMeta.vue';
+import PageNav from './PageNav.vue';
+</script>
+
 <template>
   <main class="page">
     <slot name="top" />
@@ -14,21 +19,7 @@
   </main>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-import PageMeta from './PageMeta.vue';
-import PageNav from './PageNav.vue';
-
-export default defineComponent({
-  name: 'Page',
-
-  components: {
-    PageMeta,
-    PageNav,
-  },
-});
-</script>
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .page {
   padding-bottom: 2rem;
   display: block;

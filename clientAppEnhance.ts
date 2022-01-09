@@ -4,6 +4,7 @@ import Badge from './components/global/Badge.vue';
 import CodeGroup from './components/global/CodeGroup';
 import CodeGroupItem from './components/global/CodeGroupItem.vue';
 import OutboundLink from './components/global/OutboundLink.vue';
+import ExternalLinkIcon from './components/global/ExternalLinkIcon.vue';
 import LayoutContainer from '@/components/global/LayoutContainer.vue';
 import SiteInfo from '@/components/global/SiteInfo.vue';
 import Loading from '@/components/global/Loading.vue';
@@ -24,6 +25,9 @@ export default defineClientAppEnhance(({ app, router }) => {
   delete app._context.components.OutboundLink;
   // override the built-in `<OutboundLink>`
   app.component('OutboundLink', OutboundLink);
+  // override the `<ExternalLinkIcon>` provided by @vuepress/plugin-external-link-icon
+  delete app._context.components.ExternalLinkIcon;
+  app.component('ExternalLinkIcon', ExternalLinkIcon);
   // compat with @vuepress/plugin-docsearch and @vuepress/plugin-search
   app.component('NavbarSearch', () => {
     const SearchComponent =

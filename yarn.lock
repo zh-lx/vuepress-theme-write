@@ -280,11 +280,6 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-easy-icon@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/easy-icon/-/easy-icon-1.1.0.tgz#3f28680ebb27bf244bf88e0ac64cfe1702205f08"
-  integrity sha512-ATzAnuPJp6Gbm9/BYKQx8tUnpmpsdJbAR8nUXfQSWGJtx82snNUV+MGMwVsqRcdS0+z5atebICPnqKGACIW08g==
-
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"

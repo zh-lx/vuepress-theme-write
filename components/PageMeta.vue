@@ -1,48 +1,24 @@
-<template>
-  <footer class="page-meta">
-    <div v-if="editNavLink" class="meta-item edit-link">
-      <NavLink class="meta-item-label" :item="editNavLink" />
-    </div>
-
-    <div v-if="lastUpdated" class="meta-item last-updated">
-      <span class="meta-item-label">{{ themeLocale.lastUpdatedText }}: </span>
-      <span class="meta-item-info">{{ lastUpdated }}</span>
-    </div>
-
-    <div
-      v-if="contributors && contributors.length"
-      class="meta-item contributors"
-    >
-      <span class="meta-item-label">{{ themeLocale.contributorsText }}: </span>
-      <span class="meta-item-info">
-        <template v-for="(contributor, index) in contributors" :key="index">
-          <span class="contributor" :title="`email: ${contributor.email}`">
-            {{ contributor.name }}
-          </span>
-          <template v-if="index !== contributors.length - 1">, </template>
-        </template>
-      </span>
-    </div>
-  </footer>
-</template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue';
-import type { ComputedRef } from 'vue';
+<script setup lang="ts">
 import {
   usePageData,
   usePageFrontmatter,
   useSiteLocaleData,
 } from '@vuepress/client';
-import { useThemeLocaleData } from '../composables';
-import type { DefaultThemePageData, NavLink as NavLinkType } from '../types';
-import { resolveEditLink } from '../utils';
-import NavLink from './NavLink.vue';
+import { computed } from 'vue';
+import type { ComputedRef } from 'vue';
+import type {
+  DefaultThemeNormalPageFrontmatter,
+  DefaultThemePageData,
+  NavLink,
+} from '@/types';
+import { useThemeLocaleData } from '@/composables';
+import { resolveEditLink } from '@/utils';
+import AutoLink from './AutoLink.vue';
 
-const useEditNavLink = (): ComputedRef<null | NavLinkType> => {
+const useEditNavLink = (): ComputedRef<null | NavLink> => {
   const themeLocale = useThemeLocaleData();
   const page = usePageData<DefaultThemePageData>();
-  const frontmatter = usePageFrontmatter();
+  const frontmatter = usePageFrontmatter<DefaultThemeNormalPageFrontmatter>();
 
   return computed(() => {
     const showEditLink =
@@ -66,7 +42,8 @@ const useEditNavLink = (): ComputedRef<null | NavLinkType> => {
       docsBranch,
       docsDir,
       filePathRelative: page.value.filePathRelative,
-      editLinkPattern: themeLocale.value.editLinkPattern,
+      editLinkPattern:
+        frontmatter.value.editLinkPattern ?? themeLocale.value.editLinkPattern,
     });
 
     if (!editLink) return null;
@@ -82,7 +59,7 @@ const useLastUpdated = (): ComputedRef<null | string> => {
   const siteLocale = useSiteLocaleData();
   const themeLocale = useThemeLocaleData();
   const page = usePageData<DefaultThemePageData>();
-  const frontmatter = usePageFrontmatter();
+  const frontmatter = usePageFrontmatter<DefaultThemeNormalPageFrontmatter>();
 
   return computed(() => {
     const showLastUpdated =
@@ -94,7 +71,7 @@ const useLastUpdated = (): ComputedRef<null | string> => {
 
     const updatedDate = new Date(page.value.git?.updatedTime);
 
-    return updatedDate.toLocaleString(siteLocale.value.lang);
+    return updatedDate.toLocaleString();
   });
 };
 
@@ -103,7 +80,7 @@ const useContributors = (): ComputedRef<
 > => {
   const themeLocale = useThemeLocaleData();
   const page = usePageData<DefaultThemePageData>();
-  const frontmatter = usePageFrontmatter();
+  const frontmatter = usePageFrontmatter<DefaultThemeNormalPageFrontmatter>();
 
   return computed(() => {
     const showContributors =
@@ -115,35 +92,47 @@ const useContributors = (): ComputedRef<
   });
 };
 
-export default defineComponent({
-  name: 'PageMeta',
-
-  components: {
-    NavLink,
-  },
-
-  setup() {
-    const themeLocale = useThemeLocaleData();
-    const editNavLink = useEditNavLink();
-    const lastUpdated = useLastUpdated();
-    const contributors = useContributors();
-
-    return {
-      themeLocale,
-      editNavLink,
-      lastUpdated,
-      contributors,
-    };
-  },
-});
+const themeLocale = useThemeLocaleData();
+const editNavLink = useEditNavLink();
+const lastUpdated = useLastUpdated();
+const contributors = useContributors();
 </script>
-<style lang="scss" scoped>
-@use 'sass:color';
 
-@import '~@/styles/_variables';
-@import '~@/styles/_wrapper';
+<template>
+  <footer class="page-meta">
+    <div v-if="editNavLink" class="meta-item edit-link">
+      <AutoLink class="meta-item-label" :item="editNavLink" />
+    </div>
+
+    <div v-if="lastUpdated" class="meta-item last-updated">
+      <span class="meta-item-label">{{ themeLocale.lastUpdatedText }}: </span>
+      <ClientOnly>
+        <span class="meta-item-info">{{ lastUpdated }}</span>
+      </ClientOnly>
+    </div>
+
+    <div
+      v-if="contributors && contributors.length"
+      class="meta-item contributors"
+    >
+      <span class="meta-item-label">{{ themeLocale.contributorsText }}: </span>
+      <span class="meta-item-info">
+        <template v-for="(contributor, index) in contributors" :key="index">
+          <span class="contributor" :title="`email: ${contributor.email}`">
+            {{ contributor.name }}
+          </span>
+          <template v-if="index !== contributors.length - 1">, </template>
+        </template>
+      </span>
+    </div>
+  </footer>
+</template>
+
+<style scoped lang="scss">
+@import '~@/styles/_wrapper.scss';
+@import '~@/styles/_variables.scss';
 .page-meta {
-  @extend %wrapper;
+  @include content_wrapper;
   padding-top: 1rem;
   padding-bottom: 1rem;
   overflow: auto;
@@ -154,12 +143,12 @@ export default defineComponent({
 
     .meta-item-label {
       font-weight: 500;
-      color: color.scale($textColor, $lightness: 25%);
+      color: var(--c-text-lighter);
     }
 
     .meta-item-info {
       font-weight: 400;
-      color: #767676;
+      color: var(--c-text-quote);
     }
   }
 

@@ -101,7 +101,6 @@ const author = computed(() => {
 
 // 联系方式
 const contact = computed(() => {
-  console.log(frontmatter.value);
   return frontmatter.value.contact;
 });
 

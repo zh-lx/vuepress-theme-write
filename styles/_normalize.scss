@@ -162,3 +162,41 @@ td {
 .sidebar-mask {
   background-color: var(--sidebarMaskBgc);
 }
+
+.arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+
+  &.up {
+    border: {
+      left: 4px solid transparent;
+      right: 4px solid transparent;
+      bottom: 6px solid var(--common-arrow-bgc);
+    }
+  }
+
+  &.down {
+    border: {
+      left: 4px solid transparent;
+      right: 4px solid transparent;
+      top: 6px solid var(--common-arrow-bgc);
+    }
+  }
+
+  &.right {
+    border: {
+      top: 4px solid transparent;
+      bottom: 4px solid transparent;
+      left: 6px solid var(--common-arrow-bgc);
+    }
+  }
+
+  &.left {
+    border: {
+      top: 4px solid transparent;
+      bottom: 4px solid transparent;
+      right: 6px solid var(--common-arrow-bgc);
+    }
+  }
+}

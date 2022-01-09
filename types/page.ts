@@ -42,6 +42,9 @@ export interface DefaultThemeHomePageFrontmatter {
   footerHtml?: boolean;
   author?: Author;
   contact?: Contact;
+  home?: boolean;
+  navbar?: boolean;
+  pageClass?: string;
 }
 
 export interface DefaultThemePageFrontmatter {
@@ -52,4 +55,17 @@ export interface DefaultThemePageFrontmatter {
   prev?: string | NavLink;
   next?: string | NavLink;
   sidebar?: 'auto' | false | SidebarConfig;
+}
+
+export interface DefaultThemeNormalPageFrontmatter
+  extends DefaultThemePageFrontmatter {
+  home?: false;
+  editLink?: boolean;
+  editLinkPattern?: string;
+  lastUpdated?: boolean;
+  contributors?: boolean;
+  sidebar?: 'auto' | false | SidebarConfig;
+  sidebarDepth?: number;
+  prev?: string | NavLink;
+  next?: string | NavLink;
 }
