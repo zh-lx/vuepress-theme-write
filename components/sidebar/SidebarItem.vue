@@ -61,15 +61,15 @@ if (item.value.collapsible) {
       />
     </p>
 
-    <!-- <DropdownTransition v-if="item.children?.length"> -->
-    <ul v-show="isOpen" class="sidebar-item-children">
-      <SidebarItem
-        v-for="child in item.children"
-        :key="`${depth}${child.text}${child.link}`"
-        :item="child"
-        :depth="depth + 1"
-      />
-    </ul>
-    <!-- </DropdownTransition> -->
+    <DropdownTransition v-if="item.children?.length">
+      <ul v-show="isOpen" class="sidebar-item-children">
+        <SidebarItem
+          v-for="child in item.children"
+          :key="`${depth}${child.text}${child.link}`"
+          :item="child"
+          :depth="depth + 1"
+        />
+      </ul>
+    </DropdownTransition>
   </li>
 </template>

@@ -32,12 +32,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineComponent, reactive, ref, toRefs } from 'vue';
+import { computed, ref } from 'vue';
 import { usePageFrontmatter, useSiteLocaleData } from '@vuepress/client';
 import { usePageList } from '@/composables';
 import BlogList from '@/components/blog-list/index.vue';
-import HomeRight from '@/components/home/HomeRight.vue';
 import { HOME_BG_ID, HOME_BG_IMAGE } from '@/constants/global';
+import HomeRight from './HomeRight.vue';
 
 const blogs = ref([]);
 const frontmatter = usePageFrontmatter();

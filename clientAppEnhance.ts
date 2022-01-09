@@ -8,7 +8,7 @@ import ExternalLinkIcon from './components/global/ExternalLinkIcon.vue';
 import LayoutContainer from '@/components/global/LayoutContainer.vue';
 import SiteInfo from '@/components/global/SiteInfo.vue';
 import Loading from '@/components/global/Loading.vue';
-import Home from '@/components/Home.vue';
+import Home from '@/components/home/index.vue';
 import '@/layouts/HomePage.vue';
 import { useScrollPromise } from './composables';
 

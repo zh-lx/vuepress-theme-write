@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue';
+import { HOME_BG_ID } from '@/constants/global';
 
 export default defineComponent({
   name: 'HomePage',
@@ -25,7 +26,7 @@ export default defineComponent({
     // 判断背景图加载完成
     const onBgImgLoaded = () => {
       const src = window
-        .getComputedStyle(document.querySelector('#_homeBgContainer'))
+        .getComputedStyle(document.getElementById(HOME_BG_ID))
         .background.match(/url\(\"?(.*)\"\)/)[1];
       const img = new Image();
       img.src = src;

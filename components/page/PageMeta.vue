@@ -13,7 +13,7 @@ import type {
 } from '@/types';
 import { useThemeLocaleData } from '@/composables';
 import { resolveEditLink } from '@/utils';
-import AutoLink from './AutoLink.vue';
+import AutoLink from '@/components/AutoLink.vue';
 
 const useEditNavLink = (): ComputedRef<null | NavLink> => {
   const themeLocale = useThemeLocaleData();

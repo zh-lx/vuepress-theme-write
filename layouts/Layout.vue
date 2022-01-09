@@ -20,10 +20,9 @@
 
 <script lang="ts">
 import { defineComponent, Transition } from 'vue';
-import { useRouter } from 'vue-router';
-import { usePageData, usePageFrontmatter } from '@vuepress/client';
-import Home from '@/components/Home.vue';
-import Page from '@/components/Page.vue';
+import { usePageData } from '@vuepress/client';
+import Home from '@/components/home/index.vue';
+import Page from '@/components/page/index.vue';
 import { useScrollPromise, useThemeLocaleData } from '@/composables';
 
 export default defineComponent({

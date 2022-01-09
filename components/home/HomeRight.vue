@@ -5,31 +5,29 @@
     </div>
     <div class="card category-card">
       <div class="category-card-title">
-        <i class="ei-folder-open"></i>文章分类
+        <img
+          :src="FolderIcon"
+          class="home-right-card-icon"
+          alt="文章"
+        />文章分类
       </div>
       <CategoryList />
     </div>
     <div class="card tag-card">
-      <div class="tag-card-title"><i class="ei-tags"></i>热门标签</div>
+      <div class="tag-card-title">
+        <img :src="TagIcon" class="home-right-card-icon" alt="标签" />热门标签
+      </div>
       <TagList />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, computed, Ref } from 'vue';
-import { Tag, Category } from '@/types';
+<script setup lang="ts">
 import CategoryList from '@/components/category-list/index.vue';
 import TagList from '@/components/tag-list/index.vue';
-import AuthorCard from '@/components/author-card/index.vue';
-
-export default defineComponent({
-  name: 'HomeRight',
-  components: { CategoryList, TagList, AuthorCard },
-  setup() {
-    return {};
-  },
-});
+import FolderIcon from '@/assets/folder.svg';
+import TagIcon from '@/assets/tag.svg';
+import AuthorCard from './AuthorCard.vue';
 </script>
 
 <style scoped lang="scss">
@@ -42,19 +40,24 @@ export default defineComponent({
   .category-card-title {
     padding-left: 1rem;
     margin-bottom: 0.5rem;
-    i {
-      margin-right: 4px;
-    }
+    display: flex;
+    align-items: center;
   }
 }
 .tag-card {
   margin-top: 1.5rem;
   .tag-card-title {
     margin-bottom: 0.5rem;
-    i {
-      margin-right: 4px;
-    }
+    display: flex;
+    align-items: center;
   }
+}
+
+.home-right-card-icon {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+  margin-right: 8px;
 }
 
 @media (max-width: $MQMobileNarrow) {

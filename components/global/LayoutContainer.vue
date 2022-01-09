@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { usePageData, usePageFrontmatter } from '@vuepress/client';
-import { computed, onMounted, onUnmounted, ref, Transition } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import type { DefaultThemePageFrontmatter } from '@/types';
-import Page from '@/components/Page.vue';
 import Navbar from '@/components/navbar/index.vue';
 import Sidebar from '@/components/sidebar/index.vue';
-import AuthorCard from '@/components/author-card/index.vue';
+import AuthorCard from '@/components/home/AuthorCard.vue';
 import CategoryList from '@/components/category-list/index.vue';
 import TagList from '@/components/tag-list/index.vue';
 import {
@@ -139,22 +138,6 @@ const onBeforeLeave = scrollPromise.pending;
     </slot>
 
     <slot></slot>
-
-    <Transition
-      name="fade-slide-y"
-      mode="out-in"
-      @before-enter="onBeforeEnter"
-      @before-leave="onBeforeLeave"
-    >
-      <Page :key="page.path">
-        <template #top>
-          <slot name="page-top" />
-        </template>
-        <template #bottom>
-          <slot name="page-bottom" />
-        </template>
-      </Page>
-    </Transition>
   </div>
 </template>
 
