@@ -9,7 +9,6 @@ export const themeMode = {
     '--common-arrow-bgc': '#cccccc',
     '--mainTextColor': '#303133', // 主文字颜色
     '--homeTextColor': '#ffffff', // 主页大屏文字颜色
-    '--commonTextColor': '#606266', // 常规文字颜色
     '--reverseTextColor': '#ffffff', // 选中后翻转的文字颜色
     '--commonHoverBgc': '#F2F6FC', // hover 的背景色
     '--commonHoverTextColor': '#3ed5fe', // hover时高亮颜色

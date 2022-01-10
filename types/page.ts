@@ -5,6 +5,12 @@ export interface DefaultThemePageData extends GitPluginPageData {
   filePathRelative: string;
 }
 
+export interface DefaultThemePageFrontmatter {
+  home?: boolean;
+  navbar?: boolean;
+  pageClass?: string;
+}
+
 export interface Author {
   avatar: string;
   name: string;
@@ -23,9 +29,11 @@ export interface Contact {
   jianshu?: string;
 }
 
-export interface DefaultThemeHomePageFrontmatter {
+export interface DefaultThemeHomePageFrontmatter
+  extends DefaultThemePageFrontmatter {
   home: true;
   heroImage?: string;
+  heroImageDark?: string;
   heroAlt?: string;
   heroText?: string | null;
   tagline?: string | null;
@@ -42,19 +50,7 @@ export interface DefaultThemeHomePageFrontmatter {
   footerHtml?: boolean;
   author?: Author;
   contact?: Contact;
-  home?: boolean;
-  navbar?: boolean;
-  pageClass?: string;
-}
-
-export interface DefaultThemePageFrontmatter {
-  home?: boolean;
-  editLink?: boolean;
-  lastUpdated?: boolean;
-  contributors?: boolean;
-  prev?: string | NavLink;
-  next?: string | NavLink;
-  sidebar?: 'auto' | false | SidebarConfig;
+  sidebar?: boolean;
 }
 
 export interface DefaultThemeNormalPageFrontmatter

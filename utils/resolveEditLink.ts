@@ -1,13 +1,37 @@
-import { removeLeadingSlash, removeEndingSlash } from '@vuepress/shared'
-import { resolveRepoType } from './resolveRepoType'
-import type { RepoType } from './resolveRepoType'
+import {
+  isLinkHttp,
+  removeEndingSlash,
+  removeLeadingSlash,
+} from '@vuepress/shared';
+import { resolveRepoType } from './resolveRepoType';
+import type { RepoType } from './resolveRepoType';
 
 export const editLinkPatterns: Record<Exclude<RepoType, null>, string> = {
   GitHub: ':repo/edit/:branch/:path',
   GitLab: ':repo/-/edit/:branch/:path',
+  Gitee: ':repo/edit/:branch/:path',
   Bitbucket:
     ':repo/src/:branch/:path?mode=edit&spa=0&at=:branch&fileviewer=file-view-default',
-}
+};
+
+const resolveEditLinkPatterns = ({
+  docsRepo,
+  editLinkPattern,
+}: {
+  docsRepo: string;
+  editLinkPattern?: string;
+}): string | null => {
+  if (editLinkPattern) {
+    return editLinkPattern;
+  }
+
+  const repoType = resolveRepoType(docsRepo);
+  if (repoType !== null) {
+    return editLinkPatterns[repoType];
+  }
+
+  return null;
+};
 
 export const resolveEditLink = ({
   docsRepo,
@@ -16,32 +40,25 @@ export const resolveEditLink = ({
   filePathRelative,
   editLinkPattern,
 }: {
-  docsRepo: string
-  docsBranch: string
-  docsDir: string
-  filePathRelative: string
-  editLinkPattern?: string
+  docsRepo: string;
+  docsBranch: string;
+  docsDir: string;
+  filePathRelative: string | null;
+  editLinkPattern?: string;
 }): string | null => {
-  const repoType = resolveRepoType(docsRepo)
+  if (!filePathRelative) return null;
 
-  let pattern: string | undefined
-
-  if (editLinkPattern) {
-    pattern = editLinkPattern
-  } else if (repoType !== null) {
-    pattern = editLinkPatterns[repoType]
-  }
-
-  if (!pattern) return null
+  const pattern = resolveEditLinkPatterns({ docsRepo, editLinkPattern });
+  if (!pattern) return null;
 
   return pattern
     .replace(
       /:repo/,
-      repoType === 'GitHub' ? `https://github.com/${docsRepo}` : docsRepo
+      isLinkHttp(docsRepo) ? docsRepo : `https://github.com/${docsRepo}`
     )
     .replace(/:branch/, docsBranch)
     .replace(
       /:path/,
       removeLeadingSlash(`${removeEndingSlash(docsDir)}/${filePathRelative}`)
-    )
-}
+    );
+};

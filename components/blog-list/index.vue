@@ -120,7 +120,7 @@
 import { defineProps, watch, computed, reactive, toRefs } from 'vue';
 import { Blog } from '@/types/blog';
 import Message from '@/components/message';
-import BlogItem from './blog-item.vue';
+import BlogItem from './BlogItem.vue';
 
 interface Props {
   blogs: Blog[];
@@ -262,7 +262,7 @@ const { pagination, inputPage } = toRefs(state);
   .pre-ellipsisi,
   .next-ellipsisi {
     &:hover {
-      color: var(--commonTextColor);
+      color: var(--common-text-color);
       cursor: default;
     }
   }

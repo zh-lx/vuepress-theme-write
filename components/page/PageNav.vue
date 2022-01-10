@@ -9,7 +9,7 @@ import type {
   ResolvedSidebarItem,
 } from '@/types';
 import { useNavLink, useSidebarItems } from '@/composables';
-import AutoLink from '@/components/AutoLink.vue';
+import AutoLink from '@/components/auto-link/index.vue';
 
 /**
  * Resolve `prev` or `next` config from frontmatter

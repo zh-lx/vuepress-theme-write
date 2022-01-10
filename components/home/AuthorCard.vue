@@ -71,7 +71,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import TextTip from '@/components/TextTip.vue';
+import TextTip from '@/components/text-tip/index.vue';
 import { DefaultThemeHomePageFrontmatter } from '@/types/page';
 import { usePageFrontmatter } from '@vuepress/client';
 import ZhiHuIcon from '@/assets/zhihu.svg';

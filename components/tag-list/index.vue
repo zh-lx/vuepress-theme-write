@@ -9,7 +9,7 @@
       :style="{
         background: `${isTagPage ? 'var(--defaultTagBgc)' : getRandomColor()}`,
         color: `${
-          isTagPage ? 'var(--commonTextColor)' : 'var(--reverseTextColor)'
+          isTagPage ? 'var(--common-text-color)' : 'var(--reverseTextColor)'
         }`,
       }"
       @click="handleClickTag(tag.name)"

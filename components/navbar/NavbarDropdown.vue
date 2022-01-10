@@ -3,8 +3,8 @@ import { computed, ref, toRefs, watch } from 'vue';
 import type { PropType } from 'vue';
 import { useRoute } from 'vue-router';
 import type { NavbarItem, ResolvedNavbarItem, NavGroup } from '@/types';
-import AutoLink from '@/components/AutoLink.vue';
-import DropdownTransition from '@/components/DropdownTransition.vue';
+import AutoLink from '@/components/auto-link/index.vue';
+import DropdownTransition from '@/components/dropdown-transition/index.vue';
 
 const props = defineProps({
   item: {

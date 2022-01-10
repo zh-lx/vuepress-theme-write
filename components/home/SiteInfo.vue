@@ -6,14 +6,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'SiteInfo',
-  setup() {
-    return {};
-  },
-};
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 .site-info {
@@ -24,7 +17,7 @@ export default {
   justify-content: center;
   align-items: center;
   .site-code {
-    color: var(--commonTextColor);
+    color: var(--common-text-color);
     &:hover {
       color: var(--commonHoverTextColor);
     }

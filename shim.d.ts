@@ -4,3 +4,4 @@ declare module '*.vue' {
   export default comp;
 }
 declare module '*.svg';
+declare var __VUEPRESS_DEV__: boolean;

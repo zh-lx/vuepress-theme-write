@@ -1,27 +1,24 @@
 <template>
   <div class="text-tip-container">
     <div class="tip" v-if="tip">
-      <div class="tip-traingle"></div>
+      <div class="tip-text"></div>
       {{ tip }}
     </div>
     <slot></slot>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, toRefs } from 'vue';
+<script setup lang="ts">
+import { toRefs, defineProps } from 'vue';
 
-export default defineComponent({
-  name: 'TextTip',
-  props: {
-    tip: { type: String, default: '' },
-  },
-  setup(props) {
-    return {
-      ...toRefs(props),
-    };
+const props = defineProps({
+  tip: {
+    type: String,
+    default: '',
   },
 });
+
+const { tip } = toRefs(props);
 </script>
 
 <style scoped lang="scss">
@@ -41,7 +38,7 @@ export default defineComponent({
     max-width: 100px;
     text-align: justify;
     word-wrap: break-word;
-    .tip-traingle {
+    .tip-text {
       position: absolute;
       left: 50%;
       top: 0;

@@ -3,17 +3,22 @@
     <div class="blog-title">{{ title }}</div>
     <div class="blog-git">
       <div class="git-author git-item">
-        <i class="el-user blog-icon"></i><span>{{ author }}</span>
+        <img :src="AuthorIcon" class="blog-git-icon" alt="作者" /><span>{{
+          author
+        }}</span>
       </div>
       <div class="git-time git-item">
-        <i class="et-calendar blog-icon"></i
-        ><span>{{ formatTime(blog.git.updatedTime || 0, 'yyyy-MM-dd') }}</span>
+        <img :src="TimeIcon" class="blog-git-icon" alt="作者" /><span>{{
+          formatTime(blog.git.updatedTime || 0, 'yyyy-MM-dd')
+        }}</span>
       </div>
       <div class="git-category git-item">
-        <i class="el-folder-opened blog-icon"></i><span>{{ category }}</span>
+        <img :src="FolderIcon" class="blog-git-icon" alt="作者" /><span>{{
+          category
+        }}</span>
       </div>
       <div class="tag git-item" v-if="blog.frontmatter.tag">
-        <i class="et-tags blog-icon"></i>
+        <img :src="TagIcon" class="blog-git-icon" alt="作者" />
         <span>{{ tag }}</span>
       </div>
     </div>
@@ -25,6 +30,10 @@ import { computed } from 'vue';
 import { formatTime } from '@/utils/index';
 import { useRouter } from 'vue-router';
 import { Blog } from '@/types/blog';
+import AuthorIcon from '@/assets/user.svg';
+import TimeIcon from '@/assets/time.svg';
+import FolderIcon from '@/assets/folder.svg';
+import TagIcon from '@/assets/tag.svg';
 
 interface Props {
   blog: Blog;
@@ -84,14 +93,19 @@ const title = computed(() => {
 .blog-git {
   display: flex;
   flex-wrap: wrap;
-  color: var(--commonTextColor);
+  color: var(--common-text-color);
   .git-item {
     margin-top: 0.1rem;
     float: left;
     min-width: 25%;
-  }
-  .blog-icon {
-    margin-right: 0.3rem;
+    display: flex;
+    align-items: center;
+    .blog-git-icon {
+      margin-right: 0.3rem;
+      height: 20px;
+      width: 20px;
+      object-fit: contain;
+    }
   }
 }
 @media (max-width: $MQMobileNarrow) {

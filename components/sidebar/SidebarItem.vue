@@ -4,8 +4,8 @@ import type { PropType } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import type { ResolvedSidebarItem, NavLink } from '@/types';
 import { isActiveSidebarItem } from '@/utils';
-import AutoLink from '@/components/AutoLink.vue';
-import DropdownTransition from '@/components/DropdownTransition.vue';
+import AutoLink from '@/components/auto-link/index.vue';
+import DropdownTransition from '@/components/dropdown-transition/index.vue';
 
 const props = defineProps({
   item: {

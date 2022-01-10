@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePageData, usePageFrontmatter } from '@vuepress/client';
+import { usePageFrontmatter } from '@vuepress/client';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import type { DefaultThemePageFrontmatter } from '@/types';
@@ -15,7 +15,6 @@ import {
 } from '@/composables';
 import { setMode } from '@/utils/setMode';
 
-const page = usePageData();
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>();
 const themeLocale = useThemeLocaleData();
 const router = useRouter();
@@ -83,8 +82,6 @@ onUnmounted(() => {
 
 // handle scrollBehavior with transition
 const scrollPromise = useScrollPromise();
-const onBeforeEnter = scrollPromise.resolve;
-const onBeforeLeave = scrollPromise.pending;
 </script>
 
 <template>
@@ -108,7 +105,7 @@ const onBeforeLeave = scrollPromise.pending;
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
     <slot name="sidebar">
-      <Sidebar v-if="!frontmatter.hideSidebar">
+      <Sidebar>
         <template #author>
           <div class="authorInfo" v-if="isHomePage">
             <AuthorCard />

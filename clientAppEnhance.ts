@@ -3,10 +3,8 @@ import { defineClientAppEnhance } from '@vuepress/client';
 import Badge from './components/global/Badge.vue';
 import CodeGroup from './components/global/CodeGroup';
 import CodeGroupItem from './components/global/CodeGroupItem.vue';
-import OutboundLink from './components/global/OutboundLink.vue';
 import ExternalLinkIcon from './components/global/ExternalLinkIcon.vue';
 import LayoutContainer from '@/components/global/LayoutContainer.vue';
-import SiteInfo from '@/components/global/SiteInfo.vue';
 import Loading from '@/components/global/Loading.vue';
 import Home from '@/components/home/index.vue';
 import '@/layouts/HomePage.vue';
@@ -14,17 +12,12 @@ import { useScrollPromise } from './composables';
 
 import './styles/index.scss';
 export default defineClientAppEnhance(({ app, router }) => {
-  app.component('SiteInfo', SiteInfo);
   app.component('Loading', Loading);
   app.component('Home', Home);
   app.component('LayoutContainer', LayoutContainer);
   app.component('Badge', Badge);
   app.component('CodeGroup', CodeGroup);
   app.component('CodeGroupItem', CodeGroupItem);
-  // unregister the built-in `<OutboundLink>` to avoid warning
-  delete app._context.components.OutboundLink;
-  // override the built-in `<OutboundLink>`
-  app.component('OutboundLink', OutboundLink);
   // override the `<ExternalLinkIcon>` provided by @vuepress/plugin-external-link-icon
   delete app._context.components.ExternalLinkIcon;
   app.component('ExternalLinkIcon', ExternalLinkIcon);

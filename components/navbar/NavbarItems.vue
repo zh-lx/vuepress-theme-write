@@ -12,7 +12,7 @@ import type {
 } from '@/types';
 import { useNavLink, useThemeLocaleData } from '@/composables';
 import { resolveRepoType } from '@/utils';
-import AutoLink from '@/components/AutoLink.vue';
+import AutoLink from '@/components/auto-link/index.vue';
 import NavbarDropdown from './NavbarDropdown.vue';
 
 /**
