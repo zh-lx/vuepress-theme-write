@@ -91,7 +91,7 @@ usePageList().then((pageList) => {
 
   .hero {
     text-align: center;
-    height: calc(100vh - 3.6rem);
+    height: calc(88vh - 7.2rem);
     width: 100%;
     display: flex;
     justify-content: center;

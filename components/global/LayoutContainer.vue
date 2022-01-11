@@ -14,6 +14,7 @@ import {
   useThemeLocaleData,
 } from '@/composables';
 import { setMode } from '@/utils/setMode';
+import { FolderOpen, TagOne } from '@icon-park/vue-next';
 
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>();
 const themeLocale = useThemeLocaleData();
@@ -114,14 +115,16 @@ const scrollPromise = useScrollPromise();
         <template #category>
           <div class="category-list" v-if="isCategoryPage">
             <div class="category-card-title">
-              <i class="ei-folder-open"></i>文章分类
+              <folder-open theme="outline" size="20" color="#303133" />文章分类
             </div>
             <CategoryList />
           </div>
         </template>
         <template #tag>
-          <div class="left-card" v-if="isTagPage">
-            <div class="left-card-title"><i class="ei-tags"></i>热门标签</div>
+          <div class="tag-list" v-if="isTagPage">
+            <div class="tag-card-title">
+              <tag-one theme="outline" size="20" color="#303133" />热门标签
+            </div>
             <TagList />
           </div>
         </template>
@@ -148,17 +151,22 @@ const scrollPromise = useScrollPromise();
   .category-card-title {
     padding-left: 1rem;
     margin-bottom: 0.5rem;
-    i {
-      margin-right: 4px;
+    display: flex;
+    align-items: center;
+    .i-icon {
+      margin-right: 6px;
     }
   }
 }
-.left-card {
+.tag-list {
   padding: 1rem;
-  .left-card-title {
+  .tag-card-title {
     margin-bottom: 0.5rem;
-    i {
-      margin-right: 4px;
+    display: flex;
+    align-items: center;
+
+    .i-icon {
+      margin-right: 6px;
     }
   }
 }

@@ -32,4 +32,5 @@ module.exports = {
       ],
     },
   ],
+  sidebarDepth: 6,
 };

@@ -47,7 +47,7 @@ export default defineComponent({
         (router.currentRoute.value.query?.category as string) || ''
       );
       return blogs.value.filter((blog) => {
-        const blogCategory = decodeURI(blog.filePathRelative.split('/')[0]);
+        const blogCategory = decodeURI(blog.path.split('/')[1]);
         return category === blogCategory;
       });
     });

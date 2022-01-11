@@ -2,9 +2,25 @@
 
 @import '_variables';
 
-.back-to-top {
-  --back-to-top-color: #{$accentColor};
-  --back-to-top-color-hover: #{color.scale($accentColor, $lightness: 30%)};
+#app {
+  .back-to-top {
+    height: 40px;
+    width: 40px;
+    display: block;
+    background-color: #fff;
+    background-image: url('../assets/rocket.svg');
+    background-size: 30px 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+    &:hover {
+      box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.2);
+      background-color: #fff;
+    }
+    transition: all 0.2s linear;
+    mask: none;
+  }
 }
 
 #nprogress {

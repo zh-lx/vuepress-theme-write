@@ -5,17 +5,14 @@
     </div>
     <div class="card category-card">
       <div class="category-card-title">
-        <img
-          :src="FolderIcon"
-          class="home-right-card-icon"
-          alt="文章"
-        />文章分类
+        <folder-open theme="outline" size="20" color="#303133" />
+        文章分类
       </div>
       <CategoryList />
     </div>
     <div class="card tag-card">
       <div class="tag-card-title">
-        <img :src="TagIcon" class="home-right-card-icon" alt="标签" />热门标签
+        <tag-one theme="outline" size="20" color="#303133" />热门标签
       </div>
       <TagList />
     </div>
@@ -25,9 +22,8 @@
 <script setup lang="ts">
 import CategoryList from '@/components/category-list/index.vue';
 import TagList from '@/components/tag-list/index.vue';
-import FolderIcon from '@/assets/folder.svg';
-import TagIcon from '@/assets/tag.svg';
-import AuthorCard from './AuthorCard.vue';
+import AuthorCard from '@/components/home/AuthorCard.vue';
+import { TagOne, FolderOpen } from '@icon-park/vue-next';
 </script>
 
 <style scoped lang="scss">
@@ -42,6 +38,9 @@ import AuthorCard from './AuthorCard.vue';
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
+    .i-icon {
+      margin-right: 6px;
+    }
   }
 }
 .tag-card {
@@ -50,6 +49,9 @@ import AuthorCard from './AuthorCard.vue';
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
+    .i-icon {
+      margin-right: 6px;
+    }
   }
 }
 

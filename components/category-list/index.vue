@@ -3,7 +3,7 @@
     <div v-for="category in categoryList" :key="category.name">
       <div
         :class="`category-item pointer ${
-          router.currentRoute.value.query.category === category.name
+          router.currentRoute.value.query.category === decodeURI(category.name)
             ? 'selected-category'
             : ''
         }`"
@@ -45,7 +45,6 @@ const handleClickCategory = (category) => {
   padding: 0.2rem 1rem;
   &:hover {
     background-color: var(--commonHoverBgc);
-    border-left: 2px solid var(--commonHoverTextColor);
     color: var(--commonHoverTextColor);
   }
   .category-count {
@@ -60,16 +59,8 @@ const handleClickCategory = (category) => {
   }
 }
 .selected-category {
-  background-color: var(--commonSelectedBgc);
-  color: var(--reverseTextColor);
-  .category-count {
-    background-color: var(--selectedCategoryCountBgc);
-    color: var(--reverseTextColor);
-  }
-  &:hover {
-    background-color: var(--commonSelectedBgc);
-    border-left: none;
-    color: var(--reverseTextColor);
-  }
+  background-color: var(--commonHoverBgc);
+  border-left: 2px solid var(--commonHoverTextColor);
+  color: var(--commonHoverTextColor);
 }
 </style>
