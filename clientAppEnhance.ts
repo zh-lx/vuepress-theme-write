@@ -1,14 +1,14 @@
 import { h } from 'vue';
 import { defineClientAppEnhance } from '@vuepress/client';
-import Badge from './components/global/Badge.vue';
-import CodeGroup from './components/global/CodeGroup';
-import CodeGroupItem from './components/global/CodeGroupItem.vue';
-import ExternalLinkIcon from './components/global/ExternalLinkIcon.vue';
+import Badge from '@/components/global/Badge.vue';
+import CodeGroup from '@/components/global/CodeGroup';
+import CodeGroupItem from '@/components/global/CodeGroupItem.vue';
+import ExternalLinkIcon from '@/components/global/ExternalLinkIcon.vue';
 import LayoutContainer from '@/components/global/LayoutContainer.vue';
 import Loading from '@/components/global/Loading.vue';
 import Home from '@/components/home/index.vue';
 import '@/layouts/HomePage.vue';
-import { useScrollPromise } from './composables';
+import { useScrollPromise } from '@/composables';
 
 import './styles/index.scss';
 export default defineClientAppEnhance(({ app, router }) => {

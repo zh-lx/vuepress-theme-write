@@ -3,6 +3,7 @@ import { usePageFrontmatter } from '@vuepress/client';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import type { DefaultThemePageFrontmatter } from '@/types';
+import NavbarItems from '@/components/navbar/NavbarItems.vue';
 import Navbar from '@/components/navbar/index.vue';
 import Sidebar from '@/components/sidebar/index.vue';
 import AuthorCard from '@/components/home/AuthorCard.vue';
@@ -107,6 +108,9 @@ const scrollPromise = useScrollPromise();
 
     <slot name="sidebar">
       <Sidebar>
+        <template #sidebar v-if="isHomePage">
+          <NavbarItems />
+        </template>
         <template #author>
           <div class="authorInfo" v-if="isHomePage">
             <AuthorCard />
