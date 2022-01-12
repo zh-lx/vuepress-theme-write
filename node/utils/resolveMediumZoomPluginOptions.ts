@@ -1,5 +1,5 @@
 import type { MediumZoomPluginOptions } from '@vuepress/plugin-medium-zoom';
-import type { DefaultThemePluginsOptions } from '../../types';
+import type { DefaultThemePluginsOptions } from '@/types';
 
 /**
  * Resolve options for @vuepress/plugin-medium-zoom
@@ -15,6 +15,7 @@ export const resolveMediumZoomPluginOptions = (
     selector:
       '.theme-default-content > img, .theme-default-content :not(a) > img',
     zoomOptions: {},
-    delay: 300,
+    // should greater than page transition duration
+    delay: 400,
   };
 };

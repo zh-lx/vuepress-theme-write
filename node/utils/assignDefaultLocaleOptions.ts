@@ -1,26 +1,28 @@
 import type {
-  DefaultThemeLocaleOptions,
   DefaultThemeLocaleData,
-} from '../../types';
+  DefaultThemeLocaleOptions,
+} from '@/types';
 
-const defaultLocaleOptions: DefaultThemeLocaleOptions = {
+export const DEFAULT_LOCALE_OPTIONS: DefaultThemeLocaleOptions = {
   // navbar
   navbar: [],
   logo: null,
+  darkMode: true,
   repo: null,
   selectLanguageText: 'Languages',
   selectLanguageAriaLabel: 'Select language',
 
   // sidebar
   sidebar: 'auto',
+  sidebarDepth: 2,
 
   // page meta
   editLink: true,
   editLinkText: 'Edit this page',
   lastUpdated: true,
-  lastUpdatedText: '更新时间',
+  lastUpdatedText: 'Last Updated',
   contributors: true,
-  contributorsText: '作者',
+  contributorsText: 'Contributors',
 
   // 404 page messages
   notFound: [
@@ -31,16 +33,15 @@ const defaultLocaleOptions: DefaultThemeLocaleOptions = {
   ],
   backToHome: 'Take me home',
 
-  // `<OutboundLink>` sr-only
+  // a11y
   openInNewWindow: 'open in new window',
+  toggleDarkMode: 'toggle dark mode',
+  toggleSidebar: 'toggle sidebar',
 };
 
-const defaultLocaleData: DefaultThemeLocaleData = {
+export const DEFAULT_LOCALE_DATA: DefaultThemeLocaleData = {
   // navbar
   selectLanguageName: 'English',
-
-  // custom block
-  danger: 'WARNING',
 };
 
 /**
@@ -58,12 +59,12 @@ export const assignDefaultLocaleOptions = (
   }
 
   Object.assign(localeOptions, {
-    ...defaultLocaleOptions,
+    ...DEFAULT_LOCALE_OPTIONS,
     ...localeOptions,
   });
 
   Object.assign(localeOptions.locales['/'], {
-    ...defaultLocaleData,
+    ...DEFAULT_LOCALE_DATA,
     ...localeOptions.locales['/'],
   });
 };

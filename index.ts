@@ -1,7 +1,11 @@
 const { path } = require('@vuepress/utils');
+import type { Theme, ThemeConfig } from '@vuepress/core';
+import type {
+  DefaultThemeLocaleOptions,
+  DefaultThemePluginsOptions,
+} from '@/types';
 import { createPages } from './utils/createPage';
 const themeConfig = require('./themeConfig');
-const themePlugins = {};
 const {
   assignDefaultLocaleOptions,
   resolveActiveHeaderLinksPluginOptions,
@@ -13,11 +17,25 @@ const {
   resolveMediumZoomPluginOptions,
 } = require('./node');
 
+export interface DefaultThemeOptions
+  extends ThemeConfig,
+    DefaultThemeLocaleOptions {
+  /**
+   * To avoid confusion with the root `plugins` option,
+   * we use `themePlugins`
+   */
+  themePlugins?: DefaultThemePluginsOptions;
+}
+
 assignDefaultLocaleOptions(themeConfig);
 
 createPages(path.resolve(__dirname, '../docs'));
 
-module.exports = {
+const VuePressTheme: Theme<DefaultThemeOptions> = (
+  { themePlugins = {}, ...localeOptions },
+  app
+) => ({
+  name: '@vuepress/theme-writing',
   layouts: path.resolve(__dirname, './layouts'),
   clientAppEnhanceFiles: path.resolve(__dirname, './clientAppEnhance.ts'),
   clientAppSetupFiles: path.resolve(__dirname, './clientAppSetup.ts'),
@@ -56,6 +74,7 @@ module.exports = {
       resolveContainerPluginOptionsForCodeGroupItem(themePlugins),
     ],
     ['@vuepress/git', resolveGitPluginOptions(themePlugins, themeConfig)],
+    ['@vuepress/external-link-icon', themePlugins.externalLinkIcon !== false],
     ['@vuepress/medium-zoom', resolveMediumZoomPluginOptions(themePlugins)],
     ['@vuepress/nprogress'],
     ['@vuepress/palette', { preset: 'sass' }],
@@ -77,4 +96,6 @@ module.exports = {
       },
     ],
   ],
-};
+});
+
+module.exports = VuePressTheme;

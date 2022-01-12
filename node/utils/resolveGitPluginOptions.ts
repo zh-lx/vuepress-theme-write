@@ -1,8 +1,8 @@
 import type { GitPluginOptions } from '@vuepress/plugin-git';
 import type {
-  DefaultThemePluginsOptions,
   DefaultThemeLocaleOptions,
-} from '../../types';
+  DefaultThemePluginsOptions,
+} from '@/types';
 
 /**
  * Resolve options for @vuepress/plugin-git

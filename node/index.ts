@@ -1,6 +1,7 @@
-import { defaultTheme } from './defaultTheme';
+// import { defaultTheme } from './defaultTheme';
 
-export * from './defaultTheme';
+// export * from './defaultTheme';
 export * from './utils';
+export * from '../types';
 
-export default defaultTheme;
+// export default defaultTheme;

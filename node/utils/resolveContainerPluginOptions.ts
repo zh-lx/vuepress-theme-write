@@ -1,5 +1,5 @@
 import type { ContainerPluginOptions } from '@vuepress/plugin-container';
-import type { DefaultThemePluginsOptions, DefaultThemeData } from '../../types';
+import type { DefaultThemeData, DefaultThemePluginsOptions } from '@/types';
 
 /**
  * Resolve options for @vuepress/plugin-container
@@ -17,12 +17,9 @@ export const resolveContainerPluginOptions = (
 
   const locales = Object.entries(localeOptions.locales || {}).reduce(
     (result, [key, value]) => {
-      const defaultInfo = value?.[type];
-      if (defaultInfo) {
-        result[key] = {
-          defaultInfo,
-        };
-      }
+      result[key] = {
+        defaultInfo: value?.[type] ?? localeOptions[type],
+      };
       return result;
     },
     {}
