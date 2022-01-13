@@ -33,7 +33,7 @@ const router = useRouter();
 
 // 点击跳转对应的目录页
 const handleClickCategory = (category) => {
-  router.push(`/categories/?category=${decodeURI(category)}`);
+  router.push(`/page-category/?category=${decodeURI(category)}`);
 };
 </script>
 

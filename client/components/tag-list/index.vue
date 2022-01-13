@@ -32,7 +32,7 @@ let tagList = ref<Tag[]>([]);
 
 // 根据是否为标签页展示不同状态
 const isTagPage = computed(() => {
-  return router.currentRoute.value.path.startsWith('/tags/');
+  return router.currentRoute.value.path.startsWith('/page-tag/');
 });
 
 usePageList().then((pageList) => {
@@ -41,7 +41,7 @@ usePageList().then((pageList) => {
 
 // 点击跳转标签页
 const handleClickTag: (tag: string) => void = (tag) => {
-  router.push(`/tags/?tag=${decodeURI(tag)}`);
+  router.push(`/page-tag/?tag=${decodeURI(tag)}`);
 };
 </script>
 

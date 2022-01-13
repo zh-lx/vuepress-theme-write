@@ -11,18 +11,18 @@ export const createPages = (sourceDir) => {
   }
 
   // 生成目录页面
-  const CategoryPagePath = path.join(dirPath, `CategoriesPage.md`);
+  const CategoryPagePath = path.join(dirPath, `category-page.md`);
   const CategoryContent = `---
-layout: 'CategoriesPage'
-permalink: '/categories/'
+layout: 'category-page'
+permalink: '/page-category/'
 ---`;
   fs.writeFileSync(CategoryPagePath, CategoryContent);
 
   // 生成标签页面
-  const TagPagePath = path.join(dirPath, `TagsPage.md`);
+  const TagPagePath = path.join(dirPath, `tag-page.md`);
   const TagContent = `---
-layout: 'TagsPage'
-permalink: '/tags/'
+layout: 'tag-page'
+permalink: '/page-tag/'
 ---`;
   fs.writeFileSync(TagPagePath, TagContent);
 };

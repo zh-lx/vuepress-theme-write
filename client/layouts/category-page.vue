@@ -8,58 +8,31 @@
   </LayoutContainer>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref, reactive, watch } from 'vue';
+<script setup lang="ts">
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import BlogList from '@/components/blog-list/index.vue';
-import CategoryList from '@/components/category-list/index.vue';
 import { usePageList } from '@/composables';
 
-export default defineComponent({
-  name: 'CategoryListPage',
+const router = useRouter();
 
-  components: {
-    BlogList,
-    CategoryList,
-  },
+// blogs
+const blogList = ref([]);
+const categories = ref([]);
 
-  setup() {
-    const state = reactive({
-      showCategory: false,
-    });
+usePageList().then((pageList) => {
+  blogList.value = pageList?.blogList?.value || [];
+  categories.value = pageList?.categoryList?.value || [];
+});
 
-    const router = useRouter();
-
-    // blogs
-    const blogs = ref([]);
-    const categories = ref([]);
-    const categoriesRef = ref<HTMLElement | null>();
-    const coverRef = ref<HTMLElement | null>(null);
-    const btnRef = ref<HTMLElement | null>(null);
-
-    usePageList().then((pageList) => {
-      blogs.value = pageList?.blogList?.value || [];
-      categories.value = pageList?.categoryList?.value || [];
-    });
-
-    const blogsToShow = computed(() => {
-      const category = decodeURI(
-        (router.currentRoute.value.query?.category as string) || ''
-      );
-      return blogs.value.filter((blog) => {
-        const blogCategory = decodeURI(blog.path.split('/')[1]);
-        return category === blogCategory;
-      });
-    });
-
-    return {
-      blogsToShow,
-      categories,
-      categoriesRef,
-      coverRef,
-      btnRef,
-    };
-  },
+const blogsToShow = computed(() => {
+  const category = decodeURI(
+    (router.currentRoute.value.query?.category as string) || ''
+  );
+  return blogList.value.filter((blog) => {
+    const blogCategory = decodeURI(blog.path.split('/')[1]);
+    return category === blogCategory;
+  });
 });
 </script>
 <style lang="scss" scoped>

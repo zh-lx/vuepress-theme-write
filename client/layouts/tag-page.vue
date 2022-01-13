@@ -8,45 +8,27 @@
   </LayoutContainer>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref, reactive } from 'vue';
+<script setup lang="ts">
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import BlogList from '@/components/blog-list/index.vue';
-import TagList from '@/components/tag-list/index.vue';
 import { usePageList } from '@/composables';
 
-export default defineComponent({
-  name: 'CategoriesPage',
+const router = useRouter();
 
-  components: {
-    BlogList,
-    TagList,
-  },
+// blogs
+const blogList = ref([]);
 
-  setup() {
-    const router = useRouter();
+usePageList().then((pageList) => {
+  blogList.value = pageList?.blogList?.value || [];
+});
 
-    // blogs
-    const blogs = ref([]);
-
-    usePageList().then((pageList) => {
-      blogs.value = pageList?.blogList?.value || [];
-    });
-
-    const blogsToShow = computed(() => {
-      const tag = decodeURI(
-        (router.currentRoute.value.query.tag as string) || ''
-      );
-      return blogs.value.filter((blog) => {
-        const blogTagList = blog.frontmatter.tag || [];
-        return blogTagList.includes(tag);
-      });
-    });
-
-    return {
-      blogsToShow,
-    };
-  },
+const blogsToShow = computed(() => {
+  const tag = decodeURI((router.currentRoute.value.query.tag as string) || '');
+  return blogList.value.filter((blog) => {
+    const blogTagList = blog.frontmatter.tag || [];
+    return blogTagList.includes(tag);
+  });
 });
 </script>
 <style lang="scss" scoped>

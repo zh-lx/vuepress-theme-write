@@ -22,10 +22,10 @@ const themeLocale = useThemeLocaleData();
 const router = useRouter();
 // 页面信息
 const isCategoryPage = computed(() => {
-  return router.currentRoute.value.path.startsWith('/categories/');
+  return router.currentRoute.value.path.startsWith('/page-category/');
 });
 const isTagPage = computed(() => {
-  return router.currentRoute.value.path.startsWith('/tags/');
+  return router.currentRoute.value.path.startsWith('/page-tag/');
 });
 const isHomePage = computed(() => {
   return router.currentRoute.value.path === '/';
