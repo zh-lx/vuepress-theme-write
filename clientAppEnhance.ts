@@ -10,7 +10,7 @@ import Home from '@/components/home/index.vue';
 import '@/layouts/HomePage.vue';
 import { useScrollPromise } from '@/composables';
 
-import './styles/index.scss';
+import './client/styles/index.scss';
 export default defineClientAppEnhance(({ app, router }) => {
   app.component('Loading', Loading);
   app.component('Home', Home);

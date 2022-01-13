@@ -4,7 +4,7 @@ import type {
   DefaultThemeLocaleOptions,
   DefaultThemePluginsOptions,
 } from '@/types';
-import { createPages } from './utils/createPage';
+import { createPages } from './client/utils/createPage';
 const themeConfig = require('./themeConfig');
 const {
   assignDefaultLocaleOptions,
@@ -36,12 +36,12 @@ const VuePressTheme: Theme<DefaultThemeOptions> = (
   app
 ) => ({
   name: '@vuepress/theme-writing',
-  layouts: path.resolve(__dirname, './layouts'),
+  layouts: path.resolve(__dirname, './client/layouts'),
   clientAppEnhanceFiles: path.resolve(__dirname, './clientAppEnhance.ts'),
   clientAppSetupFiles: path.resolve(__dirname, './clientAppSetup.ts'),
   extendsPageData: ({ filePathRelative }) => ({ filePathRelative }),
   alias: {
-    '@': path.resolve(__dirname, './'),
+    '@': path.resolve(__dirname, './client'),
   },
   plugins: [
     [
