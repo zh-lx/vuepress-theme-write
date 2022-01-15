@@ -3,7 +3,7 @@ import { path } from '@vuepress/utils';
 import type {
   DefaultThemeLocaleOptions,
   DefaultThemePluginsOptions,
-} from '../types';
+} from '../client/types';
 import {
   assignDefaultLocaleOptions,
   resolveActiveHeaderLinksPluginOptions,
