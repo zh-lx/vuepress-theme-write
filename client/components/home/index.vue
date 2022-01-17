@@ -5,8 +5,8 @@
   >
     <div
       class="hero"
-      :id="HOME_BG_ID"
-      :style="{ backgroundImage: `url(${homeBgImage})` }"
+      :id="containerId"
+      :style="{ backgroundImage: `url(${backgroundImage})` }"
     >
       <h1 v-if="heroText" id="main-title">
         {{ heroText }}
@@ -36,9 +36,11 @@ import { computed, ref } from 'vue';
 import { usePageFrontmatter, useSiteLocaleData } from '@vuepress/client';
 import { usePageList } from '@/composables';
 import BlogList from '@/components/blog-list/index.vue';
-import { HOME_BG_ID, HOME_BG_IMAGE } from '@/constants/global';
+import { HOME_BG_ID, HOME_BG_IMAGE, DEFAULT_HOME_INFO } from '@/constants/global';
 import HomeRight from './HomeRight.vue';
 import SiteInfo from './SiteInfo.vue';
+
+const { containerId, backgroundImage } = {...DEFAULT_HOME_INFO,...HOME_INFO};
 
 const blogs = ref([]);
 const frontmatter = usePageFrontmatter();

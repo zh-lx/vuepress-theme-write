@@ -5,3 +5,9 @@ declare module '*.vue' {
 }
 declare module '*.svg';
 declare var __VUEPRESS_DEV__: boolean;
+declare const HOME_INFO: {
+  containerId: string;
+  backgroundImage: string;
+  title: string;
+  description: string;
+};
