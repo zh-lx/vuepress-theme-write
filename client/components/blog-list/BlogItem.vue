@@ -8,7 +8,7 @@
       </div>
       <div class="git-time git-item">
         <calendar theme="outline" size="18" fill="#606266" /><span>{{
-          formatTime(blog.git.updatedTime || 0, 'yyyy-MM-dd')
+          formatTime(blog.git?.updatedTime || 0, 'yyyy-MM-dd')
         }}</span>
       </div>
       <div class="git-category git-item">
@@ -48,7 +48,7 @@ const go2BlogDetailPage = () => {
 
 // 作者
 const author = computed(() => {
-  return props.blog.git.contributors?.[0]?.name || '无名';
+  return props.blog.git?.contributors?.[0]?.name || '无名';
 });
 
 // 目录

@@ -20,6 +20,7 @@ const props = defineProps({
 });
 
 const { item, depth } = toRefs(props);
+
 const route = useRoute();
 const router = useRouter();
 
