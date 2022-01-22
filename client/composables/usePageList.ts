@@ -51,7 +51,7 @@ export async function usePageList() {
       blogList.value.push(page as Blog);
     }
     blogList.value.sort((a, b) => {
-      return b.git.updatedTime - a.git.updatedTime;
+      return b.git?.updatedTime - a.git?.updatedTime;
     });
   }
   return { blogList, tagList, categoryList };
