@@ -23,6 +23,8 @@ export type SidebarItemsRef = ComputedRef<ResolvedSidebarItem[]>;
 
 export const sidebarItemsSymbol: InjectionKey<SidebarItemsRef> =
   Symbol('sidebarItems');
+export const cataloguesSymbol: InjectionKey<SidebarItemsRef> =
+  Symbol('catalogues');
 
 /**
  * Inject sidebar items global computed
@@ -36,6 +38,17 @@ export const useSidebarItems = (): SidebarItemsRef => {
 };
 
 /**
+ * Inject catalogues global computed
+ */
+export const useCatalogues = (): SidebarItemsRef => {
+  const catalogues = inject(cataloguesSymbol);
+  if (!catalogues) {
+    throw new Error('useCatalogues() is called without provider.');
+  }
+  return catalogues;
+};
+
+/**
  * Create sidebar items ref and provide as global computed in setup
  */
 export const setupSidebarItems = (): void => {
@@ -44,7 +57,11 @@ export const setupSidebarItems = (): void => {
   const sidebarItems = computed(() =>
     resolveSidebarItems(frontmatter.value, themeLocale.value)
   );
+  const depth =
+    frontmatter.value.sidebarDepth || themeLocale.value.sidebarDepth || 2;
+  const catalogues = computed(() => resolveAutoSidebarItems(depth));
   provide(sidebarItemsSymbol, sidebarItems);
+  provide(cataloguesSymbol, catalogues);
 };
 
 /**
@@ -66,19 +83,24 @@ export const resolveSidebarItems = (
     return [];
   }
 
-  if (sidebarConfig === 'auto') {
-    return resolveAutoSidebarItems(sidebarDepth);
-  }
+  let result = [];
 
   if (isArray(sidebarConfig)) {
-    return resolveArraySidebarItems(sidebarConfig, sidebarDepth);
+    result = resolveArraySidebarItems(sidebarConfig, sidebarDepth);
   }
 
-  if (isPlainObject(sidebarConfig)) {
-    return resolveMultiSidebarItems(sidebarConfig, sidebarDepth);
+  if (result.length === 0 && isPlainObject(sidebarConfig)) {
+    result = resolveMultiSidebarItems(
+      sidebarConfig as SidebarConfigObject,
+      sidebarDepth
+    );
   }
 
-  return [];
+  // if (result.length === 0) {
+  //   result = resolveAutoSidebarItems(sidebarDepth);
+  // }
+
+  return result;
 };
 
 /**
@@ -154,7 +176,7 @@ export const resolveArraySidebarItems = (
           : page.value.headers;
       return {
         ...childItem,
-        children: headersToSidebarItemChildren(headers, sidebarDepth),
+        // children: headersToSidebarItemChildren(headers, sidebarDepth),
       };
     }
 
@@ -172,7 +194,10 @@ export const resolveMultiSidebarItems = (
   sidebarDepth: number
 ): ResolvedSidebarItem[] => {
   const route = useRoute();
-  const sidebarPath = resolveLocalePath(sidebarConfig, route.path);
+  const sidebarPath = resolveLocalePath(
+    sidebarConfig,
+    decodeURIComponent(route.path)
+  );
   const matchedSidebarConfig = sidebarConfig[sidebarPath] ?? [];
 
   return resolveArraySidebarItems(matchedSidebarConfig, sidebarDepth);

@@ -32,3 +32,14 @@ export const isActiveSidebarItem = (
 
   return false;
 };
+
+export const isActiveCatalogueItem = (
+  item: ResolvedSidebarItem,
+  route: RouteLocationNormalizedLoaded
+): boolean => {
+  if (item.link && isActiveLink(item.link, route)) {
+    return true;
+  }
+
+  return false;
+};
