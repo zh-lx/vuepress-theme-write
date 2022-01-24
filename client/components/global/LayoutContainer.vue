@@ -31,6 +31,14 @@ const isHomePage = computed(() => {
   return router.currentRoute.value.path === '/';
 });
 
+// 是否展示 sidebar
+const shouldShowSidebar = computed(
+  () =>
+    sidebarItems.value.length ||
+    router.currentRoute.value.path.startsWith('/page-category/') ||
+    router.currentRoute.value.path.startsWith('/page-tag/')
+);
+
 // navbar
 const shouldShowNavbar = computed(
   () => frontmatter.value.navbar !== false && themeLocale.value.navbar !== false
@@ -63,7 +71,7 @@ const onTouchEnd = (e): void => {
 const containerClass = computed(() => [
   {
     'no-navbar': !shouldShowNavbar.value,
-    'no-sidebar': !sidebarItems.value.length,
+    'no-sidebar': !shouldShowSidebar.value,
     'sidebar-open': isSidebarOpen.value,
   },
   frontmatter.value.pageClass,

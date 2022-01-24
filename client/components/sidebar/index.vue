@@ -9,7 +9,6 @@ import SidebarItems from './SidebarItems.vue';
     <slot name="author" />
     <slot name="category" />
     <slot name="tag" />
-
     <SidebarItems />
     <slot name="bottom" />
   </aside>

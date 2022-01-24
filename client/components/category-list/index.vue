@@ -27,6 +27,7 @@ const categoryList = ref<Category[]>([]);
 
 usePageList().then((pageList) => {
   categoryList.value = pageList?.categoryList?.value || [];
+  console.log(categoryList?.value);
 });
 
 const router = useRouter();
