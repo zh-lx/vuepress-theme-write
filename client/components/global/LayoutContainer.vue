@@ -9,11 +9,7 @@ import Sidebar from '@/components/sidebar/index.vue';
 import AuthorCard from '@/components/home/AuthorCard.vue';
 import CategoryList from '@/components/category-list/index.vue';
 import TagList from '@/components/tag-list/index.vue';
-import {
-  useScrollPromise,
-  useSidebarItems,
-  useThemeLocaleData,
-} from '@/composables';
+import { useSidebarItems, useThemeLocaleData } from '@/composables';
 import { setMode } from '@/utils/setMode';
 import { FolderOpen, TagOne } from '@icon-park/vue-next';
 
@@ -89,9 +85,6 @@ onMounted(() => {
 onUnmounted(() => {
   unregisterRouterHook();
 });
-
-// handle scrollBehavior with transition
-const scrollPromise = useScrollPromise();
 </script>
 
 <template>

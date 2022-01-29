@@ -72,8 +72,19 @@ if (item.value.collapsible) {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  line-height: 1;
+}
+.catalogue-link-item:not(.sidebar-heading) {
+  border-left: var(--common-border);
+  display: block;
+}
+.catalogue-link-item.active {
+  border-left-color: var(--common-hover-color);
+  border-left-width: 2px;
+  display: block;
 }
 .catalogue-li {
+  padding: 0 auto;
   line-height: 1;
 }
 .active-catalogue {

@@ -1,6 +1,7 @@
-import type { Theme, ThemeConfig } from '@vuepress/core';
+import type { Page, Theme, ThemeConfig } from '@vuepress/core';
 import { path } from '@vuepress/utils';
 import type {
+  DefaultThemePageData,
   DefaultThemeLocaleOptions,
   DefaultThemePluginsOptions,
 } from '../client/types';
@@ -44,7 +45,12 @@ export const defaultTheme: Theme<DefaultThemeOptions> = ({
     clientAppSetupFiles: path.resolve(__dirname, '../client/clientAppSetup.js'),
 
     // use the relative file path to generate edit link
-    extendsPageData: ({ filePathRelative }) => ({ filePathRelative }),
+    extendsPage: (page: Page<DefaultThemePageData>) => {
+      // save relative file path into page data to generate edit link
+      page.data.filePathRelative = page.filePathRelative;
+      // save title into route meta to generate navbar and sidebar
+      page.routeMeta.title = page.title;
+    },
 
     plugins: [
       [

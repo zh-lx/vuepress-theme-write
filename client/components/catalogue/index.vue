@@ -1,9 +1,22 @@
 <script setup lang="ts">
+import { toRefs } from 'vue';
 import CatalogueItems from './CatalogueItems.vue';
+
+const props = defineProps({
+  showCatalogues: {
+    type: Boolean,
+    required: true,
+  },
+});
+
+const { showCatalogues } = toRefs(props);
 </script>
 
 <template>
-  <aside class="catalogues" id="catalogues-aside">
+  <aside
+    :class="`catalogues ${showCatalogues ? 'catalogues-open' : ''}`"
+    id="catalogues-aside"
+  >
     <CatalogueItems />
   </aside>
 </template>
@@ -13,10 +26,12 @@ import CatalogueItems from './CatalogueItems.vue';
 
 .catalogues {
   position: fixed;
+  z-index: 7;
+  transition: all 0.3s ease;
   top: calc($navbarHeight + 20px);
-  bottom: 60px;
+  right: 0;
+  max-height: calc(100vh - $navbarHeight - 20px);
   overflow: scroll;
-  right: 28px;
   width: $catalogueWidth;
   &::-webkit-scrollbar {
     width: 0 !important;
@@ -27,10 +42,23 @@ import CatalogueItems from './CatalogueItems.vue';
     padding: 0;
     margin: 0;
     list-style-type: none;
+    line-height: 1;
   }
 
   a {
     display: inline-block;
+  }
+}
+
+@media (max-width: $MQNarrow) {
+  .catalogues {
+    width: 0;
+    top: calc($navbarHeight + 70px);
+    max-height: calc(100vh - $navbarHeight - 70px);
+  }
+
+  .catalogues-open {
+    width: $catalogueWidth;
   }
 }
 </style>

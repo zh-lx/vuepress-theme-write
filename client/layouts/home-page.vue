@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue';
+import { onMounted, reactive, toRefs } from 'vue';
 import { HOME_BG_ID } from '@/constants/global';
 
 const state = reactive({

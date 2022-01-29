@@ -36,11 +36,15 @@ import { computed, ref } from 'vue';
 import { usePageFrontmatter, useSiteLocaleData } from '@vuepress/client';
 import { usePageList } from '@/composables';
 import BlogList from '@/components/blog-list/index.vue';
-import { HOME_BG_ID, HOME_BG_IMAGE, DEFAULT_HOME_INFO } from '@/constants/global';
+import {
+  HOME_BG_ID,
+  HOME_BG_IMAGE,
+  DEFAULT_HOME_INFO,
+} from '@/constants/global';
 import HomeRight from './HomeRight.vue';
 import SiteInfo from './SiteInfo.vue';
 
-const { containerId, backgroundImage } = {...DEFAULT_HOME_INFO,...HOME_INFO};
+const { containerId, backgroundImage } = { ...DEFAULT_HOME_INFO, ...HOME_INFO };
 
 const blogs = ref([]);
 const frontmatter = usePageFrontmatter();
@@ -125,16 +129,15 @@ usePageList().then((pageList) => {
 
   .main-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     padding: 1.5rem 1.5rem;
     .main-content-left {
-      flex: 2;
+      flex: 1;
+      max-width: 800px;
     }
     .main-content-right {
-      flex: 1;
-      max-width: 300px;
-      min-width: 160px;
+      width: 240px;
       margin-left: 1.6rem;
     }
   }

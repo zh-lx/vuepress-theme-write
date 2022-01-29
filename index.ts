@@ -39,7 +39,12 @@ const VuePressTheme: Theme<DefaultThemeOptions> = (
   layouts: path.resolve(__dirname, './client/layouts'),
   clientAppEnhanceFiles: path.resolve(__dirname, './clientAppEnhance.ts'),
   clientAppSetupFiles: path.resolve(__dirname, './clientAppSetup.ts'),
-  extendsPageData: ({ filePathRelative }) => ({ filePathRelative }),
+  extendsPage: (page) => {
+    // save relative file path into page data to generate edit link
+    page.data.filePathRelative = page.filePathRelative;
+    // save title into route meta to generate navbar and sidebar
+    page.routeMeta.title = page.title;
+  },
   alias: {
     '@': path.resolve(__dirname, './client'),
   },
