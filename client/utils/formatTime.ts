@@ -25,3 +25,10 @@ export function formatTime(time: number, fmt: string) {
   }
   return fmt;
 }
+
+export const convertTimeStringToNumber = (str) => {
+  if (!/^([0-9]{4})\-([0-9]{2})\-([0-9]{2})$/.test(str)) {
+    return 0;
+  }
+  return new Date(str).getTime();
+};

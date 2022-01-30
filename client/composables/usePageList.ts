@@ -2,6 +2,7 @@ import { pagesData, PageData } from '@vuepress/client';
 import { ref } from 'vue';
 import { Blog, Tag, Category } from '@/types';
 import { BlogFrontmatter } from '@/types/blog';
+import { convertTimeStringToNumber } from '@/utils/formatTime';
 
 // 获取页面列表
 export async function usePageList() {
@@ -51,7 +52,11 @@ export async function usePageList() {
       blogList.value.push(page as Blog);
     }
     blogList.value.sort((a, b) => {
-      return b.git?.updatedTime - a.git?.updatedTime;
+      const timeA =
+        convertTimeStringToNumber(a.frontmatter.time) || a.git?.updatedTime;
+      const timeB =
+        convertTimeStringToNumber(b.frontmatter.time) || b.git?.updatedTime;
+      return timeB - timeA;
     });
   }
   return { blogList, tagList, categoryList };
