@@ -29,7 +29,7 @@ export interface DefaultThemeOptions
 
 assignDefaultLocaleOptions(themeConfig);
 
-createPages(path.resolve(process.cwd(), '../docs'));
+createPages(path.resolve(process.cwd(), './docs'));
 
 const VuePressTheme: Theme<DefaultThemeOptions> = (
   { themePlugins = {}, ...localeOptions },
