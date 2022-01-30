@@ -111,14 +111,13 @@ const title = computed(() => {
     .blog-git-info {
       display: flex;
       align-items: center;
-      color: var(--minor-text-color);
+      color: var(--common-text-color);
       line-height: 14px;
       height: 14px;
       font-size: 14px;
       margin-top: 12px;
       .blog-author {
         margin-right: 8px;
-        color: var(--common-text-color);
       }
       .blog-time,
       .blog-tag {
@@ -131,7 +130,7 @@ const title = computed(() => {
       color: var(--minor-text-color);
       line-height: 22px;
       font-size: 14px;
-      margin-top: 16px;
+      margin-top: 14px;
       overflow: hidden;
       text-overflow: ellipsis;
       -webkit-line-clamp: 2;

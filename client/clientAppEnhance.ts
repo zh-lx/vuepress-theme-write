@@ -9,8 +9,8 @@ import Loading from '@/components/global/Loading.vue';
 import Home from '@/components/home/index.vue';
 import '@/layouts/Layout.vue';
 import { useScrollPromise } from '@/composables';
+import './styles/index.scss';
 
-import './client/styles/index.scss';
 export default defineClientAppEnhance(({ app, router }) => {
   app.component('Loading', Loading);
   app.component('Home', Home);

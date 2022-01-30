@@ -36,11 +36,7 @@ import { computed, ref } from 'vue';
 import { usePageFrontmatter, useSiteLocaleData } from '@vuepress/client';
 import { usePageList } from '@/composables';
 import BlogList from '@/components/blog-list/index.vue';
-import {
-  HOME_BG_ID,
-  HOME_BG_IMAGE,
-  DEFAULT_HOME_INFO,
-} from '@/constants/global';
+import { HOME_BG_IMAGE, DEFAULT_HOME_INFO } from '@/constants/global';
 import HomeRight from './HomeRight.vue';
 import SiteInfo from './SiteInfo.vue';
 

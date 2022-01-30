@@ -2,7 +2,7 @@
   <div class="blog-list">
     <div
       v-for="(blog, index) in blogsToShow"
-      :key="index"
+      :key="blog.path"
       class="blog-item-container"
     >
       <BlogItem :blog="blog" />

@@ -37,11 +37,14 @@ const VuePressTheme: Theme<DefaultThemeOptions> = (
 ) => ({
   name: '@vuepress/theme-writing',
   layouts: path.resolve(__dirname, './client/layouts'),
-  clientAppEnhanceFiles: path.resolve(__dirname, './clientAppEnhance.ts'),
-  clientAppSetupFiles: path.resolve(__dirname, './clientAppSetup.ts'),
+  clientAppEnhanceFiles: path.resolve(
+    __dirname,
+    './client/clientAppEnhance.ts'
+  ),
+  clientAppSetupFiles: path.resolve(__dirname, './client/clientAppSetup.ts'),
   extendsPage: (page) => {
     // save relative file path into page data to generate edit link
-    page.data.filePathRelative = page.filePathRelative;
+    (page.data as any).filePathRelative = page.filePathRelative;
     // save title into route meta to generate navbar and sidebar
     page.routeMeta.title = page.title;
   },
