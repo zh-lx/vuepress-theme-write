@@ -123,19 +123,19 @@ const openUrlWindow: (url: string) => void = (url) => {
   }
   .author-name {
     font-weight: 600;
-    margin-top: 1rem;
+    margin-top: 14px;
     font-size: 20px;
-    color: var(--mainTextColor);
+    color: var(--main-text-color);
   }
   .author-introduction {
-    margin-top: 1rem;
+    margin-top: 14px;
   }
 }
 .contact {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 14px;
   .contact-icon {
     height: 24px;
     width: 24px;

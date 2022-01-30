@@ -79,7 +79,7 @@ if (item.value.collapsible) {
   display: block;
 }
 .catalogue-link-item.active {
-  border-left-color: var(--common-hover-color);
+  border-left-color: var(--theme-color);
   border-left-width: 2px;
   display: block;
 }
@@ -88,24 +88,24 @@ if (item.value.collapsible) {
   line-height: 1;
 }
 .active-catalogue {
-  background-color: var(--commonHoverBgc);
+  background-color: var(--selected-bgc);
 }
 .catalogue-level-1 {
-  padding-left: 0.6rem !important;
+  padding-left: 8px !important;
 }
 .catalogue-level-2 {
-  padding-left: 1.6rem !important;
+  padding-left: 22px !important;
 }
 .catalogue-level-3 {
-  padding-left: 2.6rem !important;
+  padding-left: 36px !important;
 }
 .catalogue-level-4 {
-  padding-left: 3.6rem !important;
+  padding-left: 50px !important;
 }
 .catalogue-level-5 {
-  padding-left: 4.6rem !important;
+  padding-left: 64px !important;
 }
 .catalogue-level-6 {
-  padding-left: 5.6rem !important;
+  padding-left: 78px !important;
 }
 </style>

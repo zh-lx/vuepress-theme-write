@@ -46,24 +46,22 @@ const blogsToShow = computed(() => {
   width: 100%;
 
   .main-content {
-    padding: 1.5rem 1.5rem 1.5rem 18rem;
+    padding: 22px 22px 22px calc($sidebarWidth + 22px);
+    .blogs-list {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
-@media (max-width: $MQMobile) {
+/* @media (max-width: $MQMobile) {
   :deep(.sidebar) {
     transform: translateX(0);
   }
-  :deep(.toggle-sidebar-button) {
-    display: none;
-  }
-  :deep(.navbar) {
-    padding-left: 1.5rem;
-  }
-}
-@media (max-width: $MQMobileNarrow) {
+} */
+@media (max-width: $MQMobile) {
   .main-container {
     .main-content {
-      padding-left: 1.5rem;
+      padding-left: 22px;
     }
   }
   :deep(.sidebar) {
@@ -75,12 +73,6 @@ const blogsToShow = computed(() => {
         transform: translateX(0);
       }
     }
-  }
-  :deep(.toggle-sidebar-button) {
-    display: block;
-  }
-  :deep(.navbar) {
-    padding-left: 4rem;
   }
 }
 </style>

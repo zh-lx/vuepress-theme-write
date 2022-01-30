@@ -97,7 +97,7 @@ usePageList().then((pageList) => {
 
   .hero {
     text-align: center;
-    height: calc(88vh - 7.2rem);
+    height: calc(88vh - 84px);
     width: 100%;
     display: flex;
     justify-content: center;
@@ -108,22 +108,22 @@ usePageList().then((pageList) => {
     background-repeat: no-repeat;
 
     #main-title {
-      color: var(--homeTextColor);
+      color: var(--reverse-text-color);
       font-weight: 600;
       font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
         Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      font-size: 3rem;
+      font-size: 42px;
     }
 
     h1,
     .description {
-      margin: 1.8rem auto;
+      margin: 24px auto;
     }
 
     .description {
-      max-width: 35rem;
-      font-size: 1.6rem;
-      color: var(--homeTextColor);
+      max-width: 500px;
+      font-size: 22px;
+      color: var(--reverse-text-color);
     }
   }
 
@@ -131,38 +131,38 @@ usePageList().then((pageList) => {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 1.5rem 1.5rem;
+    padding: 22px 22px;
     .main-content-left {
       flex: 1;
-      max-width: 800px;
+      max-width: 700px;
     }
     .main-content-right {
       width: 240px;
-      margin-left: 1.6rem;
+      margin-left: 22px;
     }
   }
 
   .footer {
-    padding: 2.5rem;
-    border-top: 1px solid $borderColor;
+    padding: 36px;
+    border-top: var(--common-border);
     text-align: center;
-    color: color.scale($textColor, $lightness: 25%);
+    color: var(--main-text-color);
   }
 }
 
-@media (max-width: $MQMobileNarrow) {
+@media (max-width: $MQMobile) {
   .main-container {
     .hero {
       h1 {
-        font-size: 2rem;
+        font-size: 28px;
       }
       h1,
       .description,
       .actions {
-        margin: 1.2rem auto;
+        margin: 16px auto;
       }
       .description {
-        font-size: 1.2rem;
+        font-size: 16px;
       }
     }
     .main-content {
@@ -170,9 +170,9 @@ usePageList().then((pageList) => {
         width: 100%;
       }
       .main-content-right {
-        width: 100%;
+        width: 0;
         margin-left: 0;
-        min-width: 100%;
+        overflow: hidden;
       }
     }
   }

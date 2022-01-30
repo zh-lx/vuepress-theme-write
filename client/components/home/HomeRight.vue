@@ -32,10 +32,10 @@ import { TagOne, FolderOpen } from '@icon-park/vue-next';
 .category-card {
   padding-left: 0;
   padding-right: 0;
-  margin-top: 1.5rem;
+  margin-top: 22px;
   .category-card-title {
-    padding-left: 1rem;
-    margin-bottom: 0.5rem;
+    padding-left: 14px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     .i-icon {
@@ -44,9 +44,9 @@ import { TagOne, FolderOpen } from '@icon-park/vue-next';
   }
 }
 .tag-card {
-  margin-top: 1.5rem;
+  margin-top: 22px;
   .tag-card-title {
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     .i-icon {

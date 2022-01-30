@@ -133,13 +133,13 @@ const contributors = useContributors();
 @import '~@/styles/_variables.scss';
 .page-meta {
   @include content_wrapper;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 14px;
+  padding-bottom: 14px;
   overflow: auto;
 
   .meta-item {
     cursor: default;
-    margin-top: 0.8rem;
+    margin-top: 12px;
 
     .meta-item-label {
       font-weight: 500;
@@ -154,7 +154,7 @@ const contributors = useContributors();
 
   .edit-link {
     display: inline-block;
-    margin-right: 0.25rem;
+    margin-right: 4px;
   }
 
   .last-updated {

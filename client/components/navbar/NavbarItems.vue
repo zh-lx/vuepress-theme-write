@@ -170,7 +170,7 @@ const navbarLinks = computed(() => [
 
   a {
     display: inline-block;
-    line-height: 1.4rem;
+    line-height: 20px;
     color: inherit;
 
     &:hover,
@@ -182,7 +182,7 @@ const navbarLinks = computed(() => [
   .navbar-item {
     position: relative;
     display: inline-block;
-    margin-left: 1.5rem;
+    margin-left: 22px;
     line-height: var(--navbar-line-height);
 
     &:first-child {

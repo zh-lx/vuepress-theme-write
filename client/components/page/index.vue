@@ -56,7 +56,7 @@ const changeCataloguesVisibility = () => {
 @import '~@/styles/_variables.scss';
 
 .page {
-  padding-bottom: 2rem;
+  padding-bottom: 28px;
   display: block;
 }
 
@@ -66,7 +66,7 @@ const changeCataloguesVisibility = () => {
   transition: all 0.3s ease;
   .catalogue-toggle {
     background-color: var(--common-bgc);
-    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: var(--common-box-shadow);
     transition: all 0.3s ease;
     width: 30px;
     height: 30px;

@@ -18,6 +18,6 @@ const page = usePageData();
 </script>
 <style lang="scss" scoped>
 body {
-  padding-top: 3.6rem;
+  padding-top: 50px;
 }
 </style>

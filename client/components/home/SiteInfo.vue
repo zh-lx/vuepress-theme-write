@@ -19,7 +19,7 @@
   .site-code {
     color: var(--common-text-color);
     &:hover {
-      color: var(--commonHoverTextColor);
+      color: var(--theme-color);
     }
   }
 }

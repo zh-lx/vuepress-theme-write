@@ -32,10 +32,10 @@ const themeLocale = useThemeLocaleData();
  */
 .toggle-sidebar-button {
   position: absolute;
-  top: 0.6rem;
-  left: 1rem;
+  top: 8px;
+  left: 14px;
   display: none;
-  padding: 0.6rem;
+  padding: 8px;
   cursor: pointer;
 }
 
@@ -44,8 +44,8 @@ const themeLocale = useThemeLocaleData();
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 18px;
+  height: 18px;
   cursor: inherit;
 
   span {

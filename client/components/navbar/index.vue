@@ -81,19 +81,19 @@ function getCssValue(el: HTMLElement | null, property: string): number {
 
 @import '~@/styles/_variables.scss';
 
-$navbar-vertical-padding: 0.7rem;
-$navbar-horizontal-padding: 1.5rem;
+$navbar-vertical-padding: 10px;
+$navbar-horizontal-padding: 22px;
 
 .navbar {
   padding: $navbar-vertical-padding $navbar-horizontal-padding;
-  line-height: $navbarHeight - 1.4rem;
+  line-height: calc($navbarHeight - 20px);
 
   .navbar-items-wrapper {
-    padding-left: 1.5rem;
+    padding-left: 22px;
     box-sizing: border-box;
-    background-color: var(--navbarBgc);
+    background-color: var(--common-bgc);
     white-space: nowrap;
-    font-size: 0.9rem;
+    font-size: 12px;
     position: absolute;
     right: $navbar-horizontal-padding;
     top: $navbar-vertical-padding;
@@ -108,20 +108,20 @@ $navbar-horizontal-padding: 1.5rem;
 
 @media (max-width: $MQMobile) {
   .navbar {
-    padding-left: 4rem;
+    padding-left: 56px;
 
     .can-hide {
       display: none;
     }
 
     .navbar-items-wrapper {
-      padding-left: 1.5rem;
+      padding-left: 22px;
     }
   }
 }
 
 .navbar {
-  box-shadow: 0 1px 8px 0 var(--navbarBoxShadow);
+  box-shadow: var(--common-box-shadow);
 }
 .search-box {
   margin-left: 20px;

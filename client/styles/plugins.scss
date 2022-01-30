@@ -16,10 +16,10 @@
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 50%;
-    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: var(--common-box-shadow);
     &:hover {
-      box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.3);
-      background-color: #fff;
+      box-shadow: var(--hover-box-shadow);
+      background-color: var(--common-bgc);
     }
     transition: all 0.2s linear;
     mask: none;
@@ -27,11 +27,11 @@
 }
 
 #nprogress {
-  --nprogress-color: #{$accentColor};
+  --nprogress-color: var(--theme-color);
 }
 
 .DocSearch {
-  --docsearch-primary-color: #{$accentColor};
+  --docsearch-primary-color: var(--theme-color);
   --docsearch-highlight-color: var(--docsearch-primary-color);
   --docsearch-searchbox-shadow: inset 0 0 0 2px var(--docsearch-primary-color);
 }

@@ -59,22 +59,22 @@ const NavbarBrandLogo: FunctionalComponent = () => {
 
 @import '~@/styles/_variables.scss';
 .logo {
-  height: $navbarHeight - 1.4rem;
-  min-width: $navbarHeight - 1.4rem;
-  margin-right: 0.8rem;
+  height: calc($navbarHeight - 20px);
+  min-width: calc($navbarHeight - 20px);
+  margin-right: 12px;
   vertical-align: top;
 }
 
 .site-name {
-  font-size: 1.3rem;
+  font-size: 18px;
   font-weight: 600;
-  color: $textColor;
+  color: var(--main-text-color);
   position: relative;
 }
 
 @media (max-width: $MQMobile) {
   .site-name {
-    width: calc(100vw - 9.4rem);
+    width: calc(100vw - 132px);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

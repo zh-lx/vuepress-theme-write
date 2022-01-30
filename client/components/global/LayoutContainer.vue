@@ -109,6 +109,9 @@ onUnmounted(() => {
 
     <slot name="sidebar">
       <Sidebar>
+        <template #top>
+          <slot name="sidebar-top" />
+        </template>
         <template #sidebar v-if="isHomePage">
           <NavbarItems />
         </template>
@@ -118,7 +121,7 @@ onUnmounted(() => {
           </div>
         </template>
         <template #category>
-          <div class="category-list" v-if="isCategoryPage">
+          <div class="category-list" v-if="isHomePage || isCategoryPage">
             <div class="category-card-title">
               <folder-open theme="outline" size="20" color="#303133" />文章分类
             </div>
@@ -126,15 +129,12 @@ onUnmounted(() => {
           </div>
         </template>
         <template #tag>
-          <div class="tag-list" v-if="isTagPage">
+          <div class="tag-list" v-if="isHomePage || isTagPage">
             <div class="tag-card-title">
               <tag-one theme="outline" size="20" color="#303133" />热门标签
             </div>
             <TagList />
           </div>
-        </template>
-        <template #top>
-          <slot name="sidebar-top" />
         </template>
         <template #bottom>
           <slot name="sidebar-bottom" />
@@ -149,13 +149,13 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 @import '~@/styles/_variables.scss';
 .authorInfo {
-  margin-top: 1.5rem;
+  margin-top: 20px;
 }
 .category-list {
-  margin-top: 1rem;
+  margin-top: 20px;
   .category-card-title {
-    padding-left: 1rem;
-    margin-bottom: 0.5rem;
+    padding-left: 14px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     .i-icon {
@@ -164,9 +164,10 @@ onUnmounted(() => {
   }
 }
 .tag-list {
-  padding: 1rem;
+  padding: 14px;
+  padding-top: 20px;
   .tag-card-title {
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
 

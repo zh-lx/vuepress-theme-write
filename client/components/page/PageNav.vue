@@ -108,15 +108,15 @@ const nextNavLink = computed(() => {
 
 .page-nav {
   @include content_wrapper;
-  padding-top: 1rem;
+  padding-top: 14px;
   padding-bottom: 0;
 
   .inner {
-    min-height: 2rem;
+    min-height: 28px;
     margin-top: 0;
     border-top: 1px solid var(--c-border);
     transition: border-color var(--t-color);
-    padding-top: 1rem;
+    padding-top: 14px;
     overflow: auto;
   }
 

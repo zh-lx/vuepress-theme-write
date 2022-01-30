@@ -20,7 +20,7 @@
     display: none;
     border-bottom: 1px solid var(--common-border);
     transition: border-color var(--common-text-color);
-    padding: 0.5rem 0 0.75rem 0;
+    padding: 8px 0 10px 0;
 
     a {
       font-weight: 600;
@@ -28,14 +28,14 @@
 
     .navbar-item {
       display: block;
-      line-height: 1.25rem;
+      line-height: 18px;
       font-size: 1.1em;
-      padding: 0.5rem 0 0.5rem 1.5rem;
+      padding: 8px 0 8px 22px;
     }
   }
 
   .sidebar-items {
-    padding: 1.5rem 0;
+    padding: 22px 0;
   }
 }
 
@@ -48,12 +48,12 @@
         .navbar-dropdown
         .navbar-dropdown-item
         a.router-link-active::after {
-        top: calc(1rem - 2px);
+        top: calc(14px - 2px);
       }
     }
 
     .sidebar-items {
-      padding: 1rem 0;
+      padding: 14px 0;
     }
   }
 }
@@ -66,18 +66,18 @@
     transition: color 0.15s ease;
     font-size: 14px;
     font-weight: bold;
-    padding: 0.35rem 1rem 0.35rem 0.65rem;
+    padding: 6px 14px 6px 9px;
     width: 100%;
     box-sizing: border-box;
     margin: 0;
-    border-left: 0.25rem solid transparent;
+    border-left: 4px solid transparent;
 
     &.collapsible {
       cursor: pointer;
 
       & + .sidebar-item-children {
         @include dropdown_wrapper;
-        margin-bottom: 0.75rem;
+        margin-bottom: 10px;
       }
     }
 
@@ -93,20 +93,20 @@
     font-weight: 400;
     display: inline-block;
     color: var(--c-text);
-    border-left: 0.25rem solid transparent;
+    border-left: 4px solid transparent;
     margin: 0;
-    padding: 0.25rem 1rem 0.25rem 0.65rem;
+    padding: 4px 14px 4px 9px;
     line-height: 1.4;
     width: 100%;
     box-sizing: border-box;
 
     & + .sidebar-item-children {
-      padding-left: 1rem;
+      padding-left: 14px;
       font-size: 12px;
     }
 
     .sidebar-item-children .sidebar-item-children & {
-      padding: 0.25rem 1rem 0.25rem 8px;
+      padding: 4px 14px 4px 8px;
 
       &.active {
         font-weight: 500;
@@ -122,13 +122,13 @@ a.sidebar-item {
   overflow: hidden;
 
   &:hover {
-    color: var(--common-hover-color);
+    color: var(--theme-color);
   }
 
   &.active {
     font-weight: 600;
-    color: var(--common-hover-color);
-    border-left-color: var(--common-hover-color);
+    color: var(--theme-color);
+    border-left-color: var(--theme-color);
   }
 }
 
@@ -136,7 +136,7 @@ a.sidebar-heading + .sidebar-item-children {
   .sidebar-item {
     &.active {
       font-weight: 400;
-      border-left: 0.25rem solid transparent;
+      border-left: 4px solid transparent;
     }
   }
 }

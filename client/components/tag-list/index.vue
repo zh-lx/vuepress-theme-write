@@ -7,9 +7,11 @@
         router.currentRoute.value.query.tag === tag.name ? 'selected-tag' : ''
       }`"
       :style="{
-        background: `${isTagPage ? 'var(--defaultTagBgc)' : getRandomColor()}`,
+        background: `${
+          isTagPage ? 'var(--default-tag-bgc)' : getRandomColor()
+        }`,
         color: `${
-          isTagPage ? 'var(--common-text-color)' : 'var(--reverseTextColor)'
+          isTagPage ? 'var(--common-text-color)' : 'var(--reverse-text-color)'
         }`,
       }"
       @click="handleClickTag(tag.name)"
@@ -60,14 +62,14 @@ const handleClickTag: (tag: string) => void = (tag) => {
     &:hover {
       transform: scale(1.1);
     }
-    color: var(--reverseTextColor);
+    color: var(--reverse-text-color);
     &:last-of-type {
       margin-right: 0;
     }
   }
   .selected-tag {
-    background-color: var(--commonSelectedBgc) !important;
-    color: var(--reverseTextColor) !important;
+    background-color: var(--theme-color) !important;
+    color: var(--reverse-text-color) !important;
     &:hover {
       transform: scale(1);
     }

@@ -40,8 +40,8 @@ defineProps({
   line-height: 18px;
   border-radius: 3px;
   padding: 0 6px;
-  color: white;
-  background-color: #42b983;
+  color: var(--reverse-text-color);
+  background-color: var(--theme-color);
   vertical-align: top;
 
   .table-of-contents & {
@@ -49,7 +49,7 @@ defineProps({
   }
 
   &.tip {
-    background-color: $badgeTipColor;
+    background-color: var(--theme-color);
   }
 
   &.warning {

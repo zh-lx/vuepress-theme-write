@@ -42,17 +42,11 @@ const { showLoading } = toRefs(state);
   :deep(.sidebar) {
     transform: translateX(-100%);
   }
-  :deep(.toggle-sidebar-button) {
-    display: none;
-  }
-  :deep(.navbar) {
-    padding-left: 1.5rem;
-  }
 }
 @media (max-width: $MQMobileNarrow) {
   .main-container {
     .main-content {
-      padding-left: 1.5rem;
+      padding-left: 22px;
     }
   }
   :deep(.sidebar) {
@@ -64,12 +58,6 @@ const { showLoading } = toRefs(state);
         transform: translateX(0);
       }
     }
-  }
-  :deep(.toggle-sidebar-button) {
-    display: block;
-  }
-  :deep(.navbar) {
-    padding-left: 4rem;
   }
 }
 </style>

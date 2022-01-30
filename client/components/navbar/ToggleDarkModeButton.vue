@@ -66,7 +66,7 @@ const toggleDarkMode = (): void => {
 .toggle-dark-button {
   display: flex;
   margin: auto;
-  margin-left: 1rem;
+  margin-left: 14px;
   border: 0;
   background: none;
   color: var(--common-text-color);
@@ -76,8 +76,8 @@ const toggleDarkMode = (): void => {
     opacity: 1;
   }
   .icon {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 18px;
+    height: 18px;
   }
 }
 </style>

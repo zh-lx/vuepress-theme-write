@@ -3,16 +3,16 @@
 %wrapper {
   max-width: $contentWidth;
   margin: 0 auto;
-  padding: 2rem 2.5rem;
+  padding: 28px 36px;
   padding-top: $navbarHeight;
 
   @media (max-width: $MQNarrow) {
-    padding: 2rem;
+    padding: 28px;
     padding-top: $navbarHeight;
   }
 
   @media (max-width: $MQMobileNarrow) {
-    padding: 1.5rem;
+    padding: 22px;
     padding-top: $navbarHeight;
   }
 }
@@ -20,14 +20,14 @@
 @mixin content_wrapper {
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 2rem 2.5rem;
+  padding: 28px 36px;
 
   @media (max-width: $MQNarrow) {
-    padding: 2rem;
+    padding: 28px;
   }
 
   @media (max-width: $MQMobileNarrow) {
-    padding: 1.5rem;
+    padding: 22px;
   }
 }
 

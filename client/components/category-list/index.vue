@@ -43,14 +43,14 @@ const handleClickCategory = (category) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.2rem 1rem;
+  padding: 4px 14px;
   &:hover {
-    background-color: var(--commonHoverBgc);
-    color: var(--commonHoverTextColor);
+    background-color: var(--selected-bgc);
+    color: var(--theme-color);
   }
   .category-count {
-    background-color: var(--commonSelectedBgc);
-    color: #fff;
+    background-color: var(--theme-color);
+    color: var(--reverse-text-color);
     font-size: 12px;
     text-align: center;
     height: 18px;
@@ -60,8 +60,8 @@ const handleClickCategory = (category) => {
   }
 }
 .selected-category {
-  background-color: var(--commonHoverBgc);
-  border-left: 2px solid var(--commonHoverTextColor);
-  color: var(--commonHoverTextColor);
+  background-color: var(--selected-bgc);
+  border-left: 2px solid var(--theme-color);
+  color: var(--theme-color);
 }
 </style>

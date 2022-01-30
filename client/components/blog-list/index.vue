@@ -117,7 +117,7 @@
 
 <script setup lang="ts">
 // 博客列表
-import {  watch, computed, reactive, toRefs } from 'vue';
+import { watch, computed, reactive, toRefs } from 'vue';
 import { Blog } from '@/types/blog';
 import Message from '@/components/message';
 import BlogItem from './BlogItem.vue';
@@ -144,14 +144,16 @@ const state = reactive({
 const blogsToShow = computed(() => {
   const start = (state.pagination.current - 1) * PageSize;
   const end = start + PageSize;
+  console.log(props.blogs);
   return props.blogs.slice(start, end);
 });
 
 // 滚动到顶部
 const scrollToBlogsTop = () => {
-  const navBarHeight = (document.querySelector('.navbar') as HTMLElement)
-    .offsetHeight;
-  window.scrollTo(0, document.documentElement.clientHeight - navBarHeight);
+  const homeBgHeight = (
+    document.querySelector('#__home_bg_container') as HTMLElement
+  ).offsetHeight;
+  window.scrollTo(0, Math.ceil(homeBgHeight));
 };
 
 const jumpToPage = (pageNum) => {
@@ -193,8 +195,10 @@ const { pagination, inputPage } = toRefs(state);
 <style scoped lang="scss">
 @import '~@/styles/_variables.scss';
 .blog-list {
+  max-width: 700px;
+  width: 100%;
   .blog-item-container {
-    margin-bottom: 1.5rem;
+    margin-bottom: 22px;
   }
   .blog-pagination {
     display: flex;
@@ -208,7 +212,7 @@ const { pagination, inputPage } = toRefs(state);
       min-width: 28px;
       padding: 0 8px;
       &:hover {
-        color: var(--commonSelectedBgc);
+        color: var(--theme-color);
         cursor: pointer;
       }
     }
@@ -239,7 +243,7 @@ const { pagination, inputPage } = toRefs(state);
         outline: none;
         margin: 0 4px;
         text-align: center;
-        border: 1px solid var(--inputBorderColor) !important;
+        border: var(--input-border) !important;
         // 去掉number输入框上下按钮
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
@@ -251,10 +255,10 @@ const { pagination, inputPage } = toRefs(state);
       }
     }
     .page-selected {
-      background-color: var(--commonSelectedBgc);
-      color: var(--reverseTextColor);
+      background-color: var(--theme-color);
+      color: var(--reverse-text-color);
       &:hover {
-        color: var(--reverseTextColor);
+        color: var(--reverse-text-color);
       }
     }
   }
@@ -275,7 +279,7 @@ const { pagination, inputPage } = toRefs(state);
       justify-content: center;
     }
     .blog-pagination-right {
-      margin-top: 1rem;
+      margin-top: 14px;
       width: 100%;
       justify-content: center;
     }

@@ -134,11 +134,11 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
 
   .navbar-dropdown-title {
     display: block;
-    font-size: 0.9rem;
+    font-size: 12px;
     font-family: inherit;
     cursor: inherit;
     padding: inherit;
-    line-height: 1.4rem;
+    line-height: 20px;
     background: transparent;
     border: none;
     font-weight: 500;
@@ -151,7 +151,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
     .arrow {
       vertical-align: middle;
       margin-top: -1px;
-      margin-left: 0.4rem;
+      margin-left: 6px;
     }
   }
 
@@ -168,16 +168,16 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
   .navbar-dropdown {
     .navbar-dropdown-item {
       color: inherit;
-      line-height: 1.7rem;
+      line-height: 24px;
 
       .navbar-dropdown-subtitle {
-        margin: 0.45rem 0 0;
+        margin: 6px 0 0;
         border-top: 1px solid var(--c-border);
-        padding: 1rem 0 0.45rem 0;
-        font-size: 0.9rem;
+        padding: 14px 0 6px 0;
+        font-size: 12px;
 
         & > span {
-          padding: 0 1.5rem 0 1.25rem;
+          padding: 0 22px 0 18px;
         }
 
         & > a {
@@ -201,26 +201,26 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
 
       a {
         display: block;
-        line-height: 1.7rem;
+        line-height: 24px;
         position: relative;
         border-bottom: none;
         font-weight: 400;
         margin-bottom: 0;
-        padding: 0 1.5rem 0 1.25rem;
+        padding: 0 22px 0 18px;
         color: var(--common-text-color);
 
         &:hover {
-          color: var(--common-hover-color);
+          color: var(--theme-color);
         }
 
         &.router-link-active {
-          color: var(--common-hover-color);
+          color: var(--theme-color);
 
           &::after {
             content: '';
             width: 0;
             height: 0;
-            border-left: 5px solid var(--common-hover-color);
+            border-left: 5px solid var(--theme-color);
             border-top: 3px solid transparent;
             border-bottom: 3px solid transparent;
             position: absolute;
@@ -242,7 +242,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
 @media (max-width: $MQMobile) {
   .navbar-dropdown-wrapper {
     &.open .navbar-dropdown-title {
-      margin-bottom: 0.5rem;
+      margin-bottom: 8px;
     }
 
     .navbar-dropdown-title {
@@ -268,12 +268,12 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
         & > a {
           color: var(--common-text-color);
           font-size: 15px;
-          line-height: 2rem;
+          line-height: 28px;
         }
 
         .navbar-dropdown-subitem {
           font-size: 14px;
-          padding-left: 1rem;
+          padding-left: 14px;
         }
       }
     }
@@ -282,7 +282,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
 
 @media (min-width: ($MQMobile + 1)) {
   .navbar-dropdown-wrapper {
-    height: 1.8rem;
+    height: 26px;
 
     &:hover .navbar-dropdown,
     &.open .navbar-dropdown {
@@ -299,12 +299,12 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
       // Avoid height shaked by clicking
       height: auto !important;
       box-sizing: border-box;
-      max-height: calc(100vh - 2.7rem);
+      max-height: calc(100vh - 38px);
       overflow-y: auto;
       position: absolute;
       top: 100%;
       right: 0;
-      padding: 0.6rem 0;
+      padding: 8px 0;
       border: var(--common-border);
       background-color: var(--common-bgc);
       border-radius: 4px;

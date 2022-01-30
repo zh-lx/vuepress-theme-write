@@ -1,26 +1,23 @@
 <template>
-  <div class="card pointer" @click="go2BlogDetailPage">
-    <div class="blog-title">{{ title }}</div>
-    <div class="blog-git">
-      <div class="git-author git-item">
-        <people theme="outline" size="18" fill="#606266" />
-        <span>{{ author }}</span>
+  <div class="card pointer blog-item" @click="go2BlogDetailPage">
+    <div class="blog-content">
+      <div class="blog-title">{{ title }}</div>
+      <div class="blog-git-info">
+        <div class="blog-author">{{ author }}</div>
+        <div class="blog-time">
+          {{ time }}
+        </div>
+        <div class="blog-tag" v-if="tags">
+          {{ tags }}
+        </div>
       </div>
-      <div class="git-time git-item">
-        <calendar theme="outline" size="18" fill="#606266" /><span>{{
-          formatTime(blog.git?.updatedTime || 0, 'yyyy-MM-dd')
-        }}</span>
-      </div>
-      <div class="git-category git-item">
-        <folder-open theme="outline" size="18" fill="#606266" /><span>{{
-          category
-        }}</span>
-      </div>
-      <div class="tag git-item" v-if="blog.frontmatter.tag">
-        <tag-one theme="outline" size="18" fill="#606266" />
-        <span>{{ tag }}</span>
-      </div>
+      <div class="blog-desc" v-if="desc">{{ desc }}</div>
     </div>
+    <div
+      class="blog-cover"
+      v-if="cover"
+      :style="{ backgroundImage: `url(${cover})` }"
+    ></div>
   </div>
 </template>
 
@@ -29,7 +26,6 @@ import { computed } from 'vue';
 import { formatTime } from '@/utils/index';
 import { useRouter } from 'vue-router';
 import { Blog } from '@/types/blog';
-import { People, Calendar, TagOne, FolderOpen } from '@icon-park/vue-next';
 
 interface Props {
   blog: Blog;
@@ -51,16 +47,29 @@ const author = computed(() => {
   return props.blog.git?.contributors?.[0]?.name || '无名';
 });
 
-// 目录
-const category = computed(() => {
-  return decodeURIComponent(props.blog.path.split('/')?.[1]);
+// 时间
+const time = computed(() => {
+  return (
+    props.blog?.frontmatter?.time ||
+    formatTime(props.blog.git?.updatedTime || 0, 'yyyy-MM-dd')
+  );
+});
+
+// 封面
+const cover = computed(() => {
+  return props.blog?.frontmatter?.cover;
+});
+
+// 简介
+const desc = computed(() => {
+  return props.blog?.frontmatter?.desc;
 });
 
 // 标签
-const tag = computed(() => {
-  return typeof props.blog.frontmatter?.tag === 'string'
-    ? props.blog.frontmatter?.tag
-    : props.blog.frontmatter?.tag[0];
+const tags = computed(() => {
+  return Array.isArray(props.blog.frontmatter?.tag)
+    ? props.blog.frontmatter?.tag.join(' · ')
+    : props.blog.frontmatter?.tag;
 });
 
 // 标题
@@ -79,33 +88,55 @@ const title = computed(() => {
 
 <style scoped lang="scss">
 @import '~@/styles/_variables.scss';
-.blog-title {
-  font-size: 1.4rem;
-  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-.blog-git {
+.blog-item {
   display: flex;
-  flex-wrap: wrap;
-  color: var(--common-text-color);
-  .git-item {
-    margin-top: 0.1rem;
-    float: left;
-    min-width: 25%;
-    display: flex;
-    align-items: center;
-    .i-icon {
-      margin-right: 4px;
-    }
+  justify-content: space-between;
+  align-items: center;
+  .blog-cover {
+    width: 140px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    margin-left: 8px;
   }
-}
-@media (max-width: $MQMobileNarrow) {
-  .blog-git {
-    .git-item {
-      width: 50%;
-      margin-right: 0;
+  .blog-content {
+    flex: 1;
+    .blog-title {
+      font-size: 18px;
+      font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+        Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+      font-weight: bold;
+    }
+
+    .blog-git-info {
+      display: flex;
+      align-items: center;
+      color: var(--minor-text-color);
+      line-height: 14px;
+      height: 14px;
+      font-size: 14px;
+      margin-top: 12px;
+      .blog-author {
+        margin-right: 8px;
+        color: var(--common-text-color);
+      }
+      .blog-time,
+      .blog-tag {
+        padding: 0 8px;
+        border-left: 1px solid var(--placeholder-text-color);
+      }
+    }
+
+    .blog-desc {
+      color: var(--minor-text-color);
+      line-height: 22px;
+      font-size: 14px;
+      margin-top: 16px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
     }
   }
 }

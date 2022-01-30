@@ -12,14 +12,14 @@
   left: 0;
   right: 0;
   height: $navbarHeight;
-  background-color: #fff;
+  background-color: var(--common-bgc);
   box-sizing: border-box;
-  border-bottom: 1px solid $borderColor;
+  border-bottom: var(--common-border);
 }
 
 .sidebar {
   font-size: 16px;
-  background-color: #fff;
+  background-color: var(--common-bgc);
   width: $sidebarWidth;
   position: fixed;
   z-index: 10;
@@ -28,18 +28,18 @@
   left: 0;
   bottom: 0;
   box-sizing: border-box;
-  border-right: 1px solid $borderColor;
+  border-right: var(--common-border);
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: $accentColor $borderColor;
+  scrollbar-color: var(--theme-color) var(--common-border-color);
   &::-webkit-scrollbar {
     width: 7px;
   }
   &::-webkit-scrollbar-track {
-    background-color: $borderColor;
+    background-color: var(--common-border-color);
   }
   &::-webkit-scrollbar-thumb {
-    background-color: $accentColor;
+    background-color: var(--theme-color);
   }
 }
 
@@ -67,7 +67,7 @@
     h4,
     h5,
     h6 {
-      margin-top: 1.5rem;
+      margin-top: 22px;
       padding-top: 0;
     }
 
@@ -84,8 +84,8 @@
   h4,
   h5,
   h6 {
-    margin-top: calc(0.1rem - var(--navbarHeight));
-    padding-top: calc(1rem + var(--navbarHeight));
+    margin-top: calc(0.14px - var(--navbar-height));
+    padding-top: calc(14px + var(--navbar-height));
   }
 }
 
@@ -109,9 +109,8 @@ h5,
 h6 {
   #{$contentClass}:not(.custom) > & {
     &:first-child {
-      // margin-top: -1.5rem;
-      margin-bottom: 1rem;
-
+      // margin-top: -22px;
+      margin-bottom: 14px;
       + p,
       + pre,
       + .custom-container {
@@ -129,7 +128,7 @@ h6 {
   }
 
   p.demo {
-    padding: 1rem 1.5rem;
+    padding: 14px 22px;
     border: 1px solid #ddd;
     border-radius: 4px;
   }
@@ -179,6 +178,6 @@ h6 {
 // narrow mobile
 @media (max-width: $MQMobileNarrow) {
   h1 {
-    font-size: 1.9rem;
+    font-size: 26px;
   }
 }
