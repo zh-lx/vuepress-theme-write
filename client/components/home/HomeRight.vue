@@ -5,14 +5,22 @@
     </div>
     <div class="card category-card">
       <div class="category-card-title">
-        <folder-open theme="outline" size="20" color="#303133" />
+        <folder-open
+          theme="outline"
+          size="20"
+          color="var(--common-text-color)"
+        />
         文章分类
       </div>
       <CategoryList />
     </div>
     <div class="card tag-card">
       <div class="tag-card-title">
-        <tag-one theme="outline" size="20" color="#303133" />热门标签
+        <tag-one
+          theme="outline"
+          size="20"
+          color="var(--common-text-color)"
+        />热门标签
       </div>
       <TagList />
     </div>
@@ -28,6 +36,10 @@ import { TagOne, FolderOpen } from '@icon-park/vue-next';
 
 <style scoped lang="scss">
 @import '~@/styles/_variables.scss';
+
+.home-right {
+  color: var(--common-text-color);
+}
 
 .category-card {
   padding-left: 0;

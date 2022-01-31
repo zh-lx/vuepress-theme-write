@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePageFrontmatter } from '@vuepress/client';
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import type { DefaultThemePageFrontmatter } from '@/types';
 import NavbarItems from '@/components/navbar/NavbarItems.vue';
@@ -9,9 +9,14 @@ import Sidebar from '@/components/sidebar/index.vue';
 import AuthorCard from '@/components/home/AuthorCard.vue';
 import CategoryList from '@/components/category-list/index.vue';
 import TagList from '@/components/tag-list/index.vue';
-import { useSidebarItems, useThemeLocaleData } from '@/composables';
+import {
+  useDarkMode,
+  useSidebarItems,
+  useThemeLocaleData,
+} from '@/composables';
 import { setMode } from '@/utils/setMode';
 import { FolderOpen, TagOne } from '@icon-park/vue-next';
+const isDarkMode = useDarkMode();
 
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>();
 const themeLocale = useThemeLocaleData();
@@ -85,6 +90,16 @@ onMounted(() => {
 onUnmounted(() => {
   unregisterRouterHook();
 });
+
+watch(
+  () => router,
+  () => {
+    setMode(isDarkMode.value ? 'darkMode' : 'lightMode');
+  },
+  {
+    deep: true,
+  }
+);
 </script>
 
 <template>

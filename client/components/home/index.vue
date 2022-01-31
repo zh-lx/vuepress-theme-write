@@ -34,13 +34,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { usePageFrontmatter, useSiteLocaleData } from '@vuepress/client';
-import { usePageList } from '@/composables';
+import { usePageList, useDarkMode } from '@/composables';
 import BlogList from '@/components/blog-list/index.vue';
 import { DEFAULT_HOME_INFO, HOME_BG_ID } from '@/constants/global';
 import HomeRight from './HomeRight.vue';
 import SiteInfo from 'HomeFooter';
 
-const { backgroundImage, title, description } = {
+const { backgroundImage, title, description, backgroundImageDark } = {
   ...DEFAULT_HOME_INFO,
   ...SITE_INFO,
 };
@@ -48,6 +48,7 @@ const { backgroundImage, title, description } = {
 const blogs = ref([]);
 const frontmatter = usePageFrontmatter();
 const siteLocale = useSiteLocaleData();
+const isDarkMode = useDarkMode();
 
 // 主页标题
 const heroText = computed(() => {
@@ -61,7 +62,10 @@ const heroText = computed(() => {
 
 // 背景图片
 const homeBgImage = computed(() => {
-  return frontmatter.value.bgImage || backgroundImage;
+  return (
+    frontmatter.value.bgImage ||
+    (isDarkMode.value ? backgroundImageDark : backgroundImage)
+  );
 });
 
 // 介绍
@@ -105,6 +109,7 @@ usePageList().then((pageList) => {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: var(--hero-bg-color);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

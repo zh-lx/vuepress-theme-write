@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { useDarkMode, useThemeLocaleData } from '@/composables';
+import { setMode } from '@/utils/setMode';
 
 const themeLocale = useThemeLocaleData();
 const isDarkMode = useDarkMode();
 
 const toggleDarkMode = (): void => {
   isDarkMode.value = !isDarkMode.value;
+  setMode(isDarkMode.value ? 'darkMode' : 'lightMode');
 };
 </script>
 

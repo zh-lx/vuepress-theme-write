@@ -105,7 +105,9 @@ const contributors = useContributors();
     </div>
 
     <div v-if="lastUpdated" class="meta-item last-updated">
-      <span class="meta-item-label">{{ themeLocale.lastUpdatedText }}: </span>
+      <span class="meta-item-label"
+        >{{ themeLocale.lastUpdatedText || '更新时间' }}:
+      </span>
       <ClientOnly>
         <span class="meta-item-info">{{ lastUpdated }}</span>
       </ClientOnly>
@@ -115,7 +117,9 @@ const contributors = useContributors();
       v-if="contributors && contributors.length"
       class="meta-item contributors"
     >
-      <span class="meta-item-label">{{ themeLocale.contributorsText }}: </span>
+      <span class="meta-item-label"
+        >{{ themeLocale.contributorsText || '作者' }}:
+      </span>
       <span class="meta-item-info">
         <template v-for="(contributor, index) in contributors" :key="index">
           <span class="contributor" :title="`email: ${contributor.email}`">

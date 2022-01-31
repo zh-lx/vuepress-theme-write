@@ -106,6 +106,7 @@ const title = computed(() => {
       font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
         Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
       font-weight: bold;
+      color: var(--main-text-color);
     }
 
     .blog-git-info {
