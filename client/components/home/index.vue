@@ -5,8 +5,8 @@
   >
     <div
       class="hero"
-      :id="containerId"
-      :style="{ backgroundImage: `url(${backgroundImage})` }"
+      :id="HOME_BG_ID"
+      :style="{ backgroundImage: `url(${homeBgImage})` }"
     >
       <h1 v-if="heroText" id="main-title">
         {{ heroText }}
@@ -36,11 +36,14 @@ import { computed, ref } from 'vue';
 import { usePageFrontmatter, useSiteLocaleData } from '@vuepress/client';
 import { usePageList } from '@/composables';
 import BlogList from '@/components/blog-list/index.vue';
-import { HOME_BG_IMAGE, DEFAULT_HOME_INFO } from '@/constants/global';
+import { DEFAULT_HOME_INFO, HOME_BG_ID } from '@/constants/global';
 import HomeRight from './HomeRight.vue';
-import SiteInfo from './SiteInfo.vue';
+import SiteInfo from 'HomeFooter';
 
-const { containerId, backgroundImage } = { ...DEFAULT_HOME_INFO, ...HOME_INFO };
+const { backgroundImage, title, description } = {
+  ...DEFAULT_HOME_INFO,
+  ...SITE_INFO,
+};
 
 const blogs = ref([]);
 const frontmatter = usePageFrontmatter();
@@ -51,12 +54,14 @@ const heroText = computed(() => {
   if (frontmatter.value.heroText === null) {
     return null;
   }
-  return frontmatter.value.heroText || siteLocale.value.title || 'Hello';
+  return (
+    frontmatter.value.heroText || title || siteLocale.value.title || 'Hello'
+  );
 });
 
 // 背景图片
 const homeBgImage = computed(() => {
-  return frontmatter.value.bgImage || HOME_BG_IMAGE;
+  return frontmatter.value.bgImage || backgroundImage;
 });
 
 // 介绍
@@ -66,6 +71,7 @@ const tagline = computed(() => {
   }
   return (
     frontmatter.value.tagline ||
+    description ||
     siteLocale.value.description ||
     'Welcome to your VuePress site'
   );
@@ -104,7 +110,7 @@ usePageList().then((pageList) => {
     background-repeat: no-repeat;
 
     #main-title {
-      color: var(--reverse-text-color);
+      color: var(--main-text-color);
       font-weight: 600;
       font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
         Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -119,7 +125,7 @@ usePageList().then((pageList) => {
     .description {
       max-width: 500px;
       font-size: 22px;
-      color: var(--reverse-text-color);
+      color: var(--common-text-color);
     }
   }
 

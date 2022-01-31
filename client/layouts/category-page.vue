@@ -53,11 +53,6 @@ const blogsToShow = computed(() => {
     }
   }
 }
-/* @media (max-width: $MQMobile) {
-  :deep(.sidebar) {
-    transform: translateX(0);
-  }
-} */
 @media (max-width: $MQMobile) {
   .main-container {
     .main-content {

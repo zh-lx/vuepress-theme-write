@@ -27,83 +27,103 @@ export interface DefaultThemeOptions
   themePlugins?: DefaultThemePluginsOptions;
 }
 
-assignDefaultLocaleOptions(themeConfig);
-
 createPages(path.resolve(process.cwd(), './docs'));
 
 const VuePressTheme: Theme<DefaultThemeOptions> = (
   { themePlugins = {}, ...localeOptions },
   app
-) => ({
-  name: '@vuepress/theme-writing',
-  layouts: path.resolve(__dirname, './client/layouts'),
-  clientAppEnhanceFiles: path.resolve(
-    __dirname,
-    './client/clientAppEnhance.ts'
-  ),
-  clientAppSetupFiles: path.resolve(__dirname, './client/clientAppSetup.ts'),
-  extendsPage: (page) => {
-    // save relative file path into page data to generate edit link
-    (page.data as any).filePathRelative = page.filePathRelative;
-    // save title into route meta to generate navbar and sidebar
-    page.routeMeta.title = page.title;
-  },
-  alias: {
-    '@': path.resolve(__dirname, './client'),
-  },
-  plugins: [
-    [
-      '@vuepress/active-header-links',
-      resolveActiveHeaderLinksPluginOptions(themePlugins),
-    ],
-    ['@vuepress/back-to-top'],
-    [
-      '@vuepress/container',
-      resolveContainerPluginOptions(themePlugins, themeConfig, 'tip'),
-    ],
-    [
-      '@vuepress/container',
-      resolveContainerPluginOptions(themePlugins, themeConfig, 'warning'),
-    ],
-    [
-      '@vuepress/container',
-      resolveContainerPluginOptions(themePlugins, themeConfig, 'danger'),
-    ],
-    [
-      '@vuepress/container',
-      resolveContainerPluginOptionsForDetails(themePlugins),
-    ],
-    [
-      '@vuepress/container',
-      resolveContainerPluginOptionsForCodeGroup(themePlugins),
-    ],
-    [
-      '@vuepress/container',
-      resolveContainerPluginOptionsForCodeGroupItem(themePlugins),
-    ],
-    ['@vuepress/git', resolveGitPluginOptions(themePlugins, themeConfig)],
-    ['@vuepress/external-link-icon', themePlugins.externalLinkIcon !== false],
-    ['@vuepress/medium-zoom', resolveMediumZoomPluginOptions(themePlugins)],
-    ['@vuepress/nprogress'],
-    ['@vuepress/palette', { preset: 'sass' }],
-    ['@vuepress/prismjs'],
-    [
-      '@vuepress/theme-data',
+) => {
+  if (app.options.bundler.endsWith('vite')) {
+    // eslint-disable-next-line import/no-extraneous-dependencies
+    app.options.bundlerConfig.viteOptions = require('vite').mergeConfig(
+      app.options.bundlerConfig.viteOptions,
       {
-        themeData: themeConfig,
-      },
-    ],
-    [
-      '@vuepress/plugin-search',
-      {
-        locales: {
-          '/': {
-            placeholder: 'Search',
+        css: {
+          preprocessorOptions: {
+            scss: { charset: false },
           },
         },
-      },
+      }
+    );
+  }
+
+  assignDefaultLocaleOptions({ ...themeConfig, ...localeOptions });
+
+  return {
+    name: '@vuepress/theme-writing',
+    layouts: path.resolve(__dirname, './client/layouts'),
+    clientAppEnhanceFiles: path.resolve(
+      __dirname,
+      './client/clientAppEnhance.ts'
+    ),
+    clientAppSetupFiles: path.resolve(__dirname, './client/clientAppSetup.ts'),
+    extendsPage: (page) => {
+      // save relative file path into page data to generate edit link
+      (page.data as any).filePathRelative = page.filePathRelative;
+      // save title into route meta to generate navbar and sidebar
+      page.routeMeta.title = page.title;
+    },
+    alias: {
+      '@': path.resolve(__dirname, './client'),
+      HomeFooter: path.resolve(
+        __dirname,
+        './client/components/home/HomeRooter.vue'
+      ),
+    },
+    plugins: [
+      [
+        '@vuepress/active-header-links',
+        resolveActiveHeaderLinksPluginOptions(themePlugins),
+      ],
+      ['@vuepress/back-to-top'],
+      [
+        '@vuepress/container',
+        resolveContainerPluginOptions(themePlugins, themeConfig, 'tip'),
+      ],
+      [
+        '@vuepress/container',
+        resolveContainerPluginOptions(themePlugins, themeConfig, 'warning'),
+      ],
+      [
+        '@vuepress/container',
+        resolveContainerPluginOptions(themePlugins, themeConfig, 'danger'),
+      ],
+      [
+        '@vuepress/container',
+        resolveContainerPluginOptionsForDetails(themePlugins),
+      ],
+      [
+        '@vuepress/container',
+        resolveContainerPluginOptionsForCodeGroup(themePlugins),
+      ],
+      [
+        '@vuepress/container',
+        resolveContainerPluginOptionsForCodeGroupItem(themePlugins),
+      ],
+      ['@vuepress/git', resolveGitPluginOptions(themePlugins, themeConfig)],
+      ['@vuepress/external-link-icon', themePlugins.externalLinkIcon !== false],
+      ['@vuepress/medium-zoom', resolveMediumZoomPluginOptions(themePlugins)],
+      ['@vuepress/nprogress'],
+      ['@vuepress/palette', { preset: 'sass' }],
+      ['@vuepress/prismjs'],
+      [
+        '@vuepress/theme-data',
+        {
+          themeData: themeConfig,
+        },
+      ],
+      [
+        '@vuepress/plugin-search',
+        {
+          locales: {
+            '/': {
+              placeholder: 'Search',
+            },
+          },
+        },
+      ],
     ],
-  ],
-});
+  };
+};
 
 module.exports = VuePressTheme;

@@ -144,7 +144,6 @@ const state = reactive({
 const blogsToShow = computed(() => {
   const start = (state.pagination.current - 1) * PageSize;
   const end = start + PageSize;
-  console.log(props.blogs);
   return props.blogs.slice(start, end);
 });
 

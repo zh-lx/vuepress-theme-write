@@ -5,9 +5,10 @@ declare module '*.vue' {
 }
 declare module '*.svg';
 declare var __VUEPRESS_DEV__: boolean;
-declare const HOME_INFO: {
-  containerId: string;
+declare const SITE_INFO: {
   backgroundImage: string;
   title: string;
   description: string;
+  type: 'blog' | 'docs';
 };
+declare module 'HomeFooter';

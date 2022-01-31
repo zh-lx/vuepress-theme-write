@@ -43,6 +43,10 @@ const blogsToShow = computed(() => {
 
   .main-content {
     padding: 22px 22px 22px calc($sidebarWidth + 22px);
+    .blogs-list {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 
