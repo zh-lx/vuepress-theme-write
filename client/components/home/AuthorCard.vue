@@ -96,12 +96,12 @@ const frontmatter = usePageFrontmatter<DefaultThemeHomePageFrontmatter>();
 
 // 作者信息
 const author = computed(() => {
-  return frontmatter.value.author || DEFAULT_AUTHOR;
+  return { ...frontmatter.value.author, ...DEFAULT_AUTHOR, ...AUTHOR_INFO };
 });
 
 // 联系方式
 const contact = computed(() => {
-  return frontmatter.value.contact;
+  return { ...frontmatter.value.contact, ...CONTACT_INFO };
 });
 
 // 点击博客时打开博客地址

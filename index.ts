@@ -5,7 +5,7 @@ import type {
   DefaultThemePluginsOptions,
 } from '@/types';
 import { createPages } from './client/utils/createPage';
-const themeConfig = require('./themeConfig');
+const defaultThemeConfig = require('./themeConfig');
 const {
   assignDefaultLocaleOptions,
   resolveActiveHeaderLinksPluginOptions,
@@ -47,7 +47,10 @@ const VuePressTheme: Theme<DefaultThemeOptions> = (
     );
   }
 
-  assignDefaultLocaleOptions({ ...themeConfig, ...localeOptions });
+  const themeConfig = { ...defaultThemeConfig, ...localeOptions };
+
+  assignDefaultLocaleOptions(themeConfig);
+  console.log(localeOptions.alias);
 
   return {
     name: '@vuepress/theme-writing',
@@ -63,12 +66,14 @@ const VuePressTheme: Theme<DefaultThemeOptions> = (
       // save title into route meta to generate navbar and sidebar
       page.routeMeta.title = page.title;
     },
+
     alias: {
       '@': path.resolve(__dirname, './client'),
       HomeFooter: path.resolve(
         __dirname,
         './client/components/home/HomeRooter.vue'
       ),
+      ...localeOptions?.alias,
     },
     plugins: [
       [

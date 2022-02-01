@@ -7,6 +7,6 @@ const themeLocale = useThemeLocaleData();
 
 <template>
   <RawExternalLinkIcon>
-    <span class="sr-only">{{ themeLocale.openInNewWindow }}</span>
+    <!-- <span class="sr-only">{{ themeLocale.openInNewWindow }}</span> -->
   </RawExternalLinkIcon>
 </template>

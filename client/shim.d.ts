@@ -5,6 +5,8 @@ declare module '*.vue' {
 }
 declare module '*.svg';
 declare var __VUEPRESS_DEV__: boolean;
+declare module 'HomeFooter';
+
 declare const SITE_INFO: {
   backgroundImage: string;
   backgroundImageDark: string;
@@ -12,4 +14,19 @@ declare const SITE_INFO: {
   description: string;
   type: 'blog' | 'docs';
 };
-declare module 'HomeFooter';
+
+declare const AUTHOR_INFO: {
+  name: string;
+  avatar: string;
+  introduction: string;
+};
+
+declare const CONTACT_INFO: {
+  juejin: string;
+  github: string;
+  qq: string;
+  wechat: string;
+  email: string;
+  csdn: string;
+  zhihu: string;
+};

@@ -27,7 +27,7 @@
       <div v-else class="footer" v-text="footer" />
     </template>
 
-    <SiteInfo />
+    <HomeFooter />
   </main>
 </template>
 
@@ -38,7 +38,7 @@ import { usePageList, useDarkMode } from '@/composables';
 import BlogList from '@/components/blog-list/index.vue';
 import { DEFAULT_HOME_INFO, HOME_BG_ID } from '@/constants/global';
 import HomeRight from './HomeRight.vue';
-import SiteInfo from 'HomeFooter';
+import HomeFooter from 'HomeFooter';
 
 const { backgroundImage, title, description, backgroundImageDark } = {
   ...DEFAULT_HOME_INFO,
@@ -52,9 +52,6 @@ const isDarkMode = useDarkMode();
 
 // 主页标题
 const heroText = computed(() => {
-  if (frontmatter.value.heroText === null) {
-    return null;
-  }
   return (
     frontmatter.value.heroText || title || siteLocale.value.title || 'Hello'
   );
