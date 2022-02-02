@@ -60,6 +60,9 @@ const changeCataloguesVisibility = () => {
   display: block;
 }
 
+.theme-default-content {
+  color: var(--main-text-color);
+}
 .page-container {
   width: 100%;
   padding-right: calc($catalogueWidth + 20px);

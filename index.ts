@@ -50,7 +50,6 @@ const VuePressTheme: Theme<DefaultThemeOptions> = (
   const themeConfig = { ...defaultThemeConfig, ...localeOptions };
 
   assignDefaultLocaleOptions(themeConfig);
-  console.log(localeOptions.alias);
 
   return {
     name: '@vuepress/theme-writing',

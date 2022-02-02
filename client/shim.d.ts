@@ -30,3 +30,8 @@ declare const CONTACT_INFO: {
   csdn: string;
   zhihu: string;
 };
+
+declare const HOME_ITEMS: {
+  title: string;
+  text: string;
+}[];

@@ -15,11 +15,26 @@
       <p v-if="tagline" class="description">
         {{ tagline }}
       </p>
+
+      <button v-if="isDocs" class="start-btn">开始</button>
     </div>
 
-    <div class="main-content">
+    <div class="main-content" v-if="!isDocs">
       <div class="main-content-left"><BlogList :blogs="blogs" /></div>
       <div class="main-content-right"><HomeRight /></div>
+    </div>
+
+    <div v-if="isDocs" class="home-items">
+      <HomeItem
+        v-for="(item, index) in [
+          ...homeItems,
+          placeholderItem,
+          placeholderItem,
+        ]"
+        :item="item"
+        :index="index"
+        key="index"
+      />
     </div>
 
     <template v-if="footer">
@@ -39,8 +54,11 @@ import BlogList from '@/components/blog-list/index.vue';
 import { DEFAULT_HOME_INFO, HOME_BG_ID } from '@/constants/global';
 import HomeRight from './HomeRight.vue';
 import HomeFooter from 'HomeFooter';
+import HomeItem from './HomeItem.vue';
 
-const { backgroundImage, title, description, backgroundImageDark } = {
+const placeholderItem = {} as { title: string; text: string };
+
+const { backgroundImage, title, description, backgroundImageDark, type } = {
   ...DEFAULT_HOME_INFO,
   ...SITE_INFO,
 };
@@ -77,6 +95,10 @@ const tagline = computed(() => {
     'Welcome to your VuePress site'
   );
 });
+
+const isDocs = computed(() => type === 'docs');
+
+const homeItems = computed(() => HOME_ITEMS);
 
 const footer = computed(() => frontmatter.value.footer);
 
@@ -117,17 +139,34 @@ usePageList().then((pageList) => {
       font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
         Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
       font-size: 42px;
+      margin: 0 auto;
     }
 
     h1,
     .description {
-      margin: 24px auto;
+      margin: 24px auto 0;
     }
 
     .description {
       max-width: 500px;
       font-size: 22px;
       color: var(--common-text-color);
+    }
+
+    .start-btn {
+      padding: 0 28px;
+      line-height: 28px;
+      min-width: 180px;
+      height: 44px;
+      border: none;
+      background-color: var(--theme-color);
+      color: var(--reverse-text-color);
+      border-radius: 22px;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      cursor: pointer;
+      margin-top: 28px;
     }
   }
 
@@ -144,6 +183,12 @@ usePageList().then((pageList) => {
       width: 240px;
       margin-left: 22px;
     }
+  }
+
+  .home-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .footer {

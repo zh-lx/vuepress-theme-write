@@ -31,6 +31,7 @@ const isTagPage = computed(() => {
 const isHomePage = computed(() => {
   return router.currentRoute.value.path === '/';
 });
+const isDocs = computed(() => SITE_INFO?.type === 'docs');
 
 // 是否展示 sidebar
 const shouldShowSidebar = computed(
@@ -131,12 +132,15 @@ watch(
           <NavbarItems />
         </template>
         <template #author>
-          <div class="authorInfo" v-if="isHomePage">
+          <div class="authorInfo" v-if="!isDocs && isHomePage">
             <AuthorCard />
           </div>
         </template>
         <template #category>
-          <div class="category-list" v-if="isHomePage || isCategoryPage">
+          <div
+            class="category-list"
+            v-if="!isDocs && (isHomePage || isCategoryPage)"
+          >
             <div class="category-card-title">
               <folder-open theme="outline" size="20" color="#303133" />文章分类
             </div>
@@ -144,7 +148,7 @@ watch(
           </div>
         </template>
         <template #tag>
-          <div class="tag-list" v-if="isHomePage || isTagPage">
+          <div class="tag-list" v-if="!isDocs && (isHomePage || isTagPage)">
             <div class="tag-card-title">
               <tag-one theme="outline" size="20" color="#303133" />热门标签
             </div>
