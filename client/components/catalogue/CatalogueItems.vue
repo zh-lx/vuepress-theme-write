@@ -10,24 +10,35 @@ const route = useRouter();
 watch(
   () => route,
   (val) => {
-    nextTick(() => {
-      const containerBound = document
-        .querySelector('#catalogues-aside')
-        .getBoundingClientRect();
-      const target = Array.from(document.querySelectorAll('a.active'))?.filter(
-        (a) => {
-          return decodeURIComponent((a as HTMLLinkElement).href).endsWith(
-            decodeURIComponent(val.currentRoute?.value?.fullPath)
-          );
+    watch(
+      () => route,
+      (val) => {
+        console.log(val.currentRoute.value);
+        const activeSidebarItem = document.querySelector(
+          `[href="${val.currentRoute.value.path}${val.currentRoute.value.hash}"]`
+        );
+        const sidebar = document.querySelector('#catalogues-aside');
+        if (activeSidebarItem && sidebar) {
+          const activeSidebarItemTop =
+            activeSidebarItem.getBoundingClientRect().top;
+          const activeSidebarItemHeight =
+            activeSidebarItem.getBoundingClientRect().height;
+          const sidebarTop = sidebar.getBoundingClientRect().top;
+          const sidebarHeight = sidebar.getBoundingClientRect().height;
+          if (activeSidebarItemTop < sidebarTop) {
+            activeSidebarItem.scrollIntoView(true);
+          } else if (
+            activeSidebarItemTop + activeSidebarItemHeight >
+            sidebarTop + sidebarHeight
+          ) {
+            activeSidebarItem.scrollIntoView(false);
+          }
         }
-      )?.[0];
-      const targetBound = target?.getBoundingClientRect();
-      if (targetBound.top < containerBound.top) {
-        target.scrollIntoView(true);
-      } else if (targetBound.top > containerBound.top + containerBound.height) {
-        target.scrollIntoView(false);
+      },
+      {
+        deep: true,
       }
-    });
+    );
   },
   {
     deep: true,
