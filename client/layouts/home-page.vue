@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Loading :visible="showLoading" />
+    <Loading :visible="!imgLoaded || !listLoaded" />
     <LayoutContainer>
       <Home />
     </LayoutContainer>
@@ -9,10 +9,17 @@
 
 <script setup lang="ts">
 import { onMounted, reactive, toRefs } from 'vue';
-import { HOME_BG_ID } from '@/constants/global';
+import { DEFAULT_HOME_INFO, HOME_BG_ID } from '@/constants/global';
+import { usePageList } from '@/composables';
+
+const { type } = {
+  ...DEFAULT_HOME_INFO,
+  ...SITE_INFO,
+};
 
 const state = reactive({
-  showLoading: true,
+  imgLoaded: true,
+  listLoaded: type === 'docs',
 });
 
 onMounted(() => {
@@ -27,11 +34,15 @@ const onBgImgLoaded = () => {
   const img = new Image();
   img.src = src;
   img.onload = function () {
-    state.showLoading = false;
+    state.imgLoaded = true;
   };
 };
 
-const { showLoading } = toRefs(state);
+usePageList().then(() => {
+  state.listLoaded = true;
+});
+
+const { imgLoaded, listLoaded } = toRefs(state);
 </script>
 <style lang="scss" scoped>
 @import '~@/styles/_variables.scss';
