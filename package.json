@@ -1,6 +1,6 @@
 {
-  "name": "@vuepress/theme-write",
-  "version": "0.0.1",
+  "name": "vuepress-theme-write",
+  "version": "0.0.6",
   "description": "A theme of vuepress2, which can help you focus on writing through simple configuration.",
   "main": "index.ts",
   "repository": "https://github.com/zh-lx/vuepress-theme-writing.git",

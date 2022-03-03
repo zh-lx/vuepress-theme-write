@@ -16,7 +16,9 @@
         {{ tagline }}
       </p>
 
-      <button v-if="isDocs" class="start-btn">开始</button>
+      <button v-if="isDocs" class="start-btn" @click="handleClickStart">
+        {{ start || '开始' }}
+      </button>
     </div>
 
     <div class="main-content" v-if="!isDocs">
@@ -48,6 +50,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { usePageFrontmatter, useSiteLocaleData } from '@vuepress/client';
 import { usePageList, useDarkMode } from '@/composables';
 import BlogList from '@/components/blog-list/index.vue';
@@ -58,7 +61,15 @@ import HomeItem from './HomeItem.vue';
 
 const placeholderItem = {} as { title: string; text: string };
 
-const { backgroundImage, title, description, backgroundImageDark, type } = {
+const {
+  backgroundImage,
+  title,
+  description,
+  backgroundImageDark,
+  type,
+  start,
+  startPath,
+} = {
   ...DEFAULT_HOME_INFO,
   ...SITE_INFO,
 };
@@ -95,6 +106,12 @@ const tagline = computed(() => {
     'Welcome to your VuePress site'
   );
 });
+
+const router = useRouter();
+
+const handleClickStart = () => {
+  router.push(startPath);
+};
 
 const isDocs = computed(() => type === 'docs');
 

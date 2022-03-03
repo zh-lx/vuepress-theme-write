@@ -13,6 +13,8 @@ declare const SITE_INFO: {
   title: string;
   description: string;
   type: 'blog' | 'docs';
+  start: string;
+  startPath: string;
 };
 
 declare const AUTHOR_INFO: {

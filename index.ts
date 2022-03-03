@@ -27,8 +27,6 @@ export interface DefaultThemeOptions
   themePlugins?: DefaultThemePluginsOptions;
 }
 
-createPages(path.resolve(process.cwd(), './docs'));
-
 const VuePressTheme: Theme<DefaultThemeOptions> = (
   { themePlugins = {}, ...localeOptions },
   app
@@ -48,6 +46,10 @@ const VuePressTheme: Theme<DefaultThemeOptions> = (
   }
 
   const themeConfig = { ...defaultThemeConfig, ...localeOptions };
+
+  if (themeConfig.type !== 'docs') {
+    createPages(path.resolve(process.cwd(), themeConfig.docsDir || './docs'));
+  }
 
   assignDefaultLocaleOptions(themeConfig);
 
