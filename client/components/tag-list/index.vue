@@ -10,9 +10,7 @@
         background: `${
           isTagPage ? 'var(--default-tag-bgc)' : getRandomColor()
         }`,
-        color: `${
-          isTagPage ? 'var(--common-text-color)' : 'var(--reverse-text-color)'
-        }`,
+        color: `${isTagPage ? 'var(--color-text-8)' : 'var(--color-text-0)'}`,
       }"
       @click="handleClickTag(tag.name)"
     >
@@ -62,14 +60,14 @@ const handleClickTag: (tag: string) => void = (tag) => {
     &:hover {
       transform: scale(1.1);
     }
-    color: var(--reverse-text-color);
+    color: var(--color-text-0);
     &:last-of-type {
       margin-right: 0;
     }
   }
   .selected-tag {
-    background-color: var(--theme-color) !important;
-    color: var(--reverse-text-color) !important;
+    background-color: var(--blue-6) !important;
+    color: var(--color-text-0) !important;
     &:hover {
       transform: scale(1);
     }

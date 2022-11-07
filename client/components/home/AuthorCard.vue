@@ -125,7 +125,7 @@ const openUrlWindow: (url: string) => void = (url) => {
     font-weight: 600;
     margin-top: 14px;
     font-size: 20px;
-    color: var(--main-text-color);
+    color: var(--color-text-10);
   }
   .author-introduction {
     margin-top: 14px;

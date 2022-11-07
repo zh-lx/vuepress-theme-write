@@ -68,7 +68,7 @@ const NavbarBrandLogo: FunctionalComponent = () => {
 .site-name {
   font-size: 18px;
   font-weight: 600;
-  color: var(--main-text-color);
+  color: var(--color-text-10);
   position: relative;
 }
 

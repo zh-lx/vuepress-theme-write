@@ -121,7 +121,7 @@ $navbar-horizontal-padding: 22px;
 }
 
 .navbar {
-  box-shadow: var(--common-box-shadow);
+  box-shadow: var(--shadow-2);
 }
 .search-box {
   margin-left: 20px;

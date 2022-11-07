@@ -1,9 +1,9 @@
 .card {
   background: var(--common-bgc);
-  box-shadow: var(--common-box-shadow);
+  box-shadow: var(--shadow-2);
   padding: 16px 14px;
   &:hover {
-    box-shadow: var(--hover-box-shadow);
+    box-shadow: var(--shadow-4);
   }
   transition: all 0.2s linear;
 }

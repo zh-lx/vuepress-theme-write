@@ -85,7 +85,8 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
                 :item="(child as NavbarItem)"
                 @focusout="
                   isLastItemOfArray(child, item.children) &&
-                    (child as NavGroup<ResolvedNavbarItem>).children.length === 0 &&
+                    (child as NavGroup<ResolvedNavbarItem>).children.length ===
+                      0 &&
                     (open = false)
                 "
               />
@@ -102,7 +103,10 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
                 <AutoLink
                   :item="(grandchild as NavbarItem)"
                   @focusout="
-                    isLastItemOfArray(grandchild, (child as NavGroup<ResolvedNavbarItem>).children) &&
+                    isLastItemOfArray(
+                      grandchild,
+                      (child as NavGroup<ResolvedNavbarItem>).children
+                    ) &&
                       isLastItemOfArray(child, item.children) &&
                       (open = false)
                   "
@@ -207,20 +211,20 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
         font-weight: 400;
         margin-bottom: 0;
         padding: 0 22px 0 18px;
-        color: var(--common-text-color);
+        color: var(--color-text-8);
 
         &:hover {
-          color: var(--theme-color);
+          color: var(--blue-6);
         }
 
         &.router-link-active {
-          color: var(--theme-color);
+          color: var(--blue-6);
 
           &::after {
             content: '';
             width: 0;
             height: 0;
-            border-left: 5px solid var(--theme-color);
+            border-left: 5px solid var(--blue-6);
             border-top: 3px solid transparent;
             border-bottom: 3px solid transparent;
             position: absolute;
@@ -266,7 +270,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
 
         .navbar-dropdown-subtitle,
         & > a {
-          color: var(--common-text-color);
+          color: var(--color-text-8);
           font-size: 15px;
           line-height: 28px;
         }
@@ -305,7 +309,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
       top: 100%;
       right: 0;
       padding: 8px 0;
-      border: var(--common-border);
+      border: var(--color-border-2);
       background-color: var(--common-bgc);
       border-radius: 4px;
       text-align: left;

@@ -50,7 +50,7 @@ defineProps({
   }
   .item-title {
     font-size: 16px;
-    color: var(--main-text-color);
+    color: var(--color-text-10);
     font-weight: 600;
     margin-top: 12px;
   }

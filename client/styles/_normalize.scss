@@ -14,23 +14,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 15px;
-  color: var(--common-text-color);
+  color: var(--color-text-8);
 }
 
 input {
   background-color: var(--input-bgc);
-  color: var(--common-text-color);
+  color: var(--color-text-8);
 }
 
 a {
   font-weight: 500;
-  color: var(--theme-color);
+  color: var(--blue-6);
   text-decoration: none;
 }
 
 p a code {
   font-weight: 400;
-  color: var(--theme-color);
+  color: var(--blue-6);
 }
 
 kbd {
@@ -84,7 +84,7 @@ h1 {
 h2 {
   padding-bottom: 12px;
   font-size: 22px;
-  border-bottom: var(--common-border);
+  border-bottom: var(--color-border-2);
 }
 
 h3 {
@@ -135,7 +135,7 @@ p {
 
 hr {
   border: 0;
-  border-top: var(--common-border);
+  border-top: var(--color-border-2);
 }
 
 table {

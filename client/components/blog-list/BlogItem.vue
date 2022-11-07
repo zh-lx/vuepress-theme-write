@@ -106,13 +106,13 @@ const title = computed(() => {
       font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
         Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
       font-weight: bold;
-      color: var(--main-text-color);
+      color: var(--color-text-10);
     }
 
     .blog-git-info {
       display: flex;
       align-items: center;
-      color: var(--common-text-color);
+      color: var(--color-text-8);
       line-height: 14px;
       height: 14px;
       font-size: 14px;
@@ -123,12 +123,12 @@ const title = computed(() => {
       .blog-time,
       .blog-tag {
         padding: 0 8px;
-        border-left: 1px solid var(--placeholder-text-color);
+        border-left: 1px solid var(--color-text-4);
       }
     }
 
     .blog-desc {
-      color: var(--minor-text-color);
+      color: var(--color-text-6);
       line-height: 22px;
       font-size: 14px;
       margin-top: 14px;

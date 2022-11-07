@@ -45,11 +45,11 @@ const handleClickCategory = (category) => {
   padding: 4px 14px;
   &:hover {
     background-color: var(--selected-bgc);
-    color: var(--theme-color);
+    color: var(--blue-6);
   }
   .category-count {
-    background-color: var(--theme-color);
-    color: var(--reverse-text-color);
+    background-color: var(--blue-6);
+    color: var(--color-text-0);
     font-size: 12px;
     text-align: center;
     height: 18px;
@@ -60,7 +60,7 @@ const handleClickCategory = (category) => {
 }
 .selected-category {
   background-color: var(--selected-bgc);
-  border-left: 2px solid var(--theme-color);
-  color: var(--theme-color);
+  border-left: 2px solid var(--blue-6);
+  color: var(--blue-6);
 }
 </style>

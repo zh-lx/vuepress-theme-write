@@ -71,7 +71,7 @@ const toggleDarkMode = (): void => {
   margin-left: 14px;
   border: 0;
   background: none;
-  color: var(--common-text-color);
+  color: var(--color-text-8);
   opacity: 0.8;
   cursor: pointer;
   &:hover {

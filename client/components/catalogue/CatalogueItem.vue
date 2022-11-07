@@ -75,11 +75,11 @@ if (item.value.collapsible) {
   line-height: 1;
 }
 .catalogue-link-item:not(.sidebar-heading) {
-  border-left: var(--common-border);
+  border-left: var(--color-border-2);
   display: block;
 }
 .catalogue-link-item.active {
-  border-left-color: var(--theme-color);
+  border-left-color: var(--blue-6);
   border-left-width: 2px;
   display: block;
 }

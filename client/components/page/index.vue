@@ -61,7 +61,7 @@ const changeCataloguesVisibility = () => {
 }
 
 .theme-default-content {
-  color: var(--main-text-color);
+  color: var(--color-text-10);
 }
 .page-container {
   width: 100%;
@@ -69,7 +69,7 @@ const changeCataloguesVisibility = () => {
   transition: all 0.3s ease;
   .catalogue-toggle {
     background-color: var(--common-bgc);
-    box-shadow: var(--common-box-shadow);
+    box-shadow: var(--shadow-2);
     transition: all 0.3s ease;
     width: 30px;
     height: 30px;

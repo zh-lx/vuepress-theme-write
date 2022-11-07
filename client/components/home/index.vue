@@ -151,7 +151,7 @@ usePageList().then((pageList) => {
     background-repeat: no-repeat;
 
     #main-title {
-      color: var(--main-text-color);
+      color: var(--color-text-10);
       font-weight: 600;
       font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
         Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -167,7 +167,7 @@ usePageList().then((pageList) => {
     .description {
       max-width: 500px;
       font-size: 22px;
-      color: var(--common-text-color);
+      color: var(--color-text-8);
     }
 
     .start-btn {
@@ -176,8 +176,8 @@ usePageList().then((pageList) => {
       min-width: 180px;
       height: 44px;
       border: none;
-      background-color: var(--theme-color);
-      color: var(--reverse-text-color);
+      background-color: var(--blue-6);
+      color: var(--color-text-0);
       border-radius: 22px;
       font-size: 16px;
       font-weight: 500;
@@ -210,9 +210,9 @@ usePageList().then((pageList) => {
 
   .footer {
     padding: 36px;
-    border-top: var(--common-border);
+    border-top: var(--color-border-2);
     text-align: center;
-    color: var(--main-text-color);
+    color: var(--color-text-10);
   }
 }
 

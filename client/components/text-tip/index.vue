@@ -31,7 +31,7 @@ const { tip } = toRefs(props);
     top: 100%;
     transform: translate(-50%, 10px);
     font-size: 12px;
-    color: var(--reverse-text-color);
+    color: var(--color-text-0);
     padding: 2px 8px;
     background-color: var(--tooltip-bgc);
     border-radius: 4px;

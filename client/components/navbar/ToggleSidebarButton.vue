@@ -53,7 +53,7 @@ const themeLocale = useThemeLocaleData();
     width: 100%;
     height: 2px;
     border-radius: 2px;
-    background-color: var(--common-text-color);
+    background-color: var(--color-text-8);
     transition: transform 0.3s ease;
 
     &:nth-child(2) {

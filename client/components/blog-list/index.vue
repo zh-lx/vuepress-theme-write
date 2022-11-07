@@ -211,7 +211,7 @@ const { pagination, inputPage } = toRefs(state);
       min-width: 28px;
       padding: 0 8px;
       &:hover {
-        color: var(--theme-color);
+        color: var(--blue-6);
         cursor: pointer;
       }
     }
@@ -242,7 +242,7 @@ const { pagination, inputPage } = toRefs(state);
         outline: none;
         margin: 0 4px;
         text-align: center;
-        border: var(--input-border) !important;
+        border: var(--color-border-1) !important;
         // 去掉number输入框上下按钮
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
@@ -254,10 +254,10 @@ const { pagination, inputPage } = toRefs(state);
       }
     }
     .page-selected {
-      background-color: var(--theme-color);
-      color: var(--reverse-text-color);
+      background-color: var(--blue-6);
+      color: var(--color-text-0);
       &:hover {
-        color: var(--reverse-text-color);
+        color: var(--color-text-0);
       }
     }
   }
@@ -265,7 +265,7 @@ const { pagination, inputPage } = toRefs(state);
   .pre-ellipsisi,
   .next-ellipsisi {
     &:hover {
-      color: var(--common-text-color);
+      color: var(--color-text-8);
       cursor: default;
     }
   }
