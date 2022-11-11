@@ -37,3 +37,7 @@ declare const HOME_ITEMS: {
   title: string;
   text: string;
 }[];
+
+declare const PageControl: {
+  hidePageMeta: boolean;
+};

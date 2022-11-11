@@ -10,6 +10,8 @@ const showCatalogues = ref(false);
 const changeCataloguesVisibility = () => {
   showCatalogues.value = !showCatalogues.value;
 };
+
+const hidePageMeta = PageControl.hidePageMeta;
 </script>
 
 <template>
@@ -21,7 +23,7 @@ const changeCataloguesVisibility = () => {
     >
       <div class="theme-default-content">
         <Content />
-        <PageMeta />
+        <PageMeta v-if="!hidePageMeta" />
         <PageNav />
       </div>
       <div
