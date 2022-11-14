@@ -8,6 +8,8 @@
       :id="HOME_BG_ID"
       :style="{ backgroundImage: `url(${homeBgImage})` }"
     >
+      <img v-if="homeImg" :src="homeImg" alt="" class="home-main-img" />
+
       <h1 v-if="heroText" id="main-title">
         {{ heroText }}
       </h1>
@@ -69,6 +71,7 @@ const {
   type,
   start,
   startPath,
+  homeImg,
 } = {
   ...DEFAULT_HOME_INFO,
   ...SITE_INFO,

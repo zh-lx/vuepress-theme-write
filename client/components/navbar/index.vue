@@ -6,6 +6,7 @@ import NavbarBrand from './NavbarBrand.vue';
 import NavbarItems from './NavbarItems.vue';
 import ToggleDarkModeButton from './ToggleDarkModeButton.vue';
 import ToggleSidebarButton from './ToggleSidebarButton.vue';
+import NavbarExtra from 'NavbarExtra';
 
 defineEmits(['toggle-sidebar']);
 
@@ -70,6 +71,7 @@ function getCssValue(el: HTMLElement | null, property: string): number {
       <slot name="before" />
       <NavbarItems class="can-hide" />
       <slot name="after" />
+      <NavbarExtra />
       <ToggleDarkModeButton v-if="enableDarkMode" />
       <NavbarSearch />
     </div>

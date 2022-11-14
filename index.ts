@@ -72,7 +72,11 @@ const VuePressTheme: Theme<DefaultThemeOptions> = (
       '@': path.resolve(__dirname, './client'),
       HomeFooter: path.resolve(
         __dirname,
-        './client/components/home/HomeRooter.vue'
+        './client/components/placeholder/HomeRooter.vue'
+      ),
+      NavbarExtra: path.resolve(
+        __dirname,
+        './client/components/placeholder/NavbarExtra.vue'
       ),
       ...localeOptions?.alias,
     },

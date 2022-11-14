@@ -6,6 +6,7 @@ declare module '*.vue' {
 declare module '*.svg';
 declare var __VUEPRESS_DEV__: boolean;
 declare module 'HomeFooter';
+declare module 'NavbarExtra';
 
 declare const SITE_INFO: {
   backgroundImage: string;
@@ -15,6 +16,7 @@ declare const SITE_INFO: {
   type: 'blog' | 'docs';
   start: string;
   startPath: string;
+  homeImg: string;
 };
 
 declare const AUTHOR_INFO: {

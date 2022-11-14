@@ -11,7 +11,7 @@ const changeCataloguesVisibility = () => {
   showCatalogues.value = !showCatalogues.value;
 };
 
-const hidePageMeta = PageControl.hidePageMeta;
+const hidePageMeta = window?.PageControl?.hidePageMeta;
 </script>
 
 <template>
