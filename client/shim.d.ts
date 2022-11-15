@@ -17,6 +17,7 @@ declare const SITE_INFO: {
   start: string;
   startPath: string;
   homeImg: string;
+  hidePageMeta: boolean;
 };
 
 declare const AUTHOR_INFO: {
@@ -39,7 +40,3 @@ declare const HOME_ITEMS: {
   title: string;
   text: string;
 }[];
-
-declare const PageControl: {
-  hidePageMeta: boolean;
-};
