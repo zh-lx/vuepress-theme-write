@@ -52,6 +52,7 @@ export const themeMode = {
     '--search-text-color': '#606266',
     '--search-border-color': '#909399',
     '--navbar-height': '50px',
+    '--tip-bg': '#f3f5f7',
   },
   darkMode: {
     // 主题色
@@ -106,5 +107,6 @@ export const themeMode = {
     '--search-text-color': '#ADBAC7',
     '--search-border-color': '#909399',
     '--navbar-height': '50px',
+    '--tip-bg': '#0C0A09',
   },
 };
