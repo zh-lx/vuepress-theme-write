@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, toRefs } from 'vue';
+import { onBeforeMount, onMounted, reactive, toRefs } from 'vue';
 import { DEFAULT_HOME_INFO, HOME_BG_ID } from '@/constants/global';
 import { usePageList } from '@/composables';
 
@@ -20,6 +20,10 @@ const { type } = {
 const state = reactive({
   imgLoaded: true,
   listLoaded: type === 'docs',
+});
+
+onBeforeMount(() => {
+  state.imgLoaded = false;
 });
 
 onMounted(() => {

@@ -4,6 +4,7 @@ import type { PropType } from 'vue';
 interface HomeItem {
   title: string;
   text: string;
+  img: string;
 }
 defineProps({
   item: {
@@ -21,9 +22,12 @@ defineProps({
   <div class="home-item">
     <div v-if="item.title || item.text">
       <img
-        :src="`https://image-1300099782.cos.ap-beijing.myqcloud.com/blog%2Fitem${
-          index + 1
-        }.png`"
+        :src="
+          item.img ||
+          `https://image-1300099782.cos.ap-beijing.myqcloud.com/blog%2Fitem${
+            index + 1
+          }.png`
+        "
         alt="图片"
         class="item-image"
       />

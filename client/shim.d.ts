@@ -4,6 +4,7 @@ declare module '*.vue' {
   export default comp;
 }
 declare module '*.svg';
+declare module '*.jpg';
 declare var __VUEPRESS_DEV__: boolean;
 declare module 'HomeFooter';
 declare module 'NavbarExtra';
@@ -39,4 +40,5 @@ declare const CONTACT_INFO: {
 declare const HOME_ITEMS: {
   title: string;
   text: string;
+  img: string;
 }[];

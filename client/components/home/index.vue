@@ -57,11 +57,13 @@ import { usePageFrontmatter, useSiteLocaleData } from '@vuepress/client';
 import { usePageList, useDarkMode } from '@/composables';
 import BlogList from '@/components/blog-list/index.vue';
 import { DEFAULT_HOME_INFO, HOME_BG_ID } from '@/constants/global';
+import LightBg from '@/assets/light-bg.svg';
+import DarkBg from '@/assets/dark-bg.jpg';
 import HomeRight from './HomeRight.vue';
 import HomeFooter from 'HomeFooter';
 import HomeItem from './HomeItem.vue';
 
-const placeholderItem = {} as { title: string; text: string };
+const placeholderItem = {} as { title: string; text: string; img: string };
 
 const {
   backgroundImage,
@@ -93,7 +95,9 @@ const heroText = computed(() => {
 const homeBgImage = computed(() => {
   return (
     frontmatter.value.bgImage ||
-    (isDarkMode.value ? backgroundImageDark : backgroundImage)
+    (isDarkMode.value
+      ? backgroundImageDark || DarkBg
+      : backgroundImage || LightBg)
   );
 });
 
