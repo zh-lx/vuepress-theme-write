@@ -36,9 +36,10 @@ const isDocs = computed(() => SITE_INFO?.type === 'docs');
 // 是否展示 sidebar
 const shouldShowSidebar = computed(
   () =>
-    sidebarItems.value.length ||
-    router.currentRoute.value.path.startsWith('/page-category/') ||
-    router.currentRoute.value.path.startsWith('/page-tag/')
+    !frontmatter.value.hideSidebar &&
+    (sidebarItems.value.length ||
+      router.currentRoute.value.path.startsWith('/page-category/') ||
+      router.currentRoute.value.path.startsWith('/page-tag/'))
 );
 
 // navbar

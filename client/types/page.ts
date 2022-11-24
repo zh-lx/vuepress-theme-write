@@ -9,6 +9,7 @@ export interface DefaultThemePageFrontmatter {
   home?: boolean;
   navbar?: boolean;
   pageClass?: string;
+  hideSidebar?: boolean;
 }
 
 export interface Author {
