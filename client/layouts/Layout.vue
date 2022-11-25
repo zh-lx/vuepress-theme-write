@@ -1,14 +1,16 @@
 <template>
-  <LayoutContainer>
-    <Page :key="page.path">
-      <template #top>
-        <slot name="page-top" />
-      </template>
-      <template #bottom>
-        <slot name="page-bottom" />
-      </template>
-    </Page>
-  </LayoutContainer>
+  <div>
+    <LayoutContainer>
+      <Page :key="page.path">
+        <template #top>
+          <slot name="page-top" />
+        </template>
+        <template #bottom>
+          <slot name="page-bottom" />
+        </template>
+      </Page>
+    </LayoutContainer>
+  </div>
 </template>
 
 <script lang="ts" setup>

@@ -1,4 +1,5 @@
 <template>
+  <Loading v-show="isLoading" />
   <div class="theme-container">
     <div class="theme-default-content">
       <h1>404</h1>
@@ -13,9 +14,23 @@
 <script setup lang="ts">
 import { useRouteLocale } from '@vuepress/client';
 import { useThemeLocaleData } from '../composables';
+import { onMounted, ref } from 'vue';
 
 const routeLocale = useRouteLocale();
 const themeLocale = useThemeLocaleData();
+const isLoading = ref(true);
+
+const onLoad = (cb: () => void) => {
+  if (document.readyState === 'complete') {
+    cb();
+  } else {
+    window.addEventListener('load', cb);
+  }
+};
+
+onMounted(() => {
+  onLoad(() => (isLoading.value = false));
+});
 
 const messages = themeLocale.value.notFound ?? ['Not Found'];
 const getMsg = (): string =>

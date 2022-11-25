@@ -50,6 +50,7 @@ const shouldShowNavbar = computed(
 // sidebar
 const sidebarItems = useSidebarItems();
 const isSidebarOpen = ref(false);
+const isLoading = ref(true);
 const toggleSidebar = (to?: boolean): void => {
   isSidebarOpen.value = typeof to === 'boolean' ? to : !isSidebarOpen.value;
 };
@@ -80,6 +81,14 @@ const containerClass = computed(() => [
   frontmatter.value.pageClass,
 ]);
 
+const onLoad = (cb: () => void) => {
+  if (document.readyState === 'complete') {
+    cb();
+  } else {
+    window.addEventListener('load', cb);
+  }
+};
+
 // close sidebar after navigation
 let unregisterRouterHook;
 onMounted(() => {
@@ -88,6 +97,7 @@ onMounted(() => {
     toggleSidebar(false);
   });
   setMode();
+  onLoad(() => (isLoading.value = false));
 });
 onUnmounted(() => {
   unregisterRouterHook();
@@ -105,6 +115,7 @@ watch(
 </script>
 
 <template>
+  <Loading v-show="isLoading" />
   <div
     class="theme-container"
     :class="containerClass"
