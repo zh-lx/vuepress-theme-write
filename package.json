@@ -1,17 +1,31 @@
 {
   "name": "vuepress-theme-write",
-  "version": "0.0.23",
+  "version": "0.0.26",
   "description": "A theme of vuepress2, which can help you focus on writing through simple configuration.",
-  "main": "index.ts",
+  "main": "./src/node/index.ts",
+  "module": "./src/node/index.ts",
   "repository": "https://github.com/zh-lx/vuepress-theme-writing.git",
   "author": "zh-lx <18366276315@163.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc -b tsconfig.json"
+  },
   "devDependencies": {
     "@typescript-eslint/parser": "^4.26.0",
     "eslint": "^7.26.0",
     "eslint-plugin-vue": "^7.9.0"
   },
   "dependencies": {
+    "@vuepress/plugin-search": "2.0.0-beta.59",
     "@icon-park/vue-next": "^1.3.6"
+  },
+  "peerDependencies": {
+    "sass-loader": "^13.2.0",
+    "vuepress": "2.0.0-beta.59"
+  },
+  "peerDependenciesMeta": {
+    "sass-loader": {
+      "optional": true
+    }
   }
 }
