@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-write",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "A theme of vuepress2, which can help you focus on writing through simple configuration.",
   "main": "./src/node/index.ts",
   "module": "./src/node/index.ts",

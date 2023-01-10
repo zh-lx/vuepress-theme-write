@@ -87,6 +87,7 @@ export const defaultTheme = ({
           blog: false,
           permalink: '/',
           hideSidebar: true,
+          title: '首页',
         },
       });
       const tagPage = await createPage(app, {
@@ -95,6 +96,7 @@ export const defaultTheme = ({
         frontmatter: {
           layout: 'tag-page',
           permalink: '/page-tag/',
+          title: '标签',
         },
       });
       const categoryPage = await createPage(app, {
@@ -103,6 +105,7 @@ export const defaultTheme = ({
         frontmatter: {
           layout: 'category-page',
           permalink: '/page-category/',
+          title: '分类',
         },
       });
       // 把它添加到 `app.pages`
