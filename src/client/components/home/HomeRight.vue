@@ -5,7 +5,11 @@
     </div>
     <div class="card category-card">
       <div class="category-card-title">
-        <folder-open theme="outline" size="20" color="var(--color-text-8)" />
+        <folder-open
+          theme="outline"
+          size="20"
+          color="var(--wc-text-secondary)"
+        />
         文章分类
       </div>
       <CategoryList />
@@ -15,7 +19,7 @@
         <tag-one
           theme="outline"
           size="20"
-          color="var(--color-text-8)"
+          color="var(--wc-text-secondary)"
         />热门标签
       </div>
       <TagList />
@@ -35,7 +39,7 @@ import TagOne from '@icon-park/vue-next/lib/icons/TagOne';
 @import '~@/styles/_variables.scss';
 
 .home-right {
-  color: var(--color-text-8);
+  color: var(--wc-text-secondary);
 }
 
 .category-card {

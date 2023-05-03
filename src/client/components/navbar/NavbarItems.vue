@@ -175,7 +175,7 @@ const navbarLinks = computed(() => [
 
     &:hover,
     &.router-link-active {
-      color: var(--c-text-accent);
+      color: var(--wc-text-brand);
     }
   }
 
@@ -203,7 +203,7 @@ const navbarLinks = computed(() => [
   .navbar-items a {
     &:hover,
     &.router-link-active {
-      color: var(--c-text);
+      color: var(--wc-text-primary);
     }
   }
 
@@ -211,7 +211,7 @@ const navbarLinks = computed(() => [
     &:hover,
     &.router-link-active {
       margin-bottom: -2px;
-      border-bottom: 2px solid var(--c-text-accent);
+      border-bottom: 2px solid var(--wc-text-brand);
     }
   }
 }

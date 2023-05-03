@@ -31,9 +31,9 @@ const { tip } = toRefs(props);
     top: 100%;
     transform: translate(-50%, 10px);
     font-size: 12px;
-    color: var(--color-text-0);
+    color: var(--wc-text-white);
     padding: 2px 8px;
-    background-color: var(--tooltip-bgc);
+    background-color: var(--wc-bg-tooltips);
     border-radius: 4px;
     max-width: 100px;
     text-align: justify;
@@ -44,7 +44,7 @@ const { tip } = toRefs(props);
       top: 0;
       transform: translate(-50%, -100%);
       border: 6px solid transparent;
-      border-bottom: 6px solid var(--tooltip-bgc);
+      border-bottom: 6px solid var(--wc-bg-tooltips);
     }
   }
   &:hover {

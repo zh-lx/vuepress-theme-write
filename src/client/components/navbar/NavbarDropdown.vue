@@ -146,7 +146,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
     background: transparent;
     border: none;
     font-weight: 500;
-    color: var(--c-text);
+    color: var(--wc-text-primary);
 
     &:hover {
       border-color: transparent;
@@ -165,7 +165,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
     font-weight: 600;
     font-size: inherit;
     &:hover {
-      color: var(--c-text-accent);
+      color: var(--wc-text-brand);
     }
   }
 
@@ -176,7 +176,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
 
       .navbar-dropdown-subtitle {
         margin: 6px 0 0;
-        border-top: 1px solid var(--c-border);
+        border-top: 1px solid var(--wc-border-primary);
         padding: 14px 0 6px 0;
         font-size: 12px;
 
@@ -211,20 +211,20 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
         font-weight: 400;
         margin-bottom: 0;
         padding: 0 22px 0 18px;
-        color: var(--color-text-8);
+        color: var(--wc-text-secondary);
 
         &:hover {
-          color: var(--blue-6);
+          color: var(--wc-text-brand);
         }
 
         &.router-link-active {
-          color: var(--blue-6);
+          color: var(--wc-text-brand);
 
           &::after {
             content: '';
             width: 0;
             height: 0;
-            border-left: 5px solid var(--blue-6);
+            border-left: 5px solid var(--wc-border-brand);
             border-top: 3px solid transparent;
             border-bottom: 3px solid transparent;
             position: absolute;
@@ -270,7 +270,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
 
         .navbar-dropdown-subtitle,
         & > a {
-          color: var(--color-text-8);
+          color: var(--wc-text-secondary);
           font-size: 15px;
           line-height: 28px;
         }
@@ -309,8 +309,8 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
       top: 100%;
       right: 0;
       padding: 8px 0;
-      border: var(--color-border-2);
-      background-color: var(--common-bgc);
+      border: var(--wc-border-primary);
+      background-color: var(--wc-bg-common);
       border-radius: 4px;
       text-align: left;
       white-space: nowrap;

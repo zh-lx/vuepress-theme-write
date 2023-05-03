@@ -75,11 +75,11 @@ if (item.value.collapsible) {
   line-height: 1;
 }
 .catalogue-link-item:not(.sidebar-heading) {
-  border-left: var(--color-border-2);
+  border-left: 1px solid var(--wc-border-primary);
   display: block;
 }
 .catalogue-link-item.active {
-  border-left-color: var(--blue-6);
+  border-left-color: var(--wc-border-brand);
   border-left-width: 2px;
   display: block;
 }
@@ -88,7 +88,7 @@ if (item.value.collapsible) {
   line-height: 1;
 }
 .active-catalogue {
-  background-color: var(--selected-bgc);
+  background-color: var(--wc-bg-hover);
 }
 .catalogue-level-1 {
   padding-left: 8px !important;

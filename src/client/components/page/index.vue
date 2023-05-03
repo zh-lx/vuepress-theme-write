@@ -64,15 +64,15 @@ const hidePageMeta = $Site?.hidePageMeta;
 }
 
 .theme-default-content {
-  color: var(--color-text-10);
+  color: var(--wc-text-primary);
 }
 .page-container {
   width: 100%;
   padding-right: calc($catalogueWidth + 20px);
   transition: all 0.3s ease;
   .catalogue-toggle {
-    background-color: var(--common-bgc);
-    box-shadow: var(--shadow-2);
+    background-color: var(--wc-bg-common);
+    box-shadow: var(--wc-shadow-2);
     transition: all 0.3s ease;
     width: 30px;
     height: 30px;

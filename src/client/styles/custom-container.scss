@@ -18,8 +18,8 @@
   }
 
   &.tip {
-    background-color: var(--tip-bg);
-    border-color: var(--blue-6);
+    background-color: var(--wc-bg-tooltips);
+    border-color: var(--wc-border-brand);
   }
 
   &.warning {
@@ -32,7 +32,7 @@
     }
 
     a {
-      color: var(--color-text-8);
+      color: var(--wc-text-secondary);
     }
   }
 
@@ -46,7 +46,7 @@
     }
 
     a {
-      color: var(--color-text-8);
+      color: var(--wc-text-secondary);
     }
   }
 

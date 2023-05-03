@@ -93,7 +93,6 @@ $navbar-horizontal-padding: 22px;
   .navbar-items-wrapper {
     padding-left: 22px;
     box-sizing: border-box;
-    background-color: var(--common-bgc);
     white-space: nowrap;
     font-size: 12px;
     position: absolute;
@@ -123,7 +122,7 @@ $navbar-horizontal-padding: 22px;
 }
 
 .navbar {
-  box-shadow: var(--shadow-2);
+  box-shadow: var(--wc-shadow-2);
 }
 .search-box {
   margin-left: 20px;

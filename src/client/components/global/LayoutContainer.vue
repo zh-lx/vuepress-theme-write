@@ -98,7 +98,7 @@ onMounted(() => {
   unregisterRouterHook = router.afterEach(() => {
     toggleSidebar(false);
   });
-  setMode();
+  setMode(isDarkMode.value ? 'darkMode' : 'lightMode');
   onLoad(() => (isLoading.value = false));
 });
 onUnmounted(() => {
@@ -112,6 +112,7 @@ watch(
   },
   {
     deep: true,
+    immediate: true,
   }
 );
 </script>

@@ -40,8 +40,8 @@ defineProps({
   line-height: 18px;
   border-radius: 3px;
   padding: 0 6px;
-  color: var(--color-text-0);
-  background-color: var(--blue-6);
+  color: var(--wc-text-white);
+  background-color: var(--wc-fill-brand);
   vertical-align: top;
 
   .table-of-contents & {
@@ -49,7 +49,7 @@ defineProps({
   }
 
   &.tip {
-    background-color: var(--blue-6);
+    background-color: var(--wc-fill-brand);
   }
 
   &.warning {

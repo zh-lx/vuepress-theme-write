@@ -4,7 +4,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: var(--common-bgc);
+  background-color: var(--wc-bg-container);
 }
 
 body {
@@ -14,23 +14,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 15px;
-  color: var(--color-text-8);
+  color: var(--wc-text-secondary);
 }
 
 input {
-  background-color: var(--input-bgc);
-  color: var(--color-text-8);
+  background-color: var(--wc-bg-container);
+  color: var(--wc-text-secondary);
 }
 
 a {
   font-weight: 500;
-  color: var(--blue-6);
+  color: var(--wc-text-brand);
   text-decoration: none;
 }
 
 p a code {
   font-weight: 400;
-  color: var(--blue-6);
+  color: var(--wc-text-brand);
 }
 
 kbd {
@@ -47,6 +47,7 @@ blockquote {
   border-left: 4px solid #dfe2e5;
   margin: 14px 0;
   padding: 4px 0 4px 14px;
+  overflow-wrap: break-word;
   & > p {
     margin: 0;
   }
@@ -71,6 +72,7 @@ h6 {
   line-height: 1.5;
   margin-top: 24px;
   margin-bottom: 12px;
+  overflow-wrap: break-word;
 
   &:hover .header-anchor {
     opacity: 1;
@@ -84,7 +86,7 @@ h1 {
 h2 {
   padding-bottom: 12px;
   font-size: 22px;
-  border-bottom: var(--color-border-2);
+  border-bottom: 1px solid var(--wc-border-primary);
 }
 
 h3 {
@@ -126,6 +128,7 @@ p,
 ul,
 ol {
   line-height: 1.7;
+  overflow-wrap: break-word;
 }
 
 p {
@@ -135,7 +138,7 @@ p {
 
 hr {
   border: 0;
-  border-top: var(--color-border-2);
+  border-top: 1px solid var(--wc-border-primary);
 }
 
 table {
@@ -164,7 +167,7 @@ td {
 }
 
 .sidebar-mask {
-  background-color: var(--sidebar-mask-bgc);
+  background-color: var(--wc-bg-mask);
 }
 
 .arrow {
@@ -176,7 +179,7 @@ td {
     border: {
       left: 4px solid transparent;
       right: 4px solid transparent;
-      bottom: 6px solid var(--common-arrow-bgc);
+      bottom: 6px solid var(--wc-border-deep);
     }
   }
 
@@ -184,7 +187,7 @@ td {
     border: {
       left: 4px solid transparent;
       right: 4px solid transparent;
-      top: 6px solid var(--common-arrow-bgc);
+      top: 6px solid var(--wc-border-deep);
     }
   }
 
@@ -192,7 +195,7 @@ td {
     border: {
       top: 4px solid transparent;
       bottom: 4px solid transparent;
-      left: 6px solid var(--common-arrow-bgc);
+      left: 6px solid var(--wc-border-deep);
     }
   }
 
@@ -200,7 +203,7 @@ td {
     border: {
       top: 4px solid transparent;
       bottom: 4px solid transparent;
-      right: 6px solid var(--common-arrow-bgc);
+      right: 6px solid var(--wc-border-deep);
     }
   }
 }
