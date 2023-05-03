@@ -114,7 +114,7 @@ const nextNavLink = computed(() => {
   .inner {
     min-height: 28px;
     margin-top: 0;
-    border-top: 1px solid var(--c-border);
+    border-top: 1px solid var(--wc-border-primary);
     transition: border-color var(--t-color);
     padding-top: 14px;
     overflow: auto;

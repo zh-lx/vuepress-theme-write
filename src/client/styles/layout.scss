@@ -12,14 +12,14 @@
   left: 0;
   right: 0;
   height: $navbarHeight;
-  background-color: var(--common-bgc);
+  background-color: var(--wc-bg-common);
   box-sizing: border-box;
-  border-bottom: var(--color-border-2);
+  border-bottom: var(--wc-border-primary);
 }
 
 .sidebar {
   font-size: 16px;
-  background-color: var(--common-bgc);
+  background-color: var(--wc-bg-common);
   width: $sidebarWidth;
   position: fixed;
   z-index: 10;
@@ -28,18 +28,18 @@
   left: 0;
   bottom: 0;
   box-sizing: border-box;
-  border-right: var(--color-border-2);
+  border-right: 1px solid var(--wc-border-light);
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--blue-6) var(--color-border-2-color);
+  scrollbar-color: var(--wc-border-brand) var(--wc-fill-primary);
   &::-webkit-scrollbar {
     width: 7px;
   }
   &::-webkit-scrollbar-track {
-    background-color: var(--color-border-2-color);
+    background-color: var(--wc-fill-primary);
   }
   &::-webkit-scrollbar-thumb {
-    background-color: var(--blue-6);
+    background-color: var(--wc-fill-brand);
   }
 }
 
@@ -84,8 +84,8 @@
   h4,
   h5,
   h6 {
-    margin-top: calc(0.14px - var(--navbar-height));
-    padding-top: calc(14px + var(--navbar-height));
+    margin-top: calc(-14px);
+    padding-top: calc(28px);
   }
 }
 
@@ -125,6 +125,7 @@ h6 {
 
   a:hover {
     text-decoration: underline;
+    color: var(--wc-text-brand) !important;
   }
 
   p.demo {

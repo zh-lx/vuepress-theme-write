@@ -10,16 +10,16 @@
     right: 30px;
     bottom: 20px;
     z-index: 8;
-    background-color: var(--common-bgc);
+    background-color: var(--wc-bg-common);
     background-image: url('../assets/rocket.svg');
     background-size: 24px 24px;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 50%;
-    box-shadow: var(--shadow-2);
+    box-shadow: var(--wc-shadow-2);
     &:hover {
-      box-shadow: var(--shadow-4);
-      background-color: var(--common-bgc);
+      box-shadow: var(--wc-shadow-4);
+      background-color: var(--wc-bg-common);
     }
     transition: all 0.2s linear;
     mask: none;
@@ -27,11 +27,5 @@
 }
 
 #nprogress {
-  --nprogress-color: var(--blue-6);
-}
-
-.DocSearch {
-  --docsearch-primary-color: var(--blue-6);
-  --docsearch-highlight-color: var(--docsearch-primary-color);
-  --docsearch-searchbox-shadow: inset 0 0 0 2px var(--docsearch-primary-color);
+  --nprogress-color: var(--wc-text-brand);
 }

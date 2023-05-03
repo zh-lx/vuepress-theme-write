@@ -35,7 +35,7 @@
 }
 
 .code-group__nav-tab-active {
-  border-bottom: var(--blue-6) 1px solid;
+  border-bottom: 1px solid var(--wc-border-brand);
 }
 
 @media (max-width: $MQMobileNarrow) {

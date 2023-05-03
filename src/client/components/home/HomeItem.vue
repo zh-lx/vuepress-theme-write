@@ -54,7 +54,7 @@ defineProps({
   }
   .item-title {
     font-size: 16px;
-    color: var(--color-text-10);
+    color: var(--wc-text-primary);
     font-weight: 600;
     margin-top: 12px;
   }

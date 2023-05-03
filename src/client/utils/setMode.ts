@@ -1,4 +1,4 @@
-import { themeMode } from '@/constants/theme-mode';
+import { themeMode } from '@/constants/theme';
 
 // 设置主题模式
 export const setMode = (mode = 'lightMode') => {

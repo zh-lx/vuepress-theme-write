@@ -72,11 +72,12 @@ const toggleDarkMode = (): void => {
   margin-left: 14px;
   border: 0;
   background: none;
-  color: var(--color-text-8);
+  color: var(--wc-text-secondary);
   opacity: 0.8;
   cursor: pointer;
   &:hover {
     opacity: 1;
+    color: var(--wc-text-primary);
   }
   .icon {
     width: 18px;

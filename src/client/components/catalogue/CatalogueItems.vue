@@ -45,7 +45,6 @@ watch(
 </template>
 <style lang="scss" scoped>
 .catalogue-items {
-  background-color: var(--common-bgc);
   padding-bottom: 30px;
 }
 </style>

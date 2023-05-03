@@ -7,10 +7,10 @@
         router.currentRoute.value.query.tag === tag.name ? 'selected-tag' : ''
       }`"
       :style="{
-        background: `${
-          isTagPage ? 'var(--default-tag-bgc)' : getRandomColor()
+        background: `${isTagPage ? 'var(--wc-fill-tag)' : getRandomColor()}`,
+        color: `${
+          isTagPage ? 'var(--wc-text-primary)' : 'var(--wc-text-white)'
         }`,
-        color: `${isTagPage ? 'var(--color-text-8)' : 'var(--color-text-0)'}`,
       }"
       @click="handleClickTag(tag.name)"
     >
@@ -60,14 +60,14 @@ const handleClickTag: (tag: string) => void = (tag) => {
     &:hover {
       transform: scale(1.1);
     }
-    color: var(--color-text-0);
+    color: var(--wc-text-white);
     &:last-of-type {
       margin-right: 0;
     }
   }
   .selected-tag {
-    background-color: var(--blue-6) !important;
-    color: var(--color-text-0) !important;
+    background-color: var(--wc-fill-brand) !important;
+    color: var(--wc-text-white) !important;
     &:hover {
       transform: scale(1);
     }

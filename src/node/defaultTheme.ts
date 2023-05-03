@@ -49,6 +49,7 @@ export const defaultTheme = ({
 
     alias: {
       '@': path.resolve(__dirname, '../client'),
+      '~@': path.resolve(__dirname, '../client'),
       HomeFooter: path.resolve(
         __dirname,
         '../client/components/placeholder/HomeRooter.vue'

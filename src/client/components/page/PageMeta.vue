@@ -147,12 +147,12 @@ const contributors = useContributors();
 
     .meta-item-label {
       font-weight: 500;
-      color: var(--c-text-lighter);
+      color: var(--wc-text-secondary);
     }
 
     .meta-item-info {
       font-weight: 400;
-      color: var(--c-text-quote);
+      color: var(--wc-text-primary);
     }
   }
 
