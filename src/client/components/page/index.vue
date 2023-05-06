@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import MenuFoldOne from '@icon-park/vue-next/lib/icons/MenuFoldOne';
-import MenuUnfoldOne from '@icon-park/vue-next/lib/icons/MenuUnfoldOne';
+import MenuFoldOne from '@/assets/menu-fold-one.vue';
+import MenuUnfoldOne from '@/assets/menu-unfold-one.vue';
 import PageMeta from './PageMeta.vue';
 import PageNav from './PageNav.vue';
 import Catalogues from '@/components/catalogue/index.vue';
