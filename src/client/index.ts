@@ -1,3 +1,3 @@
-export * from '../shared/index';
-export * from './composables/index';
-export * from './utils/index';
+export * from '../shared/index.js';
+export * from './composables/index.js';
+export * from './utils/index.js';

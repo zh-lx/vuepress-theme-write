@@ -10,17 +10,14 @@
           size="20"
           color="var(--wc-text-secondary)"
         />
-        文章分类
+        <span>文章分类</span>
       </div>
       <CategoryList />
     </div>
     <div class="card tag-card">
       <div class="tag-card-title">
-        <tag-one
-          theme="outline"
-          size="20"
-          color="var(--wc-text-secondary)"
-        />热门标签
+        <tag-one theme="outline" size="20" color="var(--wc-text-secondary)" />
+        <span>热门标签</span>
       </div>
       <TagList />
     </div>
@@ -31,8 +28,8 @@
 import CategoryList from '@/components/category-list/index.vue';
 import TagList from '@/components/tag-list/index.vue';
 import AuthorCard from '@/components/home/AuthorCard.vue';
-import FolderOpen from '@icon-park/vue-next/lib/icons/FolderOpen';
-import TagOne from '@icon-park/vue-next/lib/icons/TagOne';
+import FolderOpen from '@/assets/folder-open.vue';
+import TagOne from '@/assets/tag-one.vue';
 </script>
 
 <style scoped lang="scss">
@@ -51,9 +48,7 @@ import TagOne from '@icon-park/vue-next/lib/icons/TagOne';
     margin-bottom: 8px;
     display: flex;
     align-items: center;
-    .i-icon {
-      margin-right: 6px;
-    }
+    column-gap: 6px;
   }
 }
 .tag-card {
@@ -62,9 +57,7 @@ import TagOne from '@icon-park/vue-next/lib/icons/TagOne';
     margin-bottom: 8px;
     display: flex;
     align-items: center;
-    .i-icon {
-      margin-right: 6px;
-    }
+    column-gap: 6px;
   }
 }
 

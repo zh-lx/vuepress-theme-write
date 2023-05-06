@@ -1,18 +1,27 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "esnext", "ES2015"],
-    "module": "es2015",
-    "types": ["node"],
+    "composite": true,
+    "declaration": true,
+    "declarationMap": false,
+    "lib": ["DOM", "ES2020"],
+    "module": "ES2020",
     "moduleResolution": "node",
-    "preserveConstEnums": true,
-    "removeComments": true,
-    "sourceMap": true,
-    "target": "es5",
-    "strict": false,
+    "newLine": "lf",
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strict": true,
+    "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "target": "ES2018",
+    "jsx": "preserve",
+    "rootDir": "./src",
+    "outDir": "./lib",
     "paths": {
       "@/*": ["./src/client/*"]
     }
-  }
+  },
+  "include": ["./src"]
 }

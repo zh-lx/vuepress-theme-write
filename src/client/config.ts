@@ -11,7 +11,7 @@ import {
   setupDarkMode,
   setupSidebarItems,
   useScrollPromise,
-} from './composables/index';
+} from './composables/index.js';
 import Layout from './layouts/Layout.vue';
 import NotFound from './layouts/NotFound.vue';
 import HomePage from './layouts/home-page.vue';

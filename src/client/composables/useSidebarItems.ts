@@ -16,9 +16,9 @@ import type {
   SidebarConfigArray,
   SidebarConfigObject,
   SidebarItem,
-} from '../../shared/index';
-import { useNavLink } from './useNavLink';
-import { useThemeLocaleData } from './useThemeData';
+} from '../../shared/index.js';
+import { useNavLink } from './useNavLink.js';
+import { useThemeLocaleData } from './useThemeData.js';
 
 export type SidebarItemsRef = ComputedRef<ResolvedSidebarItem[]>;
 
@@ -76,7 +76,7 @@ export const resolveSidebarItems = (
     return [];
   }
 
-  let result = [];
+  let result: ResolvedSidebarItem[] = [];
 
   if (isArray(sidebarConfig)) {
     result = resolveArraySidebarItems(sidebarConfig, sidebarDepth);

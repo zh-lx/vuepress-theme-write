@@ -15,8 +15,8 @@ import {
   useThemeLocaleData,
 } from '@/composables';
 import { setMode } from '@/utils/setMode';
-import FolderOpen from '@icon-park/vue-next/lib/icons/FolderOpen';
-import TagOne from '@icon-park/vue-next/lib/icons/TagOne';
+import FolderOpen from '@/assets/folder-open.vue';
+import TagOne from '@/assets/tag-one.vue';
 const isDarkMode = useDarkMode();
 
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>();
@@ -157,7 +157,9 @@ watch(
             v-if="!isDocs && (isHomePage || isCategoryPage)"
           >
             <div class="category-card-title">
-              <folder-open theme="outline" size="20" color="#303133" />文章分类
+              <folder-open theme="outline" size="20" color="#303133" /><span
+                >文章分类</span
+              >
             </div>
             <CategoryList />
           </div>
@@ -165,7 +167,9 @@ watch(
         <template #tag>
           <div class="tag-list" v-if="!isDocs && (isHomePage || isTagPage)">
             <div class="tag-card-title">
-              <tag-one theme="outline" size="20" color="#303133" />热门标签
+              <tag-one theme="outline" size="20" color="#303133" /><span
+                >热门标签</span
+              >
             </div>
             <TagList />
           </div>
@@ -192,9 +196,7 @@ watch(
     margin-bottom: 8px;
     display: flex;
     align-items: center;
-    .i-icon {
-      margin-right: 6px;
-    }
+    column-gap: 6px;
   }
 }
 .tag-list {
@@ -204,10 +206,7 @@ watch(
     margin-bottom: 8px;
     display: flex;
     align-items: center;
-
-    .i-icon {
-      margin-right: 6px;
-    }
+    column-gap: 6px;
   }
 }
 </style>
