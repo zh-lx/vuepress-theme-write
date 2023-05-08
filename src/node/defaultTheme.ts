@@ -16,11 +16,11 @@ import type {
   DefaultThemeLocaleOptions,
   DefaultThemePageData,
   DefaultThemePluginsOptions,
-} from '../shared/index.js';
+} from '../shared/index.ts';
 import {
   assignDefaultLocaleOptions,
   resolveContainerPluginOptions,
-} from './utils/index.js';
+} from './utils/index.ts';
 
 // @ts-ignore
 const __dirname = getDirname(import.meta.url);
@@ -71,7 +71,7 @@ export const defaultTheme = ({
       ),
     },
 
-    clientConfigFile: path.resolve(__dirname, '../client/config.js'),
+    clientConfigFile: path.resolve(__dirname, '../client/config.ts'),
 
     extendsPage: (page: Page<Partial<DefaultThemePageData>>) => {
       // save relative file path into page data to generate edit link

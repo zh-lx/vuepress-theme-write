@@ -68,6 +68,7 @@ if (item.value.collapsible) {
 </template>
 
 <style scoped lang="scss">
+@import '~@/styles/_variables.scss';
 .catalogue-link-item {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -107,5 +108,14 @@ if (item.value.collapsible) {
 }
 .catalogue-level-6 {
   padding-left: 78px !important;
+}
+
+@media (max-width: $MQMobileNarrow) {
+  .catalogue-link-item:not(.sidebar-heading) {
+    border-left: none;
+  }
+  .catalogue-link-item.active {
+    border-left: none;
+  }
 }
 </style>

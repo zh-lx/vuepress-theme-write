@@ -17,7 +17,10 @@ const { showCatalogues } = toRefs(props);
     :class="`catalogues ${showCatalogues ? 'catalogues-open' : ''}`"
     id="catalogues-aside"
   >
-    <CatalogueItems />
+    <div class="catalogue-top"></div>
+    <div class="catalogue-items">
+      <CatalogueItems />
+    </div>
   </aside>
 </template>
 
@@ -28,14 +31,25 @@ const { showCatalogues } = toRefs(props);
   position: fixed;
   z-index: 7;
   transition: all 0.3s ease;
-  top: calc($navbarHeight + 20px);
+  top: $navbarHeight;
   right: 0;
-  max-height: calc(100vh - $navbarHeight - 20px);
-  overflow: scroll;
-  width: $catalogueWidth;
+  max-height: calc(100vh - $navbarHeight);
+  width: 0;
   &::-webkit-scrollbar {
     width: 0 !important;
     height: 0 !important;
+  }
+
+  .catalogue-top {
+    height: 70px;
+  }
+  .catalogue-items {
+    max-height: calc(100vh - $navbarHeight - 70px);
+    overflow: scroll;
+    &::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0 !important;
+    }
   }
 
   ul {
@@ -50,15 +64,13 @@ const { showCatalogues } = toRefs(props);
   }
 }
 
-@media (max-width: $MQNarrow) {
-  .catalogues {
-    width: 0;
-    top: calc($navbarHeight + 70px);
-    max-height: calc(100vh - $navbarHeight - 70px);
-  }
+.catalogues-open {
+  width: $catalogueWidth;
+}
 
+@media (max-width: $MQMobileNarrow) {
   .catalogues-open {
-    width: $catalogueWidth;
+    background: var(--wc-bg-common);
   }
 }
 </style>
