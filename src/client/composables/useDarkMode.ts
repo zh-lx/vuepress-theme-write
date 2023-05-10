@@ -1,13 +1,11 @@
 import { usePreferredDark, useStorage } from '@vueuse/core';
 import { computed, inject, onMounted, onUnmounted, provide, watch } from 'vue';
 import type { InjectionKey, WritableComputedRef } from 'vue';
-import { useThemeLocaleData } from './useThemeData.ts';
+import { useThemeLocaleData } from './useThemeData.js';
 
 export type DarkModeRef = WritableComputedRef<boolean>;
 
-export const darkModeSymbol: InjectionKey<DarkModeRef> = Symbol(
-  __VUEPRESS_DEV__ ? 'darkMode' : ''
-);
+export const darkModeSymbol: InjectionKey<DarkModeRef> = Symbol('darkMode');
 
 /**
  * Inject dark mode global computed

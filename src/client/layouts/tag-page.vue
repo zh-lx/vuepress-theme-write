@@ -12,6 +12,7 @@
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import BlogList from '@/components/blog-list/index.vue';
+import LayoutContainer from '@/components/global/LayoutContainer.vue';
 import { usePageList } from '@/composables';
 
 const router = useRouter();

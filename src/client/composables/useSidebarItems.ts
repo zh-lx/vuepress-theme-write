@@ -16,9 +16,9 @@ import type {
   SidebarConfigArray,
   SidebarConfigObject,
   SidebarItem,
-} from '../../shared/index.ts';
-import { useNavLink } from './useNavLink.ts';
-import { useThemeLocaleData } from './useThemeData.ts';
+} from '../../shared/index.js';
+import { useNavLink } from './useNavLink.js';
+import { useThemeLocaleData } from './useThemeData.js';
 
 export type SidebarItemsRef = ComputedRef<ResolvedSidebarItem[]>;
 

@@ -8,7 +8,7 @@ import type {
   ThemeLocaleDataRef,
   // @ts-ignore
 } from '@vuepress/plugin-theme-data/client';
-import type { DefaultThemeData } from '../../shared/index.ts';
+import type { DefaultThemeData } from '../../shared/index.js';
 
 export const useThemeData = (): ThemeDataRef<DefaultThemeData> =>
   _useThemeData<DefaultThemeData>();
