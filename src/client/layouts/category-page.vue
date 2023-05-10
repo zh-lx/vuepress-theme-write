@@ -11,6 +11,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import LayoutContainer from '@/components/global/LayoutContainer.vue';
 import BlogList from '@/components/blog-list/index.vue';
 import { usePageList } from '@/composables';
 

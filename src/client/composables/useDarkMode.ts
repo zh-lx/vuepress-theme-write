@@ -5,9 +5,7 @@ import { useThemeLocaleData } from './useThemeData.js';
 
 export type DarkModeRef = WritableComputedRef<boolean>;
 
-export const darkModeSymbol: InjectionKey<DarkModeRef> = Symbol(
-  __VUEPRESS_DEV__ ? 'darkMode' : ''
-);
+export const darkModeSymbol: InjectionKey<DarkModeRef> = Symbol('darkMode');
 
 /**
  * Inject dark mode global computed

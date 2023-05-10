@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { ExternalLinkIcon as RawExternalLinkIcon } from '@vuepress/plugin-external-link-icon/lib/client';
-import { useThemeLocaleData } from '@/composables';
-
-const themeLocale = useThemeLocaleData();
 </script>
 
 <template>

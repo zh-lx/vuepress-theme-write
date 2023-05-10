@@ -101,6 +101,7 @@ onMounted(() => {
   setMode(isDarkMode.value ? 'darkMode' : 'lightMode');
   onLoad(() => (isLoading.value = false));
 });
+
 onUnmounted(() => {
   unregisterRouterHook();
 });

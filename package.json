@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-write",
-  "version": "0.0.33-alpha.8",
+  "version": "0.0.33-alpha.23",
   "description": "A theme of vuepress2, which can help you focus on writing through simple configuration.",
   "main": "./lib/node/index.js",
   "module": "./lib/node/index.js",
@@ -8,6 +8,10 @@
   "repository": "https://github.com/zh-lx/vuepress-theme-writing.git",
   "author": "zh-lx <18366276315@163.com>",
   "license": "MIT",
+  "files": [
+    "lib",
+    "templates"
+  ],
   "scripts": {
     "build": "tsc --build tsconfig.json && npm run copy",
     "build:watch": "tsc --build -w tsconfig.json",

@@ -16,6 +16,7 @@
 <script lang="ts" setup>
 import { usePageData } from '@vuepress/client';
 import Page from '@/components/page/index.vue';
+import LayoutContainer from '@/components/global/LayoutContainer.vue';
 const page = usePageData();
 </script>
 <style lang="scss" scoped>

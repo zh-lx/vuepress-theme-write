@@ -4,9 +4,8 @@ import Badge from '@/components/global/Badge.vue';
 import CodeGroup from '@/components/global/CodeGroup';
 import CodeGroupItem from '@/components/global/CodeGroupItem.vue';
 // import ExternalLinkIcon from '@/components/global/ExternalLinkIcon.vue';
-import LayoutContainer from '@/components/global/LayoutContainer.vue';
 import Loading from '@/components/global/Loading.vue';
-import Home from '@/components/home/index.vue';
+
 import {
   setupDarkMode,
   setupSidebarItems,
@@ -23,8 +22,6 @@ import './styles/index.scss';
 export default defineClientConfig({
   enhance({ app, router }) {
     app.component('Loading', Loading);
-    app.component('Home', Home);
-    app.component('LayoutContainer', LayoutContainer);
     app.component('Badge', Badge);
     app.component('CodeGroup', CodeGroup);
     app.component('CodeGroupItem', CodeGroupItem);

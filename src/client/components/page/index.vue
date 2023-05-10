@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import MenuFoldOne from '@/assets/menu-fold-one.vue';
 import MenuUnfoldOne from '@/assets/menu-unfold-one.vue';
 import PageMeta from './PageMeta.vue';
@@ -7,6 +7,10 @@ import PageNav from './PageNav.vue';
 import Catalogues from '@/components/catalogue/index.vue';
 
 const showCatalogues = ref(false);
+
+onMounted(() => {
+  showCatalogues.value = window.innerWidth >= 960;
+});
 
 const changeCataloguesVisibility = () => {
   showCatalogues.value = !showCatalogues.value;
@@ -29,7 +33,7 @@ const hidePageMeta = $Site?.hidePageMeta;
       </div>
       <div
         :class="`catalogue-toggle ${
-          showCatalogues ? '' : 'catalogue-toggle-unfold'
+          showCatalogues ? 'catalogue-toggle-show' : 'catalogue-toggle-unfold'
         }`"
         @click="changeCataloguesVisibility"
       >
@@ -49,6 +53,11 @@ const hidePageMeta = $Site?.hidePageMeta;
         />
       </div>
       <Catalogues :showCatalogues="showCatalogues" />
+      <div
+        class="catalogue-mask"
+        v-show="showCatalogues"
+        @click="changeCataloguesVisibility"
+      ></div>
     </div>
 
     <slot name="bottom" />
@@ -68,7 +77,7 @@ const hidePageMeta = $Site?.hidePageMeta;
 }
 .page-container {
   width: 100%;
-  padding-right: calc($catalogueWidth + 20px);
+  padding-right: 20px;
   transition: all 0.3s ease;
   .catalogue-toggle {
     background-color: var(--wc-bg-common);
@@ -82,29 +91,44 @@ const hidePageMeta = $Site?.hidePageMeta;
     border-radius: 50%;
     cursor: pointer;
     position: fixed;
-    z-index: 7;
+    z-index: 8;
     top: calc($navbarHeight + 20px);
     right: calc($catalogueWidth - 30px);
-    visibility: hidden;
+  }
+
+  .catalogue-toggle-unfold {
+    right: 0;
+    border-radius: 50% 0 0 50%;
   }
 }
 
-@media (max-width: $MQNarrow) {
+.page-container-thin {
+  padding-right: calc($catalogueWidth + 20px);
+}
+
+.catalogue-mask {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 3;
+  background-color: var(--wc-bg-mask);
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+@media (max-width: $MQMobileNarrow) {
   .page-container {
     width: 100%;
-    padding-right: 20px;
-    .catalogue-toggle {
-      visibility: visible;
-    }
-
-    .catalogue-toggle-unfold {
-      right: 0;
-      border-radius: 50% 0 0 50%;
-    }
+    padding-right: 0;
   }
 
   .page-container-thin {
-    padding-right: calc($catalogueWidth + 20px);
+    padding-right: 0;
+  }
+
+  .catalogue-mask {
+    display: block;
   }
 }
 </style>
