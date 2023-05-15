@@ -1,2 +1,2 @@
-export * from './assignDefaultLocaleOptions.js';
-export * from './resolveContainerPluginOptions.js';
+export * from './assignDefaultLocaleOptions.ts';
+export * from './resolveContainerPluginOptions.ts';

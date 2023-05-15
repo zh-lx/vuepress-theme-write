@@ -1,6 +1,6 @@
-import { defaultTheme } from './defaultTheme.js';
+import { defaultTheme } from './defaultTheme.ts';
 
-export * from '../shared/index.js';
-export * from './defaultTheme.js';
-export * from './utils/index.js';
+export * from '../shared/index.ts';
+export * from './defaultTheme.ts';
+export * from './utils/index.ts';
 export default defaultTheme;

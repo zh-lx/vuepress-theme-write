@@ -18,7 +18,8 @@ const { showCatalogues } = toRefs(props);
     id="catalogues-aside"
   >
     <div class="catalogue-top"></div>
-    <div class="catalogue-items">
+    <div class="catalogue-title">On This Page</div>
+    <div class="catalogue-items catalogue-items-list">
       <CatalogueItems />
     </div>
   </aside>
@@ -28,28 +29,36 @@ const { showCatalogues } = toRefs(props);
 @import '~@/styles/_variables.scss';
 
 .catalogues {
-  position: fixed;
-  z-index: 7;
-  transition: all 0.3s ease;
-  top: $navbarHeight;
-  right: 0;
-  max-height: calc(100vh - $navbarHeight);
-  width: 0;
+  max-height: 100vh;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  padding-top: $navbarHeight;
+  display: flex;
+  flex-direction: column;
   &::-webkit-scrollbar {
     width: 0 !important;
     height: 0 !important;
   }
 
-  .catalogue-top {
-    height: 70px;
-  }
-  .catalogue-items {
-    max-height: calc(100vh - $navbarHeight - 70px);
-    overflow: scroll;
+  .catalogue-items-list {
+    max-height: calc(100vh - 70px);
+    overflow: auto;
+    flex: 1;
     &::-webkit-scrollbar {
       width: 0 !important;
       height: 0 !important;
     }
+  }
+
+  .catalogue-title {
+    color: var(--wc-text-primary);
+    transition: color 0.15s ease;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px 8px 6px 0;
+    width: 100%;
+    margin-top: 16px;
   }
 
   ul {
@@ -66,6 +75,14 @@ const { showCatalogues } = toRefs(props);
 
 .catalogues-open {
   width: $catalogueWidth;
+  padding-left: 20px;
+}
+
+@media (max-width: $MQNarrow) {
+  .catalogues {
+    position: absolute;
+    visibility: hidden;
+  }
 }
 
 @media (max-width: $MQMobileNarrow) {

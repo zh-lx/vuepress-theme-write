@@ -4,13 +4,15 @@ import SidebarItems from './SidebarItems.vue';
 
 <template>
   <aside class="sidebar">
-    <slot name="sidebar" />
     <slot name="top" />
-    <slot name="author" />
-    <slot name="category" />
-    <slot name="tag" />
+    <div class="sidebar-content">
+      <slot name="sidebar" />
+      <slot name="author" />
+      <slot name="category" />
+      <slot name="tag" />
 
-    <SidebarItems />
+      <SidebarItems />
+    </div>
     <slot name="bottom" />
   </aside>
 </template>

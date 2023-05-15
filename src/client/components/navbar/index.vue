@@ -61,19 +61,21 @@ function getCssValue(el: HTMLElement | null, property: string): number {
 
 <template>
   <header ref="navbar" class="navbar">
-    <ToggleSidebarButton @toggle="$emit('toggle-sidebar')" />
+    <div class="navbar-content">
+      <ToggleSidebarButton @toggle="$emit('toggle-sidebar')" />
 
-    <span ref="navbarBrand">
-      <NavbarBrand />
-    </span>
+      <span ref="navbarBrand">
+        <NavbarBrand />
+      </span>
 
-    <div class="navbar-items-wrapper" :style="linksWrapperStyle">
-      <slot name="before" />
-      <NavbarItems class="can-hide" />
-      <slot name="after" />
-      <NavbarExtra />
-      <ToggleDarkModeButton v-if="enableDarkMode" />
-      <NavbarSearch />
+      <div class="navbar-items-wrapper" :style="linksWrapperStyle">
+        <slot name="before" />
+        <NavbarItems class="can-hide" />
+        <slot name="after" />
+        <NavbarExtra />
+        <ToggleDarkModeButton v-if="enableDarkMode" />
+        <NavbarSearch />
+      </div>
     </div>
   </header>
 </template>
@@ -87,8 +89,16 @@ $navbar-vertical-padding: 10px;
 $navbar-horizontal-padding: 22px;
 
 .navbar {
-  padding: $navbar-vertical-padding $navbar-horizontal-padding;
   line-height: calc($navbarHeight - 20px);
+  .navbar-content {
+    width: min(100%, $maxWidth);
+    padding: $navbar-vertical-padding $navbar-horizontal-padding;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
   .navbar-items-wrapper {
     padding-left: 22px;
@@ -110,7 +120,6 @@ $navbar-horizontal-padding: 22px;
 @media (max-width: $MQMobile) {
   .navbar {
     padding-left: 56px;
-
     .can-hide {
       display: none;
     }

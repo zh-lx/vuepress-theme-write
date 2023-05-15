@@ -17,8 +17,10 @@ export const themeMode = {
     '--wc-fill-tag': 'var(--neutral-2)',
 
     '--wc-bg-hover': 'rgba(0, 0, 0, 0.08)',
+    '--wc-bg-active': 'rgba(0, 0, 0, 0.08)',
     '--wc-bg-common': 'var(--neutral-white)',
     '--wc-bg-light': 'var(--neutral-1)',
+    '--wc-bg-heavy': 'var(--neutral-3)',
     '--wc-bg-container': 'var(--neutral-white)',
     '--wc-bg-tooltips': 'rgba(0, 0, 0, 0.8)',
     '--wc-bg-mask': 'rgba(0, 0, 0, 0.4)',
@@ -49,8 +51,10 @@ export const themeMode = {
     '--wc-fill-tag': 'var(--dark-neutral-8)',
 
     '--wc-bg-hover': 'rgba(255, 255, 255, 0.08)',
-    '--wc-bg-common': 'var(--dark-neutral-9)',
-    '--wc-bg-light': 'var(--neutral-9)',
+    '--wc-bg-active': 'rgba(255, 255, 255, 0.08)',
+    '--wc-bg-common': 'var(--dark-neutral-10)',
+    '--wc-bg-light': 'var(--dark-neutral-9)',
+    '--wc-bg-heavy': 'var(--dark-neutral-8)',
     '--wc-bg-container': 'var(--dark-neutral-10)',
     '--wc-bg-tooltips': 'rgba(255, 255, 255, 0.4)',
     '--wc-bg-mask': 'rgba(255, 255, 255, 0.6)',

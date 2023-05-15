@@ -93,7 +93,7 @@ const isActive = computed(() => {
     v-bind="$attrs"
   >
     <slot name="before" />
-    {{ item.text }}
+    <span class="li-item">{{ item.text }}</span>
     <slot name="after" />
   </RouterLink>
   <a

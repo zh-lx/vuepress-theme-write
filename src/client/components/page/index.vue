@@ -27,37 +27,10 @@ const hidePageMeta = $Site?.hidePageMeta;
       :class="`page-container ${showCatalogues ? 'page-container-thin' : ''}`"
     >
       <div class="theme-default-content">
-        <Content />
+        <Content class="wc-content" />
         <PageMeta v-if="!hidePageMeta" />
         <PageNav />
       </div>
-      <div
-        :class="`catalogue-toggle ${
-          showCatalogues ? 'catalogue-toggle-show' : 'catalogue-toggle-unfold'
-        }`"
-        @click="changeCataloguesVisibility"
-      >
-        <menu-fold-one
-          theme="outline"
-          size="18"
-          fill="#606266"
-          :strokeWidth="3"
-          v-show="showCatalogues"
-        />
-        <menu-unfold-one
-          theme="outline"
-          size="18"
-          fill="#606266"
-          :strokeWidth="3"
-          v-show="!showCatalogues"
-        />
-      </div>
-      <Catalogues :showCatalogues="showCatalogues" />
-      <div
-        class="catalogue-mask"
-        v-show="showCatalogues"
-        @click="changeCataloguesVisibility"
-      ></div>
     </div>
 
     <slot name="bottom" />
@@ -68,19 +41,20 @@ const hidePageMeta = $Site?.hidePageMeta;
 @import '~@/styles/_variables.scss';
 
 .page {
-  padding-bottom: 28px;
   display: block;
 }
 
 .theme-default-content {
   color: var(--wc-text-primary);
+  min-height: 100vh;
+  .wc-content {
+    width: 100%;
+  }
 }
 .page-container {
   width: 100%;
-  padding-right: 20px;
   transition: all 0.3s ease;
   .catalogue-toggle {
-    background-color: var(--wc-bg-common);
     box-shadow: var(--wc-shadow-2);
     transition: all 0.3s ease;
     width: 30px;
@@ -100,10 +74,6 @@ const hidePageMeta = $Site?.hidePageMeta;
     right: 0;
     border-radius: 50% 0 0 50%;
   }
-}
-
-.page-container-thin {
-  padding-right: calc($catalogueWidth + 20px);
 }
 
 .catalogue-mask {

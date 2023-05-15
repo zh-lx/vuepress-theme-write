@@ -1,8 +1,8 @@
 @import '_variables';
 
 %wrapper {
-  max-width: $contentWidth;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 28px 36px;
   padding-top: $navbarHeight;
 

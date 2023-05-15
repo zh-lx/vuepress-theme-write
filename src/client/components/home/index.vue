@@ -142,6 +142,7 @@ usePageList().then((pageList) => {
   max-width: 100%;
   display: block;
   width: 100%;
+  background-color: var(--wc-bg-common);
 
   .hero {
     text-align: center;

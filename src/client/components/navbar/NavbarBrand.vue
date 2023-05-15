@@ -80,6 +80,10 @@ const NavbarBrandLogo: FunctionalComponent = () => {
     text-overflow: ellipsis;
   }
 
+  .logo {
+    display: none;
+  }
+
   .can-hide {
     display: none;
   }

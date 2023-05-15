@@ -13,10 +13,25 @@ import {
   useDarkMode,
   useSidebarItems,
   useThemeLocaleData,
+  useCatalogues,
 } from '@/composables';
 import { setMode } from '@/utils/setMode';
 import FolderOpen from '@/assets/folder-open.vue';
 import TagOne from '@/assets/tag-one.vue';
+import MenuFoldOne from '@/assets/menu-fold-one.vue';
+import MenuUnfoldOne from '@/assets/menu-unfold-one.vue';
+import PageMeta from './PageMeta.vue';
+import PageNav from './PageNav.vue';
+import Catalogues from '@/components/catalogue/index.vue';
+
+const showCatalogues = ref(false);
+
+const changeCataloguesVisibility = () => {
+  showCatalogues.value = !showCatalogues.value;
+};
+
+const catalogues = useCatalogues();
+
 const isDarkMode = useDarkMode();
 
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>();
@@ -100,6 +115,7 @@ onMounted(() => {
   });
   setMode(isDarkMode.value ? 'darkMode' : 'lightMode');
   onLoad(() => (isLoading.value = false));
+  showCatalogues.value = window.innerWidth >= 960;
 });
 
 onUnmounted(() => {
@@ -116,18 +132,31 @@ watch(
     immediate: true,
   }
 );
+
+watch(
+  () => isSidebarOpen.value,
+  (val) => {
+    if (val) {
+      document.body.style['overflow'] = 'hidden';
+      document.body.style.width = 'calc(100vw - 8px)';
+    } else {
+      document.body.style['overflow'] = 'auto';
+      document.body.style.width = '100%';
+    }
+  },
+  { deep: true, immediate: true }
+);
 </script>
 
 <template>
   <Loading v-show="isLoading" />
-  <div
-    class="theme-container"
-    :class="containerClass"
-    @touchstart="onTouchStart"
-    @touchend="onTouchEnd"
-  >
+  <div class="theme-container" :class="containerClass">
     <slot name="navbar">
-      <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar">
+      <Navbar
+        class="layout-navbar"
+        v-if="shouldShowNavbar"
+        @toggle-sidebar="toggleSidebar"
+      >
         <template #before>
           <slot name="navbar-before" />
         </template>
@@ -137,51 +166,90 @@ watch(
       </Navbar>
     </slot>
 
-    <div class="sidebar-mask" @click="toggleSidebar(false)" />
+    <div
+      @scroll="(e) => e.preventDefault()"
+      @touchmove="(e) => e.preventDefault()"
+      class="sidebar-mask"
+      @click="toggleSidebar(false)"
+    />
 
-    <slot name="sidebar">
-      <Sidebar>
-        <template #top>
-          <slot name="sidebar-top" />
-        </template>
-        <template #sidebar v-if="isHomePage">
-          <NavbarItems />
-        </template>
-        <template #author>
-          <div class="authorInfo" v-if="!isDocs && isHomePage">
-            <AuthorCard />
-          </div>
-        </template>
-        <template #category>
-          <div
-            class="category-list"
-            v-if="!isDocs && (isHomePage || isCategoryPage)"
-          >
-            <div class="category-card-title">
-              <folder-open theme="outline" size="20" color="#303133" /><span
-                >文章分类</span
-              >
+    <div class="theme-main-content">
+      <slot name="sidebar">
+        <Sidebar>
+          <template #top>
+            <slot name="sidebar-top" />
+          </template>
+          <template #sidebar v-if="isHomePage">
+            <NavbarItems />
+          </template>
+          <template #author>
+            <div class="authorInfo" v-if="!isDocs && isHomePage">
+              <AuthorCard />
             </div>
-            <CategoryList />
-          </div>
-        </template>
-        <template #tag>
-          <div class="tag-list" v-if="!isDocs && (isHomePage || isTagPage)">
-            <div class="tag-card-title">
-              <tag-one theme="outline" size="20" color="#303133" /><span
-                >热门标签</span
-              >
+          </template>
+          <template #category>
+            <div
+              class="category-list"
+              v-if="!isDocs && (isHomePage || isCategoryPage)"
+            >
+              <div class="category-card-title">
+                <folder-open theme="outline" size="20" color="#303133" /><span
+                  >文章分类</span
+                >
+              </div>
+              <CategoryList />
             </div>
-            <TagList />
-          </div>
-        </template>
-        <template #bottom>
-          <slot name="sidebar-bottom" />
-        </template>
-      </Sidebar>
-    </slot>
+          </template>
+          <template #tag>
+            <div class="tag-list" v-if="!isDocs && (isHomePage || isTagPage)">
+              <div class="tag-card-title">
+                <tag-one theme="outline" size="20" color="#303133" /><span
+                  >热门标签</span
+                >
+              </div>
+              <TagList />
+            </div>
+          </template>
+          <template #bottom>
+            <slot name="sidebar-bottom" />
+          </template>
+        </Sidebar>
+      </slot>
 
-    <slot></slot>
+      <slot></slot>
+
+      <!-- <div
+        :class="`catalogue-toggle ${
+          showCatalogues ? 'catalogue-toggle-show' : 'catalogue-toggle-unfold'
+        }`"
+        @click="changeCataloguesVisibility"
+      >
+        <menu-fold-one
+          theme="outline"
+          size="18"
+          fill="#606266"
+          :strokeWidth="3"
+          v-show="showCatalogues"
+        />
+        <menu-unfold-one
+          theme="outline"
+          size="18"
+          fill="#606266"
+          :strokeWidth="3"
+          v-show="!showCatalogues"
+        />
+      </div> -->
+      <Catalogues
+        class="catalogues-region"
+        :showCatalogues="showCatalogues"
+        v-if="catalogues?.[0]?.children?.length"
+      />
+      <!-- <div
+        class="catalogue-mask"
+        v-show="showCatalogues"
+        @click="changeCataloguesVisibility"
+      ></div> -->
+    </div>
   </div>
 </template>
 
@@ -208,6 +276,43 @@ watch(
     display: flex;
     align-items: center;
     column-gap: 6px;
+  }
+}
+.catalogue-toggle {
+  box-shadow: var(--wc-shadow-2);
+  transition: all 0.3s ease;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  z-index: 8;
+  top: calc($navbarHeight + 20px);
+  right: calc($catalogueWidth - 30px);
+}
+
+.catalogue-toggle-unfold {
+  right: 0;
+  border-radius: 50% 0 0 50%;
+}
+
+.catalogue-mask {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 3;
+  background-color: var(--wc-bg-mask);
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+@media (max-width: $MQMobileNarrow) {
+  .catalogue-mask {
+    display: block;
   }
 }
 </style>

@@ -19,8 +19,3 @@ import Page from '@/components/page/index.vue';
 import LayoutContainer from '@/components/global/LayoutContainer.vue';
 const page = usePageData();
 </script>
-<style lang="scss" scoped>
-body {
-  padding-top: 50px;
-}
-</style>

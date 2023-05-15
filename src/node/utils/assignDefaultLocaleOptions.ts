@@ -1,7 +1,7 @@
 import type {
   DefaultThemeLocaleData,
   DefaultThemeLocaleOptions,
-} from '../../shared/index.js';
+} from '../../shared/index.ts';
 
 export const DEFAULT_LOCALE_OPTIONS: DefaultThemeLocaleOptions = {
   // color mode
