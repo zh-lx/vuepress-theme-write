@@ -20,7 +20,7 @@ defineProps({
 
 <template>
   <div class="home-item">
-    <div v-if="item.title || item.text">
+    <div v-if="item.title || item.text" class="home-item-content">
       <img
         :src="
           item.img ||
@@ -43,9 +43,15 @@ defineProps({
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 60px;
   text-align: center;
-  margin-top: 60px;
+  padding: 8px;
+  width: calc(100% / 3);
+  .home-item-content {
+    background-color: var(--wc-bg-heavy);
+    padding: 16px 24px;
+    border-radius: 8px;
+    height: 100%;
+  }
 
   .item-image {
     height: 60px;
@@ -64,30 +70,15 @@ defineProps({
   }
 }
 
+@media (max-width: $MQMobile) {
+  .home-item {
+    width: 50%;
+  }
+}
+
 @media (max-width: $MQMobileNarrow) {
   .home-item {
-    width: 70%;
-    margin-right: 0;
-  }
-}
-
-@media (min-width: $MQMobileNarrow) and (max-width: $MQMobile) {
-  .home-item {
-    width: 34%;
-    max-width: 240px;
-    &:nth-of-type(2n) {
-      margin-right: 0;
-    }
-  }
-}
-
-@media (min-width: $MQMobile) {
-  .home-item {
-    width: 25%;
-    /* max-width: 240px; */
-    &:nth-of-type(3n) {
-      margin-right: 0;
-    }
+    width: 100%;
   }
 }
 </style>

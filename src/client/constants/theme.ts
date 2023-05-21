@@ -8,6 +8,7 @@ export const themeMode = {
     '--wc-text-white': 'var(--neutral-white)',
 
     '--wc-border-primary': 'var(--neutral-3)',
+    '--wc-border-heavy': 'var(--neutral-4)',
     '--wc-border-deep': 'var(--neutral-6)',
     '--wc-border-light': 'var(--neutral-2)',
     '--wc-border-brand': 'var(--brand-6)',
@@ -27,8 +28,8 @@ export const themeMode = {
 
     // shadow box
     '--wc-shadow-1': '0 0 1px rgba(0, 0, 0, 0.3)',
-    '--wc-shadow-2': '0 0 10px rgba(0, 0, 0, 0.1)',
-    '--wc-shadow-3': '0 0 20px rgba(0, 0, 0, 0.1)',
+    '--wc-shadow-2': '0 0 10px rgba(0, 0, 0, 0.2)',
+    '--wc-shadow-3': '0 0 20px rgba(0, 0, 0, 0.2)',
     '--wc-shadow-4': '0 0 20px rgba(0, 0, 0, 0.3)',
 
     '--wc-bg-code': 'rgba(0, 0, 0, 0.08)',
@@ -41,7 +42,8 @@ export const themeMode = {
     '--wc-text-brand-hover': 'var(--dark-brand-5)',
     '--wc-text-white': 'var(--neutral-white)',
 
-    '--wc-border-primary': 'var(--dark-neutral-6)',
+    '--wc-border-primary': 'var(--dark-neutral-8)',
+    '--wc-border-heavy': 'var(--dark-neutral-7)',
     '--wc-border-deep': 'var(--dark-neutral-5)',
     '--wc-border-light': 'var(--neutral-8)',
     '--wc-border-brand': 'var(--dark-brand-6)',

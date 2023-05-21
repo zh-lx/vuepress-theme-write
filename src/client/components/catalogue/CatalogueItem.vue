@@ -135,14 +135,6 @@ if (item.value.collapsible) {
   padding-left: 78px !important;
 }
 
-@media (max-width: $MQMobileNarrow) {
-  .catalogue-link-item:not(.sidebar-heading) {
-    border-left: none;
-  }
-  .catalogue-link-item.active {
-    border-left: none;
-  }
-}
 </style>
 <style lang="scss">
 .catalogue-link-item.active {

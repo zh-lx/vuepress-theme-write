@@ -3,48 +3,45 @@
     class="main-container"
     :aria-labelledby="heroText ? 'main-title' : null"
   >
-    <div
-      class="hero"
-      :id="HOME_BG_ID"
-      :style="{ backgroundImage: `url(${homeBgImage})` }"
-    >
-      <img v-if="homeImg" :src="homeImg" alt="" class="home-main-img" />
+    <div class="top">
+      <div class="hero-bg"></div>
 
-      <h1 v-if="heroText" id="main-title">
-        {{ heroText }}
-      </h1>
+      <div
+        class="hero"
+        :id="HOME_BG_ID"
+        :style="{ backgroundImage: `url(${homeBgImage})` }"
+      >
+        <img v-if="homeImg" :src="homeImg" alt="" class="home-main-img" />
 
-      <p v-if="tagline" class="description">
-        {{ tagline }}
-      </p>
+        <h1 v-if="heroText" id="main-title">
+          {{ heroText }}
+        </h1>
 
-      <button v-if="isDocs" class="start-btn" @click="handleClickStart">
-        {{ start || '开始' }}
-      </button>
+        <p v-if="tagline" class="description">
+          {{ tagline }}
+        </p>
+
+        <button v-if="isDocs" class="start-btn" @click="handleClickStart">
+          {{ start || '开始' }}
+        </button>
+      </div>
+
+      <div class="hero-placeholder"></div>
+
+      <div class="main-content" v-if="!isDocs">
+        <div class="main-content-left"><BlogList :blogs="blogs" /></div>
+        <div class="main-content-right"><HomeRight /></div>
+      </div>
+
+      <div v-if="isDocs" class="home-items">
+        <HomeItem
+          v-for="(item, index) in [...homeItems]"
+          :item="item"
+          :index="index"
+          key="index"
+        />
+      </div>
     </div>
-
-    <div class="main-content" v-if="!isDocs">
-      <div class="main-content-left"><BlogList :blogs="blogs" /></div>
-      <div class="main-content-right"><HomeRight /></div>
-    </div>
-
-    <div v-if="isDocs" class="home-items">
-      <HomeItem
-        v-for="(item, index) in [
-          ...homeItems,
-          placeholderItem,
-          placeholderItem,
-        ]"
-        :item="item"
-        :index="index"
-        key="index"
-      />
-    </div>
-
-    <template v-if="footer">
-      <div v-if="footerHtml" class="footer" v-html="footer" />
-      <div v-else class="footer" v-text="footer" />
-    </template>
 
     <HomeFooter />
   </main>
@@ -58,7 +55,7 @@ import { usePageList, useDarkMode } from '@/composables';
 import BlogList from '@/components/blog-list/index.vue';
 import { HOME_BG_ID } from '@/constants/global';
 import LightBg from '@/assets/light-bg.svg';
-import DarkBg from '@/assets/dark-bg.jpg';
+import DarkBg from '@/assets/dark-bg.svg';
 import HomeRight from './HomeRight.vue';
 import HomeFooter from 'HomeFooter';
 import HomeItem from './HomeItem.vue';
@@ -121,11 +118,10 @@ const handleClickStart = () => {
 
 const isDocs = computed(() => type === 'docs');
 
-const homeItems = computed(() => $HomeItems);
-
-const footer = computed(() => frontmatter.value.footer);
-
-const footerHtml = computed(() => frontmatter.value.footerHtml);
+const homeItems = computed(() => {
+  console.log($HomeItems);
+  return $HomeItems;
+});
 
 usePageList().then((pageList) => {
   blogs.value = pageList?.blogList?.value || [];
@@ -137,32 +133,43 @@ usePageList().then((pageList) => {
 
 @import '~@/styles/_variables.scss';
 
+$HeroHeight: 500px !default;
+
 .main-container {
   padding: $navbarHeight 0 0;
   max-width: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
-  background-color: var(--wc-bg-common);
+  position: relative;
 
   .hero {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    height: calc(88vh - 84px);
-    width: 100%;
+    height: $HeroHeight;
+    width: calc(100vw - max(44px, 100vw - $maxWidth + 44px));
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: var(--wc-bg-light);
     background-position: center;
-    background-size: cover;
+    background-size: min(1280px, 100%) $HeroHeight;
     background-repeat: no-repeat;
 
     #main-title {
-      color: var(--wc-text-primary);
+      color: transparent;
+      background: linear-gradient(30deg, var(--brand-4), var(--wc-text-brand));
+      -webkit-background-clip: text;
       font-weight: 600;
-      font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-        Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      font-size: 42px;
+      font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell,
+        Noto Sans, sans-serif, BlinkMacSystemFont, 'Helvetica Neue',
+        'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial;
+      font-size: 80px;
+      font-weight: bold;
       margin: 0 auto;
     }
 
@@ -194,6 +201,10 @@ usePageList().then((pageList) => {
     }
   }
 
+  .hero-placeholder {
+    height: calc($HeroHeight - $navbarHeight);
+  }
+
   .main-content {
     display: flex;
     justify-content: center;
@@ -210,16 +221,10 @@ usePageList().then((pageList) => {
   }
 
   .home-items {
+    margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .footer {
-    padding: 36px;
-    border-top: 1px solid var(--wc-border-primary);
-    text-align: center;
-    color: var(--wc-text-primary);
+    padding: 0 22px;
   }
 }
 
@@ -248,6 +253,12 @@ usePageList().then((pageList) => {
         overflow: hidden;
       }
     }
+  }
+}
+
+@media (min-width: $maxWidth) {
+  .hero {
+    transform: translateX(calc(-50vw + 0.5 * $maxWidth));
   }
 }
 </style>

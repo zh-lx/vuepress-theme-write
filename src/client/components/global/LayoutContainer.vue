@@ -71,22 +71,6 @@ const isLoading = ref(true);
 const toggleSidebar = (to?: boolean): void => {
   isSidebarOpen.value = typeof to === 'boolean' ? to : !isSidebarOpen.value;
 };
-const touchStart = { x: 0, y: 0 };
-const onTouchStart = (e): void => {
-  touchStart.x = e.changedTouches[0].clientX;
-  touchStart.y = e.changedTouches[0].clientY;
-};
-const onTouchEnd = (e): void => {
-  const dx = e.changedTouches[0].clientX - touchStart.x;
-  const dy = e.changedTouches[0].clientY - touchStart.y;
-  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-    if (dx > 0 && touchStart.x <= 80) {
-      toggleSidebar(true);
-    } else {
-      toggleSidebar(false);
-    }
-  }
-};
 
 // classes
 const containerClass = computed(() => [
@@ -112,6 +96,9 @@ onMounted(() => {
   const router = useRouter();
   unregisterRouterHook = router.afterEach(() => {
     toggleSidebar(false);
+    if (window.innerWidth < 560) {
+      showCatalogues.value = false;
+    }
   });
   setMode(isDarkMode.value ? 'darkMode' : 'lightMode');
   onLoad(() => (isLoading.value = false));
@@ -134,13 +121,13 @@ watch(
 );
 
 watch(
-  () => isSidebarOpen.value,
+  () => [isSidebarOpen.value, showCatalogues.value],
   (val) => {
-    if (val) {
+    if (val.some((item) => item) && window.innerWidth < 560) {
       document.body.style['overflow'] = 'hidden';
       document.body.style.width = 'calc(100vw - 8px)';
     } else {
-      document.body.style['overflow'] = 'auto';
+      document.body.style['overflow'] = 'overlay';
       document.body.style.width = '100%';
     }
   },
@@ -149,106 +136,107 @@ watch(
 </script>
 
 <template>
-  <Loading v-show="isLoading" />
-  <div class="theme-container" :class="containerClass">
-    <slot name="navbar">
-      <Navbar
-        class="layout-navbar"
-        v-if="shouldShowNavbar"
-        @toggle-sidebar="toggleSidebar"
-      >
-        <template #before>
-          <slot name="navbar-before" />
-        </template>
-        <template #after>
-          <slot name="navbar-after" />
-        </template>
-      </Navbar>
-    </slot>
-
-    <div
-      @scroll="(e) => e.preventDefault()"
-      @touchmove="(e) => e.preventDefault()"
-      class="sidebar-mask"
-      @click="toggleSidebar(false)"
-    />
-
-    <div class="theme-main-content">
-      <slot name="sidebar">
-        <Sidebar>
-          <template #top>
-            <slot name="sidebar-top" />
+  <div>
+    <Loading v-show="isLoading" />
+    <div class="theme-container" :class="containerClass">
+      <slot name="navbar">
+        <Navbar
+          class="layout-navbar"
+          v-if="shouldShowNavbar"
+          @toggle-sidebar="toggleSidebar"
+        >
+          <template #before>
+            <slot name="navbar-before" />
           </template>
-          <template #sidebar v-if="isHomePage">
-            <NavbarItems />
+          <template #after>
+            <slot name="navbar-after" />
           </template>
-          <template #author>
-            <div class="authorInfo" v-if="!isDocs && isHomePage">
-              <AuthorCard />
-            </div>
-          </template>
-          <template #category>
-            <div
-              class="category-list"
-              v-if="!isDocs && (isHomePage || isCategoryPage)"
-            >
-              <div class="category-card-title">
-                <folder-open theme="outline" size="20" color="#303133" /><span
-                  >文章分类</span
-                >
-              </div>
-              <CategoryList />
-            </div>
-          </template>
-          <template #tag>
-            <div class="tag-list" v-if="!isDocs && (isHomePage || isTagPage)">
-              <div class="tag-card-title">
-                <tag-one theme="outline" size="20" color="#303133" /><span
-                  >热门标签</span
-                >
-              </div>
-              <TagList />
-            </div>
-          </template>
-          <template #bottom>
-            <slot name="sidebar-bottom" />
-          </template>
-        </Sidebar>
+        </Navbar>
       </slot>
 
-      <slot></slot>
+      <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
-      <!-- <div
-        :class="`catalogue-toggle ${
-          showCatalogues ? 'catalogue-toggle-show' : 'catalogue-toggle-unfold'
-        }`"
-        @click="changeCataloguesVisibility"
-      >
-        <menu-fold-one
-          theme="outline"
-          size="18"
-          fill="#606266"
-          :strokeWidth="3"
+      <div class="theme-main-content">
+        <slot name="sidebar">
+          <Sidebar>
+            <template #top>
+              <slot name="sidebar-top" />
+            </template>
+            <template #sidebar v-if="isHomePage">
+              <NavbarItems />
+            </template>
+            <template #author>
+              <div class="authorInfo" v-if="!isDocs && isHomePage">
+                <AuthorCard />
+              </div>
+            </template>
+            <template #category>
+              <div
+                class="category-list"
+                v-if="!isDocs && (isHomePage || isCategoryPage)"
+              >
+                <div class="category-card-title">
+                  <folder-open theme="outline" size="20" color="#303133" /><span
+                    >文章分类</span
+                  >
+                </div>
+                <CategoryList />
+              </div>
+            </template>
+            <template #tag>
+              <div class="tag-list" v-if="!isDocs && (isHomePage || isTagPage)">
+                <div class="tag-card-title">
+                  <tag-one theme="outline" size="20" color="#303133" /><span
+                    >热门标签</span
+                  >
+                </div>
+                <TagList />
+              </div>
+            </template>
+            <template #bottom>
+              <slot name="sidebar-bottom" />
+            </template>
+          </Sidebar>
+        </slot>
+
+        <slot></slot>
+
+        <div
+          v-if="catalogues?.[0]?.children?.length"
+          :class="`catalogue-toggle ${
+            showCatalogues ? 'catalogue-toggle-show' : 'catalogue-toggle-unfold'
+          }`"
+          @click="changeCataloguesVisibility"
+        >
+          <menu-fold-one
+            theme="outline"
+            size="18"
+            fill="#606266"
+            :strokeWidth="3"
+            v-show="showCatalogues"
+          />
+          <menu-unfold-one
+            theme="outline"
+            size="18"
+            fill="#606266"
+            :strokeWidth="3"
+            v-show="!showCatalogues"
+          />
+        </div>
+        <Catalogues
+          class="catalogues-region"
+          :showCatalogues="showCatalogues"
+          v-if="catalogues?.[0]?.children?.length"
+        />
+        <div
+          :class="[!catalogues?.[0]?.children?.length && 'catalogue-narrow']"
+        ></div>
+        <div
+          class="catalogue-mask"
           v-show="showCatalogues"
-        />
-        <menu-unfold-one
-          theme="outline"
-          size="18"
-          fill="#606266"
-          :strokeWidth="3"
-          v-show="!showCatalogues"
-        />
-      </div> -->
-      <Catalogues
-        class="catalogues-region"
-        :showCatalogues="showCatalogues"
-        v-if="catalogues?.[0]?.children?.length"
-      />
-      <!-- <div
-        class="catalogue-mask"
-        v-show="showCatalogues"
-        @click="changeCataloguesVisibility"
-      ></div> -->
+          @click="changeCataloguesVisibility"
+        ></div>
+      </div>
     </div>
   </div>
 </template>
@@ -279,24 +267,29 @@ watch(
   }
 }
 .catalogue-toggle {
-  box-shadow: var(--wc-shadow-2);
-  transition: all 0.3s ease;
   width: 30px;
   height: 30px;
+  transition: all 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
   cursor: pointer;
   position: fixed;
   z-index: 8;
-  top: calc($navbarHeight + 20px);
-  right: calc($catalogueWidth - 30px);
+  top: calc($navbarHeight + 16px);
+  right: 16px;
 }
 
 .catalogue-toggle-unfold {
   right: 0;
   border-radius: 50% 0 0 50%;
+  box-shadow: var(--wc-shadow-2);
+  background-color: var(--wc-bg-common);
+}
+
+.catalogue-narrow {
+  width: 0;
+  transition: all 0.3s ease;
 }
 
 .catalogue-mask {
@@ -308,6 +301,22 @@ watch(
   top: 0;
   left: 0;
   display: none;
+}
+
+@media (min-width: $maxWidth) {
+  .catalogue-toggle {
+    display: none;
+  }
+  .catalogue-narrow {
+    width: 22px;
+  }
+  body {
+    .home-layout-container {
+      .catalogue-narrow {
+        width: 0px;
+      }
+    }
+  }
 }
 
 @media (max-width: $MQMobileNarrow) {

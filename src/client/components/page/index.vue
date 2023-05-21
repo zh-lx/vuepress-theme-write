@@ -54,26 +54,6 @@ const hidePageMeta = $Site?.hidePageMeta;
 .page-container {
   width: 100%;
   transition: all 0.3s ease;
-  .catalogue-toggle {
-    box-shadow: var(--wc-shadow-2);
-    transition: all 0.3s ease;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    cursor: pointer;
-    position: fixed;
-    z-index: 8;
-    top: calc($navbarHeight + 20px);
-    right: calc($catalogueWidth - 30px);
-  }
-
-  .catalogue-toggle-unfold {
-    right: 0;
-    border-radius: 50% 0 0 50%;
-  }
 }
 
 .catalogue-mask {

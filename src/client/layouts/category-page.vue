@@ -60,15 +60,5 @@ const blogsToShow = computed(() => {
       padding-left: 22px;
     }
   }
-  :deep(.sidebar) {
-    transform: translateX(-100%);
-  }
-  :deep(.theme-container) {
-    .sidebar-open {
-      .sidebar {
-        transform: translateX(0);
-      }
-    }
-  }
 }
 </style>
