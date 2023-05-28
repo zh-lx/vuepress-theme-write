@@ -6,6 +6,7 @@ import NavbarBrand from './NavbarBrand.vue';
 import NavbarItems from './NavbarItems.vue';
 import ToggleDarkModeButton from './ToggleDarkModeButton.vue';
 import ToggleSidebarButton from './ToggleSidebarButton.vue';
+import TranslateButton from './Translate.vue';
 import NavbarExtra from 'NavbarExtra';
 
 defineEmits(['toggle-sidebar']);
@@ -73,6 +74,7 @@ function getCssValue(el: HTMLElement | null, property: string): number {
         <NavbarItems class="can-hide" />
         <slot name="after" />
         <NavbarExtra />
+        <TranslateButton />
         <ToggleDarkModeButton v-if="enableDarkMode" />
         <NavbarSearch />
       </div>
@@ -109,6 +111,7 @@ $navbar-horizontal-padding: 22px;
     right: $navbar-horizontal-padding;
     top: $navbar-vertical-padding;
     display: flex;
+    align-items: center;
 
     .search-box {
       flex: 0 0 auto;
