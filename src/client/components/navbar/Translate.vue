@@ -26,7 +26,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Translate from '@/assets/translate.vue';
-import e from 'express';
+import { currentLang, getLangPath } from '@/utils';
 const languages = $Langs || [];
 
 const show = ref(false);
@@ -43,37 +43,11 @@ const closeList = () => {
     show.value = false;
   }
 };
-
-const currentLang = computed(() => {
-  let item = languages
-    .sort((a, b) => b.prefix.length - a.prefix.length)
-    .find(
-      (item) =>
-        route.path.startsWith(`${item.prefix}/`) || route.path === item.prefix
-    );
-  if (!item) {
-    item = languages
-      .sort((a, b) => b.prefix.length - a.prefix.length)
-      .find((item) => item.prefix === '/');
-  }
-  return item;
-});
-
 const handleCLickLanguage = (prefix: string) => {
   if (currentLang.value?.prefix === prefix) {
     return;
   }
-  let target: string = '';
-  if (currentLang.value) {
-    if (currentLang.value.prefix !== '/') {
-      target = route.path.replace(
-        currentLang.value.prefix,
-        prefix === '/' ? '' : prefix
-      );
-    } else {
-      target = route.path.replace('/', prefix + '/');
-    }
-  }
+  let target = getLangPath(currentLang.value?.prefix, prefix, route.path);
   router.push({
     path: target,
     hash: route.hash,

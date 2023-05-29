@@ -283,4 +283,6 @@ export interface DefaultThemeLocaleData extends LocaleData {
   toggleSidebar?: string;
 
   type?: 'docs' | 'blog';
+
+  langs?: { path: string; title: string }[];
 }

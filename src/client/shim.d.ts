@@ -25,6 +25,7 @@ declare const $Site: {
 declare const $Langs: {
   label: string;
   prefix: string;
+  items?: typeof $HomeItems;
 }[];
 
 declare const $Author: {
