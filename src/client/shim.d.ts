@@ -22,6 +22,12 @@ declare const $Site: {
   hidePageMeta: boolean;
 };
 
+declare const $Langs: {
+  label: string;
+  prefix: string;
+  items?: typeof $HomeItems;
+}[];
+
 declare const $Author: {
   name: string;
   avatar: string;

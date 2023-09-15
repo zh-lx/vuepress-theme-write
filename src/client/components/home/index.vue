@@ -22,7 +22,7 @@
         </p>
 
         <button v-if="isDocs" class="start-btn" @click="handleClickStart">
-          {{ start || '开始' }}
+          {{ startText || '开始' }}
         </button>
       </div>
 
@@ -56,6 +56,7 @@ import BlogList from '@/components/blog-list/index.vue';
 import { HOME_BG_ID } from '@/constants/global';
 import LightBg from '@/assets/light-bg.svg';
 import DarkBg from '@/assets/dark-bg.svg';
+import { currentLang, getLangPath, getLang } from '@/utils';
 import HomeRight from './HomeRight.vue';
 import HomeFooter from 'HomeFooter';
 import HomeItem from './HomeItem.vue';
@@ -102,24 +103,37 @@ const tagline = computed(() => {
   if (frontmatter.value.tagline === null) {
     return null;
   }
+  let tagline = $Langs ? currentLang.value?.description : '';
   return (
     frontmatter.value.tagline ??
+    tagline ??
     description ??
     siteLocale.value.description ??
     'Welcome to your VuePress site'
   );
 });
 
+const startText = computed(() => {
+  return $Langs ? currentLang.value?.start : start;
+});
+
 const router = useRouter();
 
 const handleClickStart = () => {
-  router.push(startPath);
+  let target = getLangPath(
+    getLang(startPath).prefix,
+    currentLang.value.prefix,
+    startPath
+  );
+  router.push(target);
 };
 
 const isDocs = computed(() => type === 'docs');
 
 const homeItems = computed(() => {
-  console.log($HomeItems);
+  if ($Langs) {
+    return currentLang.value?.items || $HomeItems;
+  }
   return $HomeItems;
 });
 

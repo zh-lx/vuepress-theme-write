@@ -81,17 +81,24 @@ export const defaultTheme = ({
     },
 
     async onInitialized(app) {
-      const homePage = await createPage(app, {
-        path: '/',
-        // 设置 frontmatter
-        frontmatter: {
-          layout: 'home-page',
-          blog: false,
-          permalink: '/',
-          hideSidebar: true,
-          title: '首页',
-        },
-      });
+      (localeOptions?.langs || [{ path: '/', title: '首页' }]).forEach(
+        async (item) => {
+          // 把它添加到 `app.pages`
+          const page = await createPage(app, {
+            path: item.path,
+            // 设置 frontmatter
+            frontmatter: {
+              layout: 'home-page',
+              blog: false,
+              permalink: item.path,
+              hideSidebar: true,
+              title: item.title,
+            },
+          });
+          app.pages.push(page);
+        }
+      );
+
       const tagPage = await createPage(app, {
         path: '/page-tag/',
         // 设置 frontmatter
@@ -111,7 +118,6 @@ export const defaultTheme = ({
         },
       });
       // 把它添加到 `app.pages`
-      app.pages.push(homePage);
       app.pages.push(tagPage);
       app.pages.push(categoryPage);
     },

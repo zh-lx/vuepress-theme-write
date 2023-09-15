@@ -24,6 +24,10 @@ import PageMeta from './PageMeta.vue';
 import PageNav from './PageNav.vue';
 import Catalogues from '@/components/catalogue/index.vue';
 
+const { type } = {
+  ...($Site || {}),
+};
+
 const showCatalogues = ref(false);
 
 const changeCataloguesVisibility = () => {
@@ -47,7 +51,7 @@ const isTagPage = computed(() => {
 const isHomePage = computed(() => {
   return router.currentRoute.value.path === '/';
 });
-const isDocs = computed(() => $Site?.type === 'docs');
+const isDocs = computed(() => type === 'docs');
 
 // 是否展示 sidebar
 const shouldShowSidebar = computed(() => {
@@ -123,12 +127,14 @@ watch(
 watch(
   () => [isSidebarOpen.value, showCatalogues.value],
   (val) => {
-    if (val.some((item) => item) && window.innerWidth < 560) {
-      document.body.style['overflow'] = 'hidden';
-      document.body.style.width = 'calc(100vw - 8px)';
-    } else {
-      document.body.style['overflow'] = 'overlay';
-      document.body.style.width = '100%';
+    if (typeof document !== 'undefined') {
+      if (val.some((item) => item) && window.innerWidth < 560) {
+        document.body.style['overflow'] = 'hidden';
+        document.body.style.width = 'calc(100vw - 8px)';
+      } else {
+        document.body.style['overflow'] = 'overlay';
+        document.body.style.width = '100%';
+      }
     }
   },
   { deep: true, immediate: true }

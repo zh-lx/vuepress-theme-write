@@ -69,15 +69,14 @@ const toggleDarkMode = (): void => {
   display: flex;
   align-items: center;
   margin: auto;
-  margin-left: 14px;
+  margin-left: 8px;
   border: 0;
   background: none;
   color: var(--wc-text-secondary);
-  opacity: 0.8;
   cursor: pointer;
   &:hover {
     opacity: 1;
-    color: var(--wc-text-primary);
+    color: var(--wc-text-brand);
   }
   .icon {
     width: 18px;

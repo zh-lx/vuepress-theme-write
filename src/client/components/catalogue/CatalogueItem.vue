@@ -73,7 +73,8 @@ if (item.value.collapsible) {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  line-height: 1;
+  line-height: 14px;
+  height: 22px;
 }
 .catalogue-link-item:not(.sidebar-heading) {
   border-left: 1px solid var(--wc-border-primary);
@@ -134,13 +135,16 @@ if (item.value.collapsible) {
 .catalogue-level-6 {
   padding-left: 78px !important;
 }
-
 </style>
 <style lang="scss">
 .catalogue-link-item.active {
   .li-item {
     display: inline-block;
+    line-height: 14px;
+    max-width: 100%;
     transform: translateX(1px);
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 </style>

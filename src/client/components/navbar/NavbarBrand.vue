@@ -5,6 +5,7 @@ import {
   useSiteLocaleData,
   withBase,
 } from '@vuepress/client';
+import { getLangPath, getLang, currentLang } from '@/utils';
 import { computed, h } from 'vue';
 import type { FunctionalComponent } from 'vue';
 import { useDarkMode, useThemeLocaleData } from '@/composables';
@@ -14,9 +15,15 @@ const siteLocale = useSiteLocaleData();
 const themeLocale = useThemeLocaleData();
 const isDarkMode = useDarkMode();
 
-const navbarBrandLink = computed(
-  () => themeLocale.value.home || routeLocale.value
-);
+const navbarBrandLink = computed(() => {
+  const path = themeLocale.value.home || routeLocale.value;
+  const target = getLangPath(
+    getLang(path).prefix,
+    currentLang.value?.prefix,
+    path
+  );
+  return target;
+});
 const navbarBrandTitle = computed(() => siteLocale.value.title);
 const navbarBrandLogo = computed(() => {
   if (isDarkMode.value && themeLocale.value.logoDark !== undefined) {
