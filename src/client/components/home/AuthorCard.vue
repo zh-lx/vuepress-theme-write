@@ -87,7 +87,7 @@ import JianshuIcon from '@/assets/jianshu.svg';
 
 const DEFAULT_AUTHOR = {
   avatar:
-    'https://image-1300099782.cos.ap-beijing.myqcloud.com/default-avatar.jfif',
+    'https://github.com/zh-lx/blog/assets/73059627/76126fe0-3071-4ecd-9ca8-95a0ee62732f',
   name: '潇洒哥',
   introduction: '这个人很懒，没有个人介绍',
 };

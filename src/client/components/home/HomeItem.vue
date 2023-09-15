@@ -16,18 +16,22 @@ defineProps({
     required: true,
   },
 });
+
+const itemImageList = [
+  'https://github.com/zh-lx/blog/assets/73059627/e8f0f879-e4b0-416c-96f5-f91f62c534d8',
+  'https://github.com/zh-lx/blog/assets/73059627/08762712-e9e1-4ac4-a1da-a82371c3e1e7',
+  'https://github.com/zh-lx/blog/assets/73059627/dc35ec10-00ae-4117-a57c-0c29e6933de1',
+  'https://github.com/zh-lx/blog/assets/73059627/9df3bac4-8155-47e8-b200-2221654b9614',
+  'https://github.com/zh-lx/blog/assets/73059627/6a21ee77-91a0-405d-8edb-732f62b007d6',
+  'https://github.com/zh-lx/blog/assets/73059627/ba56df2c-6f72-4948-a4c4-1dade7dd8090',
+];
 </script>
 
 <template>
   <div class="home-item">
     <div v-if="item.title || item.text" class="home-item-content">
       <img
-        :src="
-          item.img ||
-          `https://image-1300099782.cos.ap-beijing.myqcloud.com/blog%2Fitem${
-            index + 1
-          }.png`
-        "
+        :src="item.img || itemImageList[index]"
         alt="图片"
         class="item-image"
       />
